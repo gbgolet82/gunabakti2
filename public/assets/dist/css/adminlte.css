@@ -4812,6 +4812,10 @@ input[type="button"].btn-block {
   color: #fff;
 }
 
+/* .custom-card {
+    border-radius: 10px;
+} */
+
 .card {
   position: relative;
   display: -ms-flexbox;
@@ -4823,7 +4827,7 @@ input[type="button"].btn-block {
   background-color: #fff;
   background-clip: border-box;
   border: 0 solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
+  border-radius: 15px;
 }
 
 .card > hr {

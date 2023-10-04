@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KlasifikasiAkunController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('contents.dashboard');
-});
+// Route::get('/', function () {
+//     return view('contents.dashboard');
+// });
 
 // Route::get('/klasifikasi_akun', function () {
 //     return view('contents.klasifikasi')->name('klasifikasi_akun');
 // });
+
+Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/klasifikasi-akun', [KlasifikasiAkunController::class, 'index'])->name('akun');

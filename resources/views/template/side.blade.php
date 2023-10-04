@@ -65,7 +65,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <li class="nav-item @yield('dashboard')">
-                    <a href="#" class="nav-link @yield('dashboard')">
+                    <a href="{{ route('dashboard') }}" class="nav-link @if (Request::url() == route('dashboard')) active @endif">
                         {{-- <i class="nav-icon fas fa-users"></i> --}}
                         <i class="bi bi-house-door-fill custom-icon"></i>
                         <p>
@@ -87,7 +87,7 @@
                     </a>
                 </li>
                 <li class="nav-item @yield('akun')">
-                    <a href="#" class="nav-link @yield('akun')">
+                    <a href="{{ route('akun') }}" class="nav-link @if (Request::url() == route('akun')) active @endif">
                         <i class="bi bi-card-list custom-icon"></i>
                         <p>
                             Klasifikasi & Akun

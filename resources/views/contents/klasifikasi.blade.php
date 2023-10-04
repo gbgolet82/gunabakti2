@@ -1,25 +1,25 @@
 @extends('main')
 
-@section('akun', 'active')
+@section('dashboard', 'active')
 
 
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
-            <div class="row mb-0">
-                <div class="col-sm-6 pb-0">
+            <div class="row">
+                <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-left">
                         <li class="breadcrumb-item text-secondary">
-                            <p>Dashboard</p>
+                            Dashboard
                         </li>
                         <li class="breadcrumb-item active">Data Klasifikasi & Akun</li>
                     </ol>
                 </div><!-- /.col -->
-                <div class="col-sm-6 pb-0">
+                <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <div class="col-auto">
-                            {{ Carbon\Carbon::now()->isoFormat('dddd, D MMMM Y') }}
+                            {{ Carbon\Carbon::now()->locale('id_ID')->isoFormat('dddd, D MMMM Y') }}
                         </div>
                     </ol>
                 </div><!-- /.col -->
@@ -29,21 +29,22 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content pt-0">
+    <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card card-outline card-success mb-0 pb-0">
+                    <div class="card card-outline card-success shadow-lg mb-0 pb-0">
                         <div class="card-body">
-
                             <div class="row mb-0 pb-0 pl-0">
                                 <strong class="col pr-0 pt-0 d-highlight pr-0 mr-0 mb-3">
-                                    <b style="color:#28a745; font-size:120%">DATA KLASIFIKASI & AKUN</b>
+                                    {{-- <b style="color:#28a745; font-size:120%">DATA KLASIFIKASI & AKUN</b> --}}
+                                    <h4 style="color:#28a745;">DATA KLASIFIKASI & AKUN</h4>
                                 </strong>
-                                <div class="col col-md-3 col-sm-12 mt-0 pr-0 bt-lg mb-2">
-                                    <button class="btn btn-sm btn-rounded btn-block text-white " style="background-color: #28a745"
-                                        type="button" data-toggle="modal" data-target="#tambahData"
-                                        aria-expanded="false"><i class="fas fa-plus-circle left-icon-holder "></i>
+                                <div class="col col-md-3 col-sm-12 bt-lg mb-2">
+                                    <button class="btn btn-sm btn-block text-white "
+                                        style="background-color: #28a745; border-radius: 10px;" type="button"
+                                        data-toggle="modal" data-target="#tambahData" aria-expanded="false"><i
+                                            class="fas fa-plus-circle left-icon-holder "></i>
                                         &nbsp;&nbsp; Tambah
                                     </button>
                                 </div>

@@ -4,11 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <title>GUNA BAKTI</title>
-    <link rel="icon" href="{!! asset('gambar/logoo.png') !!}"/>
 
-    
+    <title>GUNA BAKTI | {{ $active_page }}</title>
+    <link rel="icon" href="{!! asset('gambar/logoo.png') !!}" />
+
+
     @include('template.css')
 
     {{-- @livewireStyles --}}
@@ -53,7 +53,7 @@
             <!-- Control sidebar content goes here -->
         </aside>
         <!-- /.control-sidebar -->
-    
+
     </div>
     <!-- ./wrapper -->
 
