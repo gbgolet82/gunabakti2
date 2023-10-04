@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>GUNA BAKTI | {{ $active_page }}</title>
-    <link rel="icon" href="{!! asset('gambar/logoo.png') !!}" />
+    <link rel="icon" href="{!! asset('gambar/gunabakti-logo.png') !!}" />
 
 
     @include('template.css')

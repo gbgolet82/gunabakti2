@@ -13,7 +13,7 @@
                         <li class="breadcrumb-item text-secondary">
                             Dashboard
                         </li>
-                        <li class="breadcrumb-item active">Data Klasifikasi & Akun</li>
+                        <li class="breadcrumb-item active">Data Usaha</li>
                     </ol>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
@@ -38,7 +38,7 @@
                             <div class="row mb-0 pb-0 pl-0">
                                 <strong class="col pr-0 pt-0 d-highlight pr-0 mr-0 mb-3">
                                     {{-- <b style="color:#28a745; font-size:120%">DATA KLASIFIKASI & AKUN</b> --}}
-                                    <h4 style="color:#28a745;">DATA KLASIFIKASI & AKUN</h4>
+                                    <h4 style="color:#28a745;">DATA USAHA</h4>
                                 </strong>
                                 <div class="col col-md-3 col-sm-12 bt-lg mb-2">
                                     <button class="btn btn-sm btn-block text-white "
@@ -53,15 +53,11 @@
                             <table id="example2" class="table table-bordered table-hover mt-0 pt-0">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
-                                        <th>Klasifikasi</th>
-                                        <th>Akun</th>
-                                        <th>Sub Akun 1</th>
-                                        <th>Sub Akun 2</th>
-                                        <th>Sub Akun 3</th>
-                                        <th>Sub Akun 4</th>
-                                        <th>Bukti Valid</th>
-                                        <th>Aksi</th>
+                                        <th>Rendering engine</th>
+                                        <th>Browser</th>
+                                        <th>Platform(s)</th>
+                                        <th>Engine version</th>
+                                        <th>CSS grade</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -73,23 +69,15 @@
                                         <td>Win 95+</td>
                                         <td> 4</td>
                                         <td>X</td>
-                                        <td>Win 95+</td>
-                                        <td> 4</td>
-                                        <td>X</td>
-                                        <td>X</td>
                                     </tr>
                                     <tr>
                                         <td>Trident</td>
                                         <td>Internet
-                                            Explorer 4.0
+                                            Explorer 5.0
                                         </td>
                                         <td>Win 95+</td>
-                                        <td> 4</td>
-                                        <td>X</td>
-                                        <td>Win 95+</td>
-                                        <td> 4</td>
-                                        <td>X</td>
-                                        <td>X</td>
+                                        <td>5</td>
+                                        <td>C</td>
                                     </tr>
                                 </tbody>
                             </table>

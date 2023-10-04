@@ -79,7 +79,7 @@
 
                 <li class="nav-header font-weight-bolder">Data Master</li>
                 <li class="nav-item @yield('karyawan')">
-                    <a href="#" class="nav-link @yield('karyawan')">
+                    <a href="{{ route('karyawan') }}" class="nav-link @if (Request::url() == route('karyawan')) active @endif">
                         <i class="bi bi-person-fill custom-icon"></i>
                         <p>
                             Data Karyawan
@@ -88,14 +88,14 @@
                 </li>
                 <li class="nav-item @yield('akun')">
                     <a href="{{ route('akun') }}" class="nav-link @if (Request::url() == route('akun')) active @endif">
-                        <i class="bi bi-card-list custom-icon"></i>
+                        <i class="fas fa-server"></i>
                         <p>
                             Klasifikasi & Akun
                         </p>
                     </a>
                 </li>
                 <li class="nav-item @yield('usaha')">
-                    <a href="#" class="nav-link @yield('usaha')">
+                    <a href="{{ route('usaha') }}" class="nav-link @if (Request::url() == route('usaha')) active @endif">
                         <i class="bi bi-bar-chart-line-fill custom-icon"></i>
                         <p>
                             Data Usaha
@@ -106,7 +106,7 @@
                 <li class="nav-header font-weight-bolder mt-1">Data Laporan</li>
                 <li class="nav-item @yield('labarugi')">
                     <a href="#" class="nav-link @yield('labarugi')">
-                        <i class="bi bi-activity custom-icon"></i>
+                        {{-- <i class="bi bi-activity custom-icon"></i> --}}<i class="fas fa-chart-line"></i>
                         <p>
                             Laba Rugi
                         </p>
