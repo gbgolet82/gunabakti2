@@ -28,6 +28,79 @@
     </div>
     <!-- /.content-header -->
 
+    <!-- card -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-md-6 mb-2">
+                    <div class="card ijo-kiri">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div style="color:#28A745" class="h5 font-weight-bold mb-3">Donatur Infaq
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold mb-1">11 Orang</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-users fa-2x text-gray"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6 mb-2">
+                    <div class="card ijo-kiri">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div style="color:#28A745" class="h5 font-weight-bold mb-3">Donatur Zakat
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold mb-1">11 Orang</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-users fa-2x text-gray"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6 mb-2">
+                    <div class="card ijo-kiri">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div style="color:#28A745" class="h5 font-weight-bold mb-3">Donatur Qurban
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold mb-1">11 Orang</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-users fa-2x text-gray"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6 mb-2">
+                    <div class="card ijo-kiri">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div style="color:#28A745" class="h5 font-weight-bold mb-3">
+                                        Donatur Wakaf
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold mb-1">11 Orang</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-users fa-2x text-gray"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">

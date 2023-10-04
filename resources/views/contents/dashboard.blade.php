@@ -28,144 +28,103 @@
     </div>
     <!-- /.content-header -->
 
+    <!-- card -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-md-6 mb-2">
+                    <div class="card ijo-kiri">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div style="color:#28A745" class="h5 font-weight-bold mb-3">Donatur Infaq
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold mb-1">11 Orang</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-users fa-2x text-gray"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6 mb-2">
+                    <div class="card ijo-kiri">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div style="color:#28A745" class="h5 font-weight-bold mb-3">Donatur Zakat
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold mb-1">11 Orang</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-users fa-2x text-gray"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6 mb-2">
+                    <div class="card ijo-kiri">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div style="color:#28A745" class="h5 font-weight-bold mb-3">Donatur Qurban
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold mb-1">11 Orang</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-users fa-2x text-gray"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6 mb-2">
+                    <div class="card ijo-kiri">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div style="color:#28A745" class="h5 font-weight-bold mb-3">
+                                        Donatur Wakaf
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold mb-1">11 Orang</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-users fa-2x text-gray"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <!-- Small boxes (Stat box) -->
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <!-- small box -->
-                        <div class="card shadow">
-                            <div class="row">
-                                <div class="col-7">
-                                    <div class="text-box ml-3 mt-2" style="height: 120px; width: 100px">
-                                        <strong style="margin-bottom: 5px;">Data Gejala</strong><br>
-                                        <h4 style="margin-top: 10px;">5 Data</h4>
-                                    </div>
-                                </div>
-                                <div class="col-5 d-flex align-items-center justify-content-center">
-                                    <i class="fas fa-virus" style="font-size: 40px;"></i>
-                                </div>
-                            </div>
-
-                            {{-- <a href="#" class="text ml-3 mb-2">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <!-- small box -->
-                        <div class="card shadow">
-                            <div class="row">
-                                <div class="col-7">
-                                    <div class="text-box ml-3 mt-2" style="height: 120px; width: 100px">
-                                        <strong style="margin-bottom: 5px;">Data Penyakit</strong><br>
-                                        <h4 style="margin-top: 10px;">4 Data</h4>
-                                    </div>
-                                </div>
-                                <div class="col-5 d-flex align-items-center justify-content-center">
-                                    <i class="fas fa-notes-medical" style="font-size: 40px;"></i>
-                                </div>
-                            </div>
-
-                            {{-- <a href="#" class="text ml-3 mb-2">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <!-- small box -->
-                        <div class="card shadow">
-                            <div class="row">
-                                <div class="col-7">
-                                    <div class="text-box ml-3 mt-2" style="height: 120px; width: 100px">
-                                        <strong style="margin-bottom: 5px;">Data Konsultasi</strong>
-                                        <h4 style="margin-top: 10px;">6 Data</h4>
-                                    </div>
-                                </div>
-                                <div class="col-5 d-flex align-items-center justify-content-center">
-                                    <i class="fas fa-history" style="font-size: 40px;"></i>
-                                </div>
-                            </div>
-
-                            {{-- <a href="#" class="text ml-3 mb-2">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <!-- small box -->
-                        <div class="card shadow">
-                            <div class="row">
-                                <div class="col-7">
-                                    <div class="text-box ml-3 mt-2" style="height: 120px; width: 100px">
-                                        <strong style="margin-bottom: 5px;">Bulan</strong>
-                                        <h4 style="margin-top: 10px;"></h4>
-                                    </div>
-                                </div>
-                                <div class="col-5 d-flex align-items-center justify-content-center">
-                                    <i class="fas fa-calendar-alt" style="font-size: 40px;"></i>
-                                </div>
-                            </div>
-                            {{-- <a href="#" class="text ml-3 mb-2">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                </div>
-            </div>
-            <!-- /.row -->
-            <!-- Main row -->
-            <div class="container-fluid rounded-3">
-                <div class="card card-outline card-success shadow-lg">
-                    <div class="card-header">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-8 p-0">
-                                    <div class="card m-2">
-                                        <div class="card-body">
-                                            <div class="row ml-2">
-                                                <strong>Grafik Data Master</strong><br>
-                                            </div>
-                                            <canvas id="myChart" style="height: 150px; max-height: 250px"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 p-0">
-                                    <div class="card m-2 d-flex flex-column">
-                                        <div class="card-body">
-                                            <div class="row text-center mb-3">
-                                                <div class="col-12">
-                                                    <strong>Grafik</strong>
-                                                </div>
-                                            </div>
-                                            <div class="row text-center mb-3">
-                                                <div class="col-12">
-                                                    <div class="slider">
-                                                        {{-- @if ($gambarPenyakit && count($gambarPenyakit) > 0)
-                                                            @foreach ($gambarPenyakit as $g)
-                                                                <div>
-                                                                    <img src="{{ asset('storage/public/' . $g->gambar_penyakit) }}"
-                                                                        alt="Gambar Penyakit" class="img-fluid"
-                                                                        style="width: 100%; max-width: 270px; height: 50%; max-height: 163px;">
-                                                                </div>
-                                                            @endforeach
-                                                        @else
-                                                            <div>
-                                                                <p>Tidak ada gambar penyakit yang tersedia.</p>
-                                                            </div>
-                                                        @endif --}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row text-center">
-                                                <div class="col-12">
-                                                    <h5></h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-outline card-success shadow-lg mb-0 pb-0">
+                        <div class="card-body">
+                            <div class="row mb-0 pb-0 pl-0">
+                                <strong class="col pr-0 pt-0 d-highlight pr-0 mr-0 mb-3">
+                                    <h4 style="color:#28a745;">DATA MASTER</h4>
+                                </strong>
+                                {{-- <div class="col col-md-3 col-sm-12 bt-lg mb-2">
+                                    <button class="btn btn-sm btn-block text-white "
+                                        style="background-color: #28a745; border-radius: 10px;" type="button"
+                                        data-toggle="modal" data-target="#tambahData" aria-expanded="false"><i
+                                            class="fas fa-plus-circle left-icon-holder "></i>
+                                        &nbsp;&nbsp; Tambah
+                                    </button>
+                                </div> --}}
                             </div>
                         </div>
+                        <!-- /.card-body -->
                     </div>
+                    <!-- /.card -->
                 </div>
             </div>
         </div>
