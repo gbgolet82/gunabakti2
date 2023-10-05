@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('karyawan', function (Blueprint $table) {
-            $table->increments('id_karyawan');
-            $table->unsignedInteger('id_usaha');
+            $table->uuid('id_karyawan')->primary(); // Menggunakan UUID sebagai primary key
+            $table->foreignUuid('id_usaha'); // Kolom foreign key UUID
             $table->foreign('id_usaha')->references('id_usaha')->on('usaha');
             $table->string('kode');
             $table->string('nama');

@@ -37,12 +37,12 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div style="color:#28A745" class="h5 font-weight-bold mb-3">Donatur Infaq
+                                    <div class="h5 font-weight-bold mb-3">Jumlah <br>Karyawan
                                     </div>
-                                    <div class="h5 mb-0 font-weight-bold mb-1">11 Orang</div>
+                                    <div class="h5 mb-0 font-weight-bold mb-1" style="color: #28a745">11 Orang</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-users fa-2x text-gray"></i>
+                                    <i class="fas fa-users fa-3x text-gray"></i>
                                 </div>
                             </div>
                         </div>
@@ -53,12 +53,12 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div style="color:#28A745" class="h5 font-weight-bold mb-3">Donatur Zakat
+                                    <div class="h5 font-weight-bold mb-3">Jumlah <br>Manajer
                                     </div>
-                                    <div class="h5 mb-0 font-weight-bold mb-1">11 Orang</div>
+                                    <div class="h5 mb-0 font-weight-bold mb-1" style="color: #28a745">11 Orang</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-users fa-2x text-gray"></i>
+                                    <i class="fas fa-users fa-3x text-gray"></i>
                                 </div>
                             </div>
                         </div>
@@ -69,12 +69,12 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div style="color:#28A745" class="h5 font-weight-bold mb-3">Donatur Qurban
+                                    <div class="h5 font-weight-bold mb-3"> Jumlah <br>Kasir
                                     </div>
-                                    <div class="h5 mb-0 font-weight-bold mb-1">11 Orang</div>
+                                    <div class="h5 mb-0 font-weight-bold mb-1" style="color: #28a745">11 Orang</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-users fa-2x text-gray"></i>
+                                    <i class="fas fa-users fa-3x text-gray"></i>
                                 </div>
                             </div>
                         </div>
@@ -85,13 +85,12 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div style="color:#28A745" class="h5 font-weight-bold mb-3">
-                                        Donatur Wakaf
+                                    <div class="h5 font-weight-bold mb-3">Manajer & <br>Kasir
                                     </div>
-                                    <div class="h5 mb-0 font-weight-bold mb-1">11 Orang</div>
+                                    <div class="h5 mb-0 font-weight-bold mb-1" style="color: #28a745">11 Orang</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-users fa-2x text-gray"></i>
+                                    <i class="fas fa-users fa-3x text-gray"></i>
                                 </div>
                             </div>
                         </div>
@@ -102,55 +101,107 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content mb-3">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card card-outline card-success shadow-lg mb-0 pb-0">
                         <div class="card-body">
-                            <div class="row mb-0 pb-0 pl-0">
-                                <strong class="col pr-0 pt-0 d-highlight pr-0 mr-0 mb-3">
-                                    {{-- <b style="color:#28a745; font-size:120%">DATA KLASIFIKASI & AKUN</b> --}}
-                                    <h4 style="color:#28a745;">DATA KARYAWAN</h4>
-                                </strong>
-                                <div class="col col-md-3 col-sm-12 bt-lg mb-2">
-                                    <button class="btn btn-sm btn-block text-white "
-                                        style="background-color: #28a745; border-radius: 10px;" type="button"
-                                        data-toggle="modal" data-target="#tambahData" aria-expanded="false"><i
-                                            class="fas fa-plus-circle left-icon-holder "></i>
-                                        &nbsp;&nbsp; Tambah
-                                    </button>
+                            <div class="row">
+                                <div class="col-3 mt-4">
+                                    <strong class="font-weight-bold">
+                                        <h4 style="color:#28a745;">DATA KARYAWAN</h4>
+                                    </strong>
+                                </div>
+                                <div class="col-9">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-12 col-md-4 mb-2">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" for="inputGroupSelect01">Unit
+                                                                Usaha</span>
+                                                        </div>
+                                                        <select class="custom-select" id="inputGroupSelect01">
+                                                            <option selected>Semua</option>
+                                                            <option value="1">Toko Guna Bakti</option>
+                                                            <option value="2">Penggilingan Wangon</option>
+                                                            <option value="3">Produksi</option>
+                                                            <option value="4">Sawah</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" for="jabatan">Jabatan</span>
+                                                        </div>
+                                                        <select class="custom-select" id="jabatan">
+                                                            <option selected>Semua</option>
+                                                            <option value="Owner">Owner</option>
+                                                            <option value="Manajer">Manajer</option>
+                                                            <option value="Kasir">Kasir</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2">
+                                                    <button class="btn btn-block text-white"
+                                                        style="background-color: #28a745; border-radius: 10px;"
+                                                        type="button" data-toggle="modal" data-target="#tambahData"
+                                                        aria-expanded="false"><i
+                                                            class="fas fa-plus-circle left-icon-holder"></i> &nbsp;
+                                                        Tambah
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <table id="example2" class="table table-bordered table-hover mt-0 pt-0">
                                 <thead>
                                     <tr>
-                                        <th>Rendering engine</th>
-                                        <th>Browser</th>
-                                        <th>Platform(s)</th>
-                                        <th>Engine version</th>
-                                        <th>CSS grade</th>
+                                        <th>No</th>
+                                        <th>Nama</th>
+                                        <th>Jabatan</th>
+                                        <th>Unit Usaha</th>
+                                        <th>No HP</th>
+                                        <th>Status</th>
+                                        <th>Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 4.0
+                                        <td width=5%>1</td>
+                                        <td class="font-weight-bold">Muhammad Fikri
                                         </td>
-                                        <td>Win 95+</td>
-                                        <td> 4</td>
-                                        <td>X</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 5.0
+                                        <td><span class="text-white badge badge-primary"
+                                                style="font-size: 14px; border-radius: 10px;">Manajer</span> <br>
+                                            <span class="text-white badge badge-success"
+                                                style="font-size: 14px; border-radius: 10px;">Kasir</span>
                                         </td>
-                                        <td>Win 95+</td>
-                                        <td>5</td>
-                                        <td>C</td>
+                                        <td>Toko Guna Bakti</td>
+                                        <td>089689909911</td>
+                                        <td>
+                                            <span class="text-white badge badge-success text-center"
+                                                style="font-size: 14px; border-radius: 10px;">AKTIF</span>
+                                        </td>
+                                        <td width=8%>
+                                            <div class="d-flex justify-content-center">
+                                                <div id="hoverText">
+                                                    <a type="button" style="color: #007bff; font-size: 18px; margin-right: 5px;"><i class="far fa-edit"
+                                                        title="Detail"></i></a>
+                                                    
+                                                    <a type="button" style="color: #dc3545; font-size: 18px;" data-toggle="modal" data-target="#"><i
+                                                        class="far fa-trash-alt" title="Hapus"></i></a>
+                                                    
+                                                </div>
+
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

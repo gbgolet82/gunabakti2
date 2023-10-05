@@ -59,9 +59,7 @@
 
     <!-- REQUIRED SCRIPTS -->
     @include('template.js')
-    @stack('script')
-
-    {{-- @livewireScripts --}}
+    {{-- @stack('script') --}}
 </body>
 
 </html>

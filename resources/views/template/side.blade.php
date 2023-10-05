@@ -22,10 +22,9 @@
             position: relative;
             top: -1px;
             left: 10px;
-            font-weight: bold;
-            font-size: 11px;
+            font-size: 12px;
             padding: 3px 5px;
-            font-size: 11px;
+            font-size: 12px;
             border-radius: 10px;
             background-color: #fd7e14;
             color: #fff;
@@ -35,10 +34,9 @@
             position: relative;
             top: -1px;
             left: 10px;
-            font-weight: bold;
-            font-size: 11px;
+            font-size: 12px;
             padding: 3px 5px;
-            font-size: 11px;
+            font-size: 12px;
             border-radius: 10px;
             background-color: #28a745;
             color: #fff;
@@ -78,6 +76,14 @@
                 data-accordion="false">
 
                 <li class="nav-header font-weight-bolder">Data Master</li>
+                <li class="nav-item @yield('usaha')">
+                    <a href="{{ route('usaha') }}" class="nav-link @if (Request::url() == route('usaha')) active @endif">
+                        <i class="bi bi-bar-chart-line-fill custom-icon"></i>
+                        <p>
+                            Unit Usaha
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item @yield('karyawan')">
                     <a href="{{ route('karyawan') }}" class="nav-link @if (Request::url() == route('karyawan')) active @endif">
                         <i class="bi bi-person-fill custom-icon"></i>
@@ -94,14 +100,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item @yield('usaha')">
-                    <a href="{{ route('usaha') }}" class="nav-link @if (Request::url() == route('usaha')) active @endif">
-                        <i class="bi bi-bar-chart-line-fill custom-icon"></i>
-                        <p>
-                            Data Usaha
-                        </p>
-                    </a>
-                </li>
+                
 
                 <li class="nav-header font-weight-bolder mt-1">Data Laporan</li>
                 <li class="nav-item @yield('labarugi')">

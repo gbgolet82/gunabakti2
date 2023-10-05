@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('akun', function (Blueprint $table) {
-            $table->increments('id_akun');
-            $table->unsignedInteger('id_klasifikasi');
+            $table->uuid('id_akun')->primary();
+            $table->foreignUuid('id_klasifikasi'); // Sesuai dengan kolom yang ada pada tabel akun
             $table->foreign('id_klasifikasi')->references('id_klasifikasi')->on('klasifikasi_laporan');
+            $table->foreignUuid('id_usaha');
+            $table->foreign('id_usaha')->references('id_usaha')->on('usaha');
             $table->string('akun');
             $table->timestamps();
         });

@@ -102,7 +102,7 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content mb-3">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">

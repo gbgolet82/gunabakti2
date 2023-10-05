@@ -3,16 +3,6 @@
 <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:300,400,400i,700&display=swap"
     rel="stylesheet">
-<style>
-    /* CSS */
-    p {
-        font-family: 'Poppins', sans-serif;
-    }
-
-    h1 {
-        font-family: 'Source Sans Pro', sans-serif;
-    }
-</style>
 <!-- IonIcons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 {{-- datatable cdn --}}

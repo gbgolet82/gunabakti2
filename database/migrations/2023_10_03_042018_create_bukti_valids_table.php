@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bukti_valid', function (Blueprint $table) {
-            $table->increments('id_bukti_valid');
-            $table->unsignedInteger('id_sub_akun_1');
-            $table->foreign('id_sub_akun_1')->references('id_sub_akun_1')->on('sub_akun_1');
+            $table->uuid('id_bukti_valid')->primary();
+            $table->foreignUuid('id_akun');
+            $table->foreign('id_akun')->references('id_akun')->on('akun');
             $table->string('bukti_valid_100rb');
             $table->string('bukti_valid_lebih100rb');
             $table->timestamps();

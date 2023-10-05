@@ -102,7 +102,7 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content mb-3">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -112,14 +112,6 @@
                                 <strong class="col pr-0 pt-0 d-highlight pr-0 mr-0 mb-3">
                                     <h4 style="color:#28a745;">DATA MASTER</h4>
                                 </strong>
-                                {{-- <div class="col col-md-3 col-sm-12 bt-lg mb-2">
-                                    <button class="btn btn-sm btn-block text-white "
-                                        style="background-color: #28a745; border-radius: 10px;" type="button"
-                                        data-toggle="modal" data-target="#tambahData" aria-expanded="false"><i
-                                            class="fas fa-plus-circle left-icon-holder "></i>
-                                        &nbsp;&nbsp; Tambah
-                                    </button>
-                                </div> --}}
                             </div>
                         </div>
                         <!-- /.card-body -->
