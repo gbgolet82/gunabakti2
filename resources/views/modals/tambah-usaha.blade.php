@@ -1,0 +1,119 @@
+<form action="{{ route('tambah.usaha') }}" method="post" enctype="multipart/form-data">
+    {{ csrf_field() }}
+    <div class="modal-body">
+        <div class="tab-content mt-1">
+            <div class="tab-pane fade show active" id="nav-satu-tab" role="tabpanel" aria-labelledby="nav-satu-tab">
+
+                <div id="form-lama">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="cariKlasifikasi">NAMA USAHA &nbsp;</label>
+                            <sup class="badge rounded-pill badge-danger text-white mb-2"
+                                style="background-color:rgba(230,82,82)">WAJIB</sup>
+                            <input type="text" class="form-control @error('nama_usaha') is-invalid @enderror"
+                                id="namaUsaha" placeholder="Masukan nama usaha" name="nama_usaha" value="">
+                            @error('nama_usaha')
+                                <div class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="cariUnitUsaha">ALAMAT USAHA &nbsp;</label>
+                            <sup class="badge rounded-pill badge-danger text-white mb-2"
+                                style="background-color:rgba(230,82,82)">WAJIB</sup>
+                            <textarea class="form-control" id="AlamatUsaha" name="alamat_usaha" rows="3" placeholder="Masukan alamat usaha"></textarea>
+                            @error('alamat_usaha')
+                                <div class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-row ">
+                        <div class="form-group col-md-12">
+                            <label for="cariAkun">JENIS USAHA &nbsp;</label>
+                            <sup class="badge rounded-pill badge-danger text-white mb-2"
+                                style="background-color:rgba(230,82,82)">WAJIB</sup>
+                            <input type="text" class="form-control @error('jenis_usaha') is-invalid @enderror"
+                                id="jenisUsaha" placeholder="Masukan jenis usaha" name="jenis_usaha" value="">
+                            @error('jenis_usaha')
+                                <div class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="cariSubAkun1">PRODUK USAHA &nbsp;</label>
+                            <sup class="badge rounded-pill badge-danger text-white mb-2"
+                                style="background-color:rgba(230,82,82)">WAJIB</sup>
+                            <input type="text" class="form-control @error('produk_usaha') is-invalid @enderror"
+                                id="produkUsaha" placeholder="Masukan produk usaha" name="produk_usaha" value="">
+                            @error('produk_usaha')
+                                <div class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="card card-body p-2 pl-3 pr-3" style="background-color:#cbf2d6;">
+                        <div class="row">
+                            <small>
+                                <b>INFORMASI!</b><br>
+                                Silakan masukan data diatas secara lengkap!<br>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="d-flex bd-highlight justify-content-end mt-3">
+                        {{-- <div class="mr-auto bd-highlight">
+                            <a type="button" class="btn btn-outline-success left-icon-holder" href="#"><i
+                                    class="fas fa-plus-circle"></i>&nbsp;
+                                &nbsp; &nbsp; &nbsp;Tambah Penyetor</a>
+                        </div> --}}
+                        <div class="bd-highlight">
+                            <button type="button" class="btn btn-success text-white" id="simpan"
+                                onclick="validasiForm()"><i class="fas fa-save"></i> Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@push('script')
+    <script>
+        $(document).ready(function() {
+            // Fungsi untuk memeriksa apakah semua input telah valid
+            $('#simpan').prop('disabled', true);
+
+            function validateForm() {
+                // Lakukan validasi input di sini, misalnya:
+                var namaUsaha = $("#namaUsaha").val();
+                var alamatUsaha = $("#AlamatUsaha").val();
+                var jenisUsaha = $("#jenisUsaha").val();
+                var produkUsaha = $("#produkUsaha").val();
+
+                // Cek apakah semua input telah diisi
+                if (namaUsaha !== '' && alamatUsaha !== '' && jenisUsaha !== '' && produkUsaha !== '') {
+                    // Aktifkan tombol Simpan jika semua input valid
+                    $('#simpan').prop('disabled', false);
+                } else {
+                    // Nonaktifkan tombol Simpan jika ada input yang belum valid
+                    $('#simpan').prop('disabled', true);
+                }
+            }
+
+            // Panggil fungsi validateForm saat input berubah
+            $('#namaUsaha').on('change', validateForm);
+            $('#AlamatUsaha').on('change', validateForm);
+            $('#jenisUsaha').on('change', validateForm);
+            $('#produkUsaha').on('change', validateForm);
+        });
+    </script>
+@endpush
