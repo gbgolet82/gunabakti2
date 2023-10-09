@@ -31,4 +31,5 @@ Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/klasifikasi-akun', [KlasifikasiAkunController::class, 'index'])->name('akun');
 Route::get('/data-karyawan', [DataKaryawanController::class, 'index'])->name('karyawan');
+Route::get('/data-detail-karyawan', [DataKaryawanController::class, 'detail'])->name('detail.karyawan');
 Route::get('/data-usaha', [DataUsahaController::class, 'index'])->name('usaha');

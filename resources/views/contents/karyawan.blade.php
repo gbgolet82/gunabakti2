@@ -1,9 +1,44 @@
 @extends('main')
 
-@section('dashboard', 'active')
-
-
 @section('content')
+    <style>
+        /* CSS untuk memperbesar ukuran modal */
+        .modal-dialog {
+            max-width: 600px;
+            /* Menentukan lebar maksimum modal */
+        }
+
+        .modal-content {
+            padding: 10px;
+            /* Menambahkan ruang padding di dalam modal */
+        }
+
+        /* Untuk mengatur tinggi modal, jika diperlukan */
+        .modal-body {
+            max-height: 500px;
+            /* Menentukan tinggi maksimum modal */
+            overflow-y: auto;
+            /* Tambahkan scrollbar jika kontennya melebihi tinggi maksimum */
+        }
+
+        /* Gaya untuk checkbox */
+        .form-check-input[type="checkbox"] {
+            width: 18px;
+            /* Lebar checkbox */
+            height: 18px;
+            /* Tinggi checkbox */
+            margin-right: 5px;
+            /* Jarak antara checkbox dan teks label */
+        }
+
+        /* Gaya untuk label checkbox */
+        .form-check-label {
+            margin-left: 5px;
+            /* Jarak antara label dan checkbox */
+            margin-bottom: 0;
+            /* Menghapus margin bawah untuk mempersempit jarak */
+        }
+    </style>
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -101,11 +136,11 @@
     </section>
 
     <!-- Main content -->
-    <section class="content mb-3">
+    <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card card-outline card-success shadow-lg mb-0 pb-0">
+                    <div class="card card-outline card-success shadow-lg">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-3 mt-4">
@@ -153,6 +188,119 @@
                                                             class="fas fa-plus-circle left-icon-holder"></i> &nbsp;
                                                         Tambah
                                                     </button>
+
+                                                    <div class="modal fade" id="tambahData" tabindex="-1" role="dialog"
+                                                        aria-labelledby="exampleModalLabel" aria-hidden="true"
+                                                        data-backdrop="static">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Tambah
+                                                                        Karyawan</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <!-- Form untuk input informasi karyawan -->
+                                                                    <form>
+                                                                        @csrf
+                                                                        <div class="form-row">
+                                                                            <div class="form-group col-md-6">
+                                                                                <label for="nama">NAMA </label>
+                                                                                <sup class="badge rounded-pill badge-danger text-white"
+                                                                                    style="background-color: rgba(230, 82, 82); font-size: 10px; padding: 4px 8px;">WAJIB</sup>
+                                                                                <input type="text" class="form-control"
+                                                                                    name="nama" id="nama"
+                                                                                    placeholder="Masukkan nama">
+                                                                            </div>
+                                                                            <div class="form-group col-md-6">
+                                                                                <label for="nomor-hp">NOMOR HP </label>
+                                                                                <sup class="badge rounded-pill badge-danger text-white"
+                                                                                    style="background-color: rgba(230, 82, 82); font-size: 10px; padding: 4px 8px;">WAJIB</sup>
+                                                                                <input type="text" class="form-control"
+                                                                                    name="nomorhp" id="nomor-hp"
+                                                                                    placeholder="Masukkan nomor HP">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-row">
+                                                                            <div class="form-group col-md-6">
+                                                                                <label for="email">EMAIL </label>
+                                                                                <sup class="badge rounded-pill badge-danger text-white"
+                                                                                    style="background-color: rgba(230, 82, 82); font-size: 10px; padding: 4px 8px;">WAJIB</sup>
+                                                                                <input type="email" class="form-control"
+                                                                                    name="email" id="email"
+                                                                                    placeholder="Masukkan email">
+                                                                            </div>
+                                                                            <div class="form-group col-md-6">
+                                                                                <label for="unit-usaha">UNIT USAHA</label>
+                                                                                <sup class="badge rounded-pill badge-danger text-white"
+                                                                                    style="background-color: rgba(230, 82, 82); font-size: 10px; padding: 4px 8px;">WAJIB</sup>
+                                                                                <select class="form-control"
+                                                                                    id="unit-usaha" name="unitusaha">
+                                                                                    <option value="" disabled
+                                                                                        selected hidden>Pilih unit usaha
+                                                                                    </option>
+                                                                                    <option value="Toko Guna Bakti">Toko
+                                                                                        Guna
+                                                                                        Bakti</option>
+                                                                                    <option value="Penggilingan Wangon">
+                                                                                        Penggilingan Wangon</option>
+                                                                                    <option value="Produksi">Produksi
+                                                                                    </option>
+                                                                                    <option value="Sawah">Sawah</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-row">
+                                                                            <div class="form-group col-md-12">
+                                                                                <label for="alamat">ALAMAT </label>
+                                                                                <sup class="badge rounded-pill badge-danger text-white"
+                                                                                    style="background-color: rgba(230, 82, 82); font-size: 10px; padding: 4px 8px;">WAJIB</sup>
+                                                                                <textarea class="form-control" id="alamat" name="alamat" rows="2" placeholder="Masukkan alamat"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-row">
+                                                                            <div class="form-group col-md-12">
+                                                                                <label for="alamat">ROLE</label>
+                                                                                <sup class="badge rounded-pill badge-danger text-white"
+                                                                                    style="background-color: rgba(230, 82, 82); font-size: 10px; padding: 4px 8px;">WAJIB</sup>
+                                                                                <br>
+                                                                                <div class="form-check form-check-inline">
+                                                                                    <input class="form-check-input"
+                                                                                        type="checkbox" id="manajer">
+                                                                                    <label class="form-check-label"
+                                                                                        for="manajer">Manajer</label>
+                                                                                </div>
+                                                                                <div class="form-check form-check-inline">
+                                                                                    <input class="form-check-input"
+                                                                                        type="checkbox" id="kasir">
+                                                                                    <label class="form-check-label"
+                                                                                        for="kasir">Kasir</label>
+                                                                                </div>
+                                                                                <div class="form-check form-check-inline">
+                                                                                    <input class="form-check-input"
+                                                                                        type="checkbox" id="owner">
+                                                                                    <label class="form-check-label"
+                                                                                        for="owner">Owner</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </form>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal"><i class="fa fa-ban"></i>
+                                                                        Tutup</button>
+                                                                    <button type="button" class="btn btn-primary"><i
+                                                                            class="fa fa-save"></i> Simpan</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -192,12 +340,42 @@
                                         <td width=8%>
                                             <div class="d-flex justify-content-center">
                                                 <div id="hoverText">
-                                                    <a type="button" style="color: #007bff; font-size: 18px; margin-right: 5px;"><i class="far fa-edit"
-                                                        title="Detail"></i></a>
-                                                    
-                                                    <a type="button" style="color: #dc3545; font-size: 18px;" data-toggle="modal" data-target="#"><i
-                                                        class="far fa-trash-alt" title="Hapus"></i></a>
-                                                    
+                                                    <a type="button"
+                                                        style="color: #046ddd; font-size: 18px; margin-right: 2px;"
+                                                        href="{{ route('detail.karyawan') }}"><i class="fa fa-info-circle"
+                                                            title="Detail"></i></a>
+
+                                                    <a type="button" style="color: #dc3545; font-size: 18px;"><i
+                                                            class="far fa-trash-alt" title="Hapus" data-toggle="modal"
+                                                            data-target="#konfirmasiHapus"></i></a>
+
+                                                    <div class="modal fade" id="konfirmasiHapus" tabindex="-1"
+                                                        role="dialog" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">
+                                                                        Konfirmasi Hapus</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Apakah Anda yakin ingin menghapus data ini?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal"><i class="fa fa-ban"></i> Batal</button>
+                                                                    <button type="button" class="btn btn-danger"
+                                                                        onclick="hapusData()"><i
+                                                                            class="far fa-trash-alt"></i> Ya, Hapus</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
 
                                             </div>
