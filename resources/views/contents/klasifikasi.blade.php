@@ -29,7 +29,7 @@
     <!-- /.content-header -->
 
     <!-- card -->
-    <section class="content">
+    {{-- <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xl-3 col-md-6 mb-2">
@@ -98,7 +98,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- Main content -->
     <section class="content">
@@ -163,7 +163,7 @@
 
                             <div class="modal fade" id="tambahData" data-backdrop="static" data-keyboard="false"
                                 aria-labelledby="staticBackdropLabel" aria-hidden="true" data-target="#staticBackdrop">
-                                <div class="modal-dialog">
+                                <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="staticBackdropLabel">

@@ -71,7 +71,7 @@
                     </div>
                     <div class="d-flex bd-highlight justify-content-end mt-3">
                         <div class="bd-highlight">
-                            <button type="button" class="btn btn-success text-white" id="simpan"
+                            <button type="submit" class="btn btn-success text-white" id="simpan"
                                 onclick="validasiForm()"><i class="fas fa-save"></i> Simpan</button>
                         </div>
                     </div>

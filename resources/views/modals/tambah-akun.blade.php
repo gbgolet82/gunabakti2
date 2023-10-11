@@ -7,19 +7,18 @@
 
                 <div id="form-lama">
                     <div class="form-row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
                             <label for="cariKlasifikasi">KLASIFIKASI &nbsp;</label>
                             <sup class="badge rounded-pill badge-danger text-white mb-2"
                                 style="background-color:rgba(230,82,82)">WAJIB</sup>
-                            <select class="form-control @error('klasifikasi') is-invalid @enderror"
-                                id="inputGroupKalsifikasi" name="klasifikasi">
-                                <option selected>Semua</option>
-                                <option value="Pemasukan">
-                                    Pemasukan</option>
-                                <option value="Pengeluaran Operasional">
-                                    Pengeluaran Operasional</option>
-                                <option value="Pengeluaran Non Operasional">
-                                    Pengeluaran Non Operasional</option>
+                            <select class="custom-select @error('klasifikasi') is-invalid @enderror"
+                                id="inputGroupKlasifikasi" name="klasifikasi">
+                                <option selected>Pilih Klasifikasi</option>
+                                @foreach ($dataKlasifikasi as $klasifikasi)
+                                    <option value="{{ $klasifikasi->klasifikasi_laporan }}"
+                                        @if ($klasifikasi->klasifikasi_laporan === 'Semua') selected @endif>
+                                        {{ $klasifikasi->klasifikasi_laporan }}</option>
+                                @endforeach
                             </select>
                             @error('klasifikasi')
                                 <div class="invalid-feedback">
@@ -27,26 +26,139 @@
                                 </div>
                             @enderror
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
+
+                        <div class="form-group col-md-6">
                             <label for="cariUnitUsaha">UNIT USAHA &nbsp;</label>
                             <sup class="badge rounded-pill badge-danger text-white mb-2"
-                                style="background-color:rgba(230,82,82)">WAJIB</sup>
-                            <select class="custom-select" name="unit_usaha" id="inputGroupUnitUsaha">
-                                <option selected>Semua</option>
-                                <option value="1">Guna Bakti 2</option>
-                                <option value="2">Wangon</option>
-                                <option value="3">Produksi</option>
-                                <option value="4">Sawah</option>
-                            </select>
+                                style="background-color: rgba(230, 82, 82)">WAJIB</sup>
+                            <div class="d-flex align-items-center">
+                                <!-- Tambahkan div untuk mengelilingi elemen select dan tombol -->
+                                <select class="custom-select @error('usaha') is-invalid @enderror" id="inputGroupUsaha"
+                                    name="usaha">
+                                    <option selected>Pilih Unit Usaha</option>
+                                    @foreach ($dataUsaha as $usaha)
+                                        <option value="{{ $usaha->nama_usaha }}">{{ $usaha->nama_usaha }}</option>
+                                    @endforeach
+                                </select>
+                                <a href="{{ route('usaha') }}" class="btn btn-primary ml-2">Tambah</a>
+                                <!-- Tombol Tambah -->
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Modal -->
+                    {{-- <div class="modal fade" id="tambahUnitUsahaModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Isi modal disini -->
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Unit Usaha</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <form action="{{ route('tambah.usaha') }}" method="post" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                    <div class="modal-body">
+                                        <div class="tab-content mt-1">
+                                            <div class="tab-pane fade show active" id="nav-satu-tab" role="tabpanel"
+                                                aria-labelledby="nav-satu-tab">
+
+                                                <div id="form-lama">
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-12">
+                                                            <label for="cariKlasifikasi">NAMA USAHA &nbsp;</label>
+                                                            <sup class="badge rounded-pill badge-danger text-white mb-2"
+                                                                style="background-color:rgba(230,82,82)">WAJIB</sup>
+                                                            <input type="text"
+                                                                class="form-control @error('nama_usaha') is-invalid @enderror"
+                                                                id="namaUsaha" placeholder="Masukan nama usaha"
+                                                                name="nama_usaha" value="">
+                                                            @error('nama_usaha')
+                                                                <div class="invalid-feedback" role="alert">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-12">
+                                                            <label for="cariUnitUsaha">ALAMAT USAHA &nbsp;</label>
+                                                            <sup class="badge rounded-pill badge-danger text-white mb-2"
+                                                                style="background-color:rgba(230,82,82)">WAJIB</sup>
+                                                            <textarea class="form-control" id="AlamatUsaha" name="alamat_usaha" rows="3" placeholder="Masukan alamat usaha"></textarea>
+                                                            @error('alamat_usaha')
+                                                                <div class="invalid-feedback" role="alert">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row ">
+                                                        <div class="form-group col-md-12">
+                                                            <label for="cariAkun">JENIS USAHA &nbsp;</label>
+                                                            <sup class="badge rounded-pill badge-danger text-white mb-2"
+                                                                style="background-color:rgba(230,82,82)">WAJIB</sup>
+                                                            <input type="text"
+                                                                class="form-control @error('jenis_usaha') is-invalid @enderror"
+                                                                id="jenisUsaha" placeholder="Masukan jenis usaha"
+                                                                name="jenis_usaha" value="">
+                                                            @error('jenis_usaha')
+                                                                <div class="invalid-feedback" role="alert">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-12">
+                                                            <label for="cariSubAkun1">PRODUK USAHA &nbsp;</label>
+                                                            <sup class="badge rounded-pill badge-danger text-white mb-2"
+                                                                style="background-color:rgba(230,82,82)">WAJIB</sup>
+                                                            <input type="text"
+                                                                class="form-control @error('produk_usaha') is-invalid @enderror"
+                                                                id="produkUsaha" placeholder="Masukan produk usaha"
+                                                                name="produk_usaha" value="">
+                                                            @error('produk_usaha')
+                                                                <div class="invalid-feedback" role="alert">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="card card-body p-2 pl-3 pr-3"
+                                                        style="background-color:#cbf2d6;">
+                                                        <div class="row">
+                                                            <small>
+                                                                <b>INFORMASI!</b><br>
+                                                                Silakan masukan data diatas secara lengkap!<br>
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex bd-highlight justify-content-end mt-3">
+                                                        <div class="bd-highlight">
+                                                            <button type="submit" class="btn btn-success text-white"
+                                                                id="simpan" onclick="validasiForm()"><i
+                                                                    class="fas fa-save"></i> Simpan</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div> --}}
+
                     <div class="form-row ">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
                             <label for="cariAkun">AKUN &nbsp;</label>
                             <sup class="badge rounded-pill badge-danger text-white mb-2"
-                                style="background-color:rgba(230,82,82)">WAJIB</sup>
+                                style="background-color: rgba(230, 82, 82)">WAJIB</sup>
                             <select class="custom-select" name="akun" id="inputGroupAkun">
                                 <option selected>Semua</option>
                                 <option value="1">Wahana</option>
@@ -56,9 +168,9 @@
                                 <option value="5">Non Operasional</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
+
+
+                        <div class="form-group col-md-6">
                             <label for="cariSubAkun1">SUB AKUN 1 &nbsp;</label>
                             <sup class="badge rounded-pill badge-danger text-white mb-2"
                                 style="background-color:rgba(230,82,82)">WAJIB</sup>
@@ -80,7 +192,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
                             <label for="cariSubAkun2">SUB AKUN 2 &nbsp;</label>
                             {{-- <sup class="badge rounded-pill badge-danger text-white mb-2"
                                 style="background-color:rgba(230,82,82)">WAJIB</sup> --}}
@@ -92,9 +204,8 @@
                                 <option value="4">Solar</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
+
+                        <div class="form-group col-md-6">
                             <label for="cariSubAkun3">SUB AKUN 3 &nbsp;</label>
                             {{-- <sup class="badge rounded-pill badge-danger text-white mb-2"
                                 style="background-color:rgba(230,82,82)">WAJIB</sup> --}}
@@ -126,10 +237,13 @@
                                 <b>INFORMASI!</b><br>
                                 1.&nbsp;Silakan pilih klasifikasi yang tersedia.<br>
                                 2.&nbsp;Pilihlah unit usaha yang sesuai dengan klasifikasi.<br>
-                                3.&nbsp;Selanjutnya, pilih akun yang sesuai dengan unit usaha dan klasifikasi yang telah
+                                3.&nbsp;Tambahkan unit usaha jika tidak ada pada pilihan yang sesuai.<br>
+                                4.&nbsp;Selanjutnya, pilih akun yang sesuai dengan unit usaha dan klasifikasi yang telah
                                 dipilih.<br>
-                                4.&nbsp;Terakhir, pilih sub akun dari yang pertama hingga yang terakhir sesuai dengan
+                                5.&nbsp;Tambahkan akun jika tidak ada pada pilihan yang sesuai.<br>
+                                6.&nbsp;Terakhir, pilih sub akun dari yang pertama hingga yang terakhir sesuai dengan
                                 klasifikasi, unit usaha, dan akun.
+                                7.&nbsp;Tambahkan sub akun jika tidak ada pada pilihan yang sesuai.<br>
                             </small>
                         </div>
                     </div>
@@ -151,224 +265,33 @@
 </form>
 
 @push('script')
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#atasNama').tagsinput({
-                'tagClass': function(item) {
-                    return 'badge badge-success';
-                },
+    <script>
+        var klasifikasiDropdown = document.getElementById('inputGroupKlasifikasi');
+        var akunOptions = document.querySelectorAll('#inputGroupAkun option');
 
+        klasifikasiDropdown.addEventListener('change', function() {
+            var selectedKlasifikasi = klasifikasiDropdown.value;
+
+            // Sembunyikan semua opsi akun terlebih dahulu
+            akunOptions.forEach(function(option) {
+                option.style.display = 'none';
             });
 
-            // disable button sebelum semua data diisi
-            $("#simpanMal").prop('disabled', true);
-
-            // hidden pengisian dalam transfer
-            $("#Transfer").addClass('d-none');
-            $("#namaBank").val('-');
-            $("#nomorRekening").val('-');
-            $("#namaRekening").val('-');
-            $('#nama_rekeningdiv').prop('hidden', true);
-            $('#customFileInput').on('blur', function(e) {
-                $('#customFileInput').val('-'); // won't work
-            });
-
-            // js untuk setiap perubahan jenis mal sehingga semua kolom kosong
-            $("#jenisMal").change(e => {
-                $("#jenisMuzaki").val('');
-                $("#nominalRupiah").val('');
-                $("#metodeBayar").val('');
-                $("#Transfer").addClass('d-none');
-                $("#namaBank").val('-');
-                $("#nomorRekening").val('-');
-                $("#namaRekening").val('-');
-                $('#nama_rekeningdiv').prop('hidden', true);
-                $('#customFileInput').on('blur', function(e) {
-                    $('#customFileInput').val('-'); // won't work
-                });
-                $("#namaRekening").select2({
-                    placeholder: "Pilih rekening tujuan",
-                    allowClear: true
-                });
-                $('#atasNama').tagsinput('removeAll');
-                $("#customFileInput").val(null);
-                $('#customFileInput').next('label').html('Pilih file');
-            });
-
-            // js untuk perubahan metode bayar transfer/langsung
-            $("#metodeBayar").change(e => {
-                $("#namaRekening").select2({
-                    placeholder: "Pilih rekening tujuan",
-                    allowClear: true
-                });
-                $("#customFileInput").val(null);
-                $('#customFileInput').next('label').html('Pilih file');
-                if ($("#metodeBayar").val() == 'Transfer') {
-                    $("#Transfer").removeClass('d-none');
-                    $("#namaBank").val('');
-                    $("#nomorRekening").val('');
-                    $("#namaRekening").val('');
-                    $('#nama_rekeningdiv').prop('hidden', false);
-                    $('#customFileInput').on('blur', function(e) {
-                        $('#customFileInput').val('-'); // won't work
-                    });
-                } else {
-                    $("#Transfer").addClass('d-none');
-                    $("#namaBank").val('-');
-                    $("#nomorRekening").val('-');
-                    $("#namaRekening").val('-');
-                    $('#nama_rekeningdiv').prop('hidden', true);
-                    $('#customFileInput').on('blur', function(e) {
-                        $('#customFileInput').val('-'); // won't work
-                    });
+            // Tampilkan opsi akun sesuai dengan klasifikasi yang dipilih
+            akunOptions.forEach(function(option) {
+                if (selectedKlasifikasi === 'pemasukan' && option.classList.contains('pemasukan')) {
+                    option.style.display = 'block';
+                } else if (selectedKlasifikasi === 'pengeluaran' && option.classList.contains(
+                        'pengeluaran')) {
+                    option.style.display = 'block';
                 }
             });
-
-            //untuk melakukan fungsi enable dan disable pada button simpan
-            $('#atasNama').on('itemAdded', function(event) {
-                fungsiBtn();
-            });
-            $('#atasNama').on('itemRemoved', function(event) {
-                fungsiBtn();
-            });
-
-            function fungsiBtn() {
-                if ($('#metodeBayar').val() == 'Transfer') {
-                    var jenisMal = $('#jenisMal').val();
-                    var jenisMuzaki = $('#jenisMuzaki').val();
-                    var nominalRupiah = $('#nominalRupiah').val();
-                    var nama_bank = $('#namaBank').val();
-                    var bayar = $('#metodeBayar').val();
-                    var nomor_rek = $('#nomorRekening').val();
-                    var nama_rek = $('#namaRekening').val();
-                    var tf = $('#customFileInput').val();
-                    var an = $('#atasNama').val();
-
-                    if (jenisMal.length == 0 || jenisMuzaki.length == 0 || nominalRupiah.length == 0 ||
-                        bayar.length == 0 || nama_bank.length == 0 || nomor_rek.length == 0 ||
-                        nama_rek.length == 0 || tf.length == 0 || an.length == 0) {
-                        console.log('sini sini');
-                        $("#simpanMal").prop('disabled', true);
-                    } else {
-                        console.log('sini sini');
-                        $("#simpanMal").prop('disabled', false);
-                    }
-                } else if ($('#metodeBayar').val() == 'Langsung FO') {
-                    var jenisMal = $('#jenisMal').val();
-                    var jenisMuzaki = $('#jenisMuzaki').val();
-                    var nominalRupiah = $('#nominalRupiah').val();
-                    var bayar = $('#metodeBayar').val();
-                    var an = $('#atasNama').val();
-
-                    if (jenisMal.length == 0 || jenisMuzaki.length == 0 || nominalRupiah.length == 0 ||
-                        bayar.length == 0 || an.length == 0) {
-                        console.log('sini sini');
-                        $("#simpanMal").prop('disabled', true);
-                    } else {
-                        console.log('sini sini');
-                        $("#simpanMal").prop('disabled', false);
-                    }
-                } else {
-                    $("#simpanMal").prop('disabled', true);
-                }
-            }
-
-            // js untuk melakukan perubahan pada setiap kolom pengisian dg fungsiBtn
-            $("#jenisMal").change(
-                e => {
-                    fungsiBtn();
-                });
-            $("#jenisMuzaki").change(
-                e => {
-                    fungsiBtn();
-                });
-            $("#nominalRupiah").change(
-                e => {
-                    fungsiBtn();
-                });
-            $("#namaBank").change(
-                e => {
-                    fungsiBtn();
-                });
-            $("#metodeBayar").change(
-                e => {
-                    fungsiBtn();
-                });
-            $("#nomorRekening").change(
-                e => {
-                    fungsiBtn();
-                });
-            $("#namaRekening").change(
-                e => {
-                    fungsiBtn();
-                });
-            $("#customFileInput").change(
-                e => {
-                    fungsiBtn();
-                });
-            $("#atasNama").change(
-                e => {
-                    fungsiBtn();
-                });
-
         });
     </script>
 
-    <script>
-        function formatRupiah(angka, prefix) {
-            var number_string = (angka).toString(),
-                sisa = number_string.length % 3,
-                rupiah = number_string.substr(0, sisa),
-                ribuan = number_string.substr(sisa).match(/\d{3}/g);
-
-            if (ribuan) {
-                separator = sisa ? '.' : '';
-                rupiah += separator + ribuan.join('.');
-            }
-            return rupiah;
-        }
-
-        $("#nominalRupiah").on('input', function() {
-            var nominalRupiah = $('#nominalRupiah').val();
-            nominalRupiah = nominalRupiah.split('.').join("");
-            if (nominalRupiah != '') {
-                console.log(parseInt(nominalRupiah));
-                $('#nominalRupiah').val(formatRupiah(nominalRupiah, ''));
-            } else {
-                $('#nominalRupiah').val();
-            }
-        });
-    </script>
-
-    {{-- 
-    <script>
-        $("#nilaiAset").on('input', function() {
-            var nilaiAset = $('#nilaiAset').val();
-            nilaiAset = nilaiAset.split('.').join("");
-            if (nilaiAset != '') {
-                var percent = parseFloat($('#besaranZakat').val() / 100).toFixed(3);
-                console.log(percent);
-                console.log(parseInt(nilaiAset));
-                $('#ziswaf_nominal_rupiah').val(formatRupiah(parseInt(percent *
-                    parseInt(nilaiAset)), ''));
-                $('#nilaiAset').val(formatRupiah(nilaiAset, ''));
-            } else {
-                // $('#besaranZakat').val(0);
-                $('#ziswaf_nominal_rupiah').val(0);
-            }
-        });
-        $("#besaranZakat").on('input', function() {
-            var nilaiAset = $('#nilaiAset').val();
-            nilaiAset = nilaiAset.split('.').join("");
-            if (nilaiAset != '') {
-                var percent = parseFloat($('#besaranZakat').val() / 100).toFixed(3);
-                // console.log(percent);
-                $('#ziswaf_nominal_rupiah').val(formatRupiah(percent *
-                    parseInt(nilaiAset), ''));
-            } else {
-                // $('#besaranZakat').val(0);
-                $('#ziswaf_nominal_rupiah').val(0);
-            }
+    {{-- <script>
+        document.getElementById('tambahUnitUsaha').addEventListener('click', function() {
+            window.location.href = "{{ route('usaha') }}";
         });
     </script> --}}
 @endpush

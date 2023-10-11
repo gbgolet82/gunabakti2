@@ -34,6 +34,8 @@ Route::get('/klasifikasi-akun', [KlasifikasiLaporanController::class, 'index'])-
 Route::get('/tambah-klasifikasi-akun', [KlasifikasiLaporanController::class, 'index'])->name('tambah.akun');
 Route::get('/data-usaha', [DataUsahaController::class, 'index'])->name('usaha');
 Route::post('/tambah-usaha', [DataUsahaController::class, 'simpanData'])->name('tambah.usaha');
+Route::post('/edit-usaha', [DataUsahaController::class, 'editData'])->name('edit.usaha');
+Route::delete('/hapus-usaha/{id}', [DataUsahaController::class, 'HapusData'])->name('hapus.usaha');
 Route::get('/data-karyawan', [DataKaryawanController::class, 'index'])->name('karyawan');
 Route::post('/tambah-karyawan', [DataKaryawanController::class, 'simpanData'])->name('tambah.karyawan');
 Route::post('/edit-karyawan/{id_karyawan}', [DataKaryawanController::class, 'update'])->name('update.karyawan');
