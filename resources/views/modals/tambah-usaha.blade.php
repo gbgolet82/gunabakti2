@@ -76,7 +76,7 @@
                                 &nbsp; &nbsp; &nbsp;Tambah Penyetor</a>
                         </div> --}}
                         <div class="bd-highlight">
-                            <button type="button" class="btn btn-success text-white" id="simpan"
+                            <button type="submit" class="btn btn-success text-white" id="simpan"
                                 onclick="validasiForm()"><i class="fas fa-save"></i> Simpan</button>
                         </div>
                     </div>

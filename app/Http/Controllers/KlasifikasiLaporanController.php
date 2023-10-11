@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KlasifikasiLaporan;
+use App\Models\Usaha;
 use Illuminate\Http\Request;
 
 class KlasifikasiLaporanController extends Controller
 {
     public function index(Request $request)
     {
+        //get data tabel klasifikasi
+        $dataKlasifikasi = KlasifikasiLaporan::select('id_klasifikasi', 'klasifikasi_laporan', 'created_at', 'updated_at')->get();
+
+        //get data tabel usaha
+        $dataUsaha = Usaha::select('id_usaha', 'nama_usaha', 'alamat_usaha', 'jenis_usaha', 'produk_usaha')
+            ->get();
         $modelHead = "Tambah Data Klasifikasi & Akun";
         $active_page = "AKUN";
-        return view('contents.klasifikasi', compact('active_page', 'modelHead'));
+        return view('contents.klasifikasi', compact('active_page', 'modelHead', 'dataKlasifikasi', 'dataUsaha'));
     }
 
     public function simpan(Request $request)
