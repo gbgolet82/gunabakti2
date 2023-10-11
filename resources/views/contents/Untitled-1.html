@@ -1,74 +1,71 @@
-<div class="row">
-                        <div class="col">
-                            <div class="card ijo-atas">
-                                <div class="card-body">
-                                    <b>Profil Pengguna</b>
-                                    <div class="row">
-                                        <div class=" col-2 ">
-                                            <div class="wush text-center">
-                                                <img src="https://gocapv2.nucarecilacap.id/img/profil.jpg"
-                                                    class="img-fluid image" alt="Responsive image"
-                                                    onError="this.src='https://gocapv2.nucarecilacap.id/img/profil.jpg'"
-                                                    style="border-radius: 10px;height:190px;">
+@push('script')
+    <script>
+        $(document).ready(function() {
+            // Fungsi untuk memeriksa apakah semua input telah valid
+            $('#simpan').prop('disabled', true);
 
-                                                <input type="file" hidden wire:model="gantiFoto" id="gantiFoto">
-                                                                                                    <div class="middle">
-                                                        <label class="btn btn-sm btn-success" for="gantiFoto">Ganti Foto
-                                                            Profil</label>
-                                                    </div>
-                                                                                            </div>
-                                        </div>
-                                        <div class="col-8">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <b class="mt-1">Nama</b>
-                                                                                                            <p></p>
-                                                    
-                                                    <b class="mt-1">Jenis Kelamin</b>
-                                                                                                            <p></p>
-                                                    
-                                                </div>
-                                                <div class=" col">
-                                                                                                            <b class="mt-1">Tempat, Tanggal Lahir</b>
-                                                        <p>, 05 Oct 2023
-                                                        </p>
-                                                                                                        <b class="mt-1">No HP</b>
-                                                                                                            <p id="myCopys"></p>
-                                                        
-                                                                                                    </div>
-                                                                                                    <div class=" col">
-                                                        <b class="mt-1">Alamat</b>
-                                                        <p> RT.  RW. </p>
-                                                    </div>
-                                                                                            </div>
-                                                                                    </div>
-                                        <div class="col">
-                                            <div class="wush">
-                                                <img src="https://gocapv2.nucarecilacap.id/img/ttd.jpg"
-                                                    class="img-fluid image" alt="Responsive image"
-                                                    onError="this.src='https://gocapv2.nucarecilacap.id/img/ttd.jpg'"
-                                                    style="border-radius: 10px;width:300px;">
-                                                <input type="file" hidden wire:model="gantiTtd" id="gantiTtd">
-                                                                                                    <div class="middle">
-                                                        <label class="btn btn-sm btn-success" for="gantiTtd"><i
-                                                                class="fas fa-edit"></i> Ganti
-                                                            TTD</label>
-                                                    </div>
-                                                                                            </div>
+            function validateForm() {
+                // Lakukan validasi input di sini, misalnya:
+                var nama = $("#namaa").val();
+                var nomorHP = $("#nomorHP").val();
+                var emaill = $("#emaill").val();
+                var unitUsaha = $("#unitUsaha").val();
+                var alamatt = $("#alamatt").val();
 
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-end" >
-                                        <a wire:click="kirimWa" wire:loading disabled class=" bd-highlight btn btn-outline-secondary  px-3 mx-1">
-                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading</a>
-                                        <a wire:click="kirimWa" wire:loading.remove  class=" bd-highlight btn btn-outline-secondary  px-3 mx-1"><i class="far fa-paper-plane"></i> Kirim Akses Login</a>
-                                                                                    <a wire:click="edit('pengguna')"
-                                                class=" bd-highlight btn btn-outline-success  px-3  mx-1"><i
-                                                    class="fas fa-edit"></i> EDIT</a>
-                                    </div>
-                                    
-                                    
-                                </div>
-                                                            </div>
-                        </div>
-                    </div>
+                // Cek apakah semua input telah diisi
+                if (nama !== '' && nomorHP !== '' && emaill !== '' && unitUsaha !== '' && alamatt !== '') {
+                    // Aktifkan tombol Simpan jika semua input valid
+                    $('#simpan').prop('disabled', false);
+                } else {
+                    // Nonaktifkan tombol Simpan jika ada input yang belum valid
+                    $('#simpan').prop('disabled', true);
+                }
+            }
+
+            // Panggil fungsi validateForm saat input berubah
+            $('#nama').on('change', validateForm);
+            $('#nomorHP').on('change', validateForm);
+            $('#emaill').on('change', validateForm);
+            $('#unitUsaha').on('change', validateForm);
+            $('#alamatt').on('change', validateForm);
+        });
+    </script>
+@endpush
+
+<!-- edit -->
+@push('script')
+    <script>
+        $(document).ready(function() {
+            // Fungsi untuk memeriksa apakah semua input telah valid
+            validateForm();
+
+            function validateForm() {
+                // Lakukan validasi input di sini, misalnya:
+                var nama = $("#nama").val();
+                var nomorHP = $("#nomor_hp").val();
+                var emaill = $("#email").val();
+                var unitUsaha = $("#unit_usaha").val();
+                var alamatt = $("#alamat").val();
+                var password = $("#password").val();
+                var manajer = $("#manajer").is(":checked");
+                var kasir = $("#kasir").is(":checked");
+                var owner = $("#owner").is(":checked");
+
+                // Cek apakah semua input telah diisi atau kondisi yang diinginkan
+                if (nama !== '' && nomorHP !== '' && emaill !== '' && unitUsaha !== null && alamatt !== '' &&
+                    password !== '' &&
+                    (manajer || kasir || owner)) {
+                    // Aktifkan tombol Simpan jika semua input valid
+                    $('#simpan').prop('disabled', false);
+                } else {
+                    // Nonaktifkan tombol Simpan jika ada input yang belum valid
+                    $('#simpan').prop('disabled', true);
+                }
+            }
+
+            // Panggil fungsi validateForm saat input berubah atau nilai checkbox berubah
+            $('#nama, #nomor_hp, #email, #unit_usaha, #alamat, #password, #manajer, #kasir, #owner').on(
+                'input change', validateForm);
+        });
+    </script>
+@endpush

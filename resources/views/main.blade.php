@@ -29,7 +29,7 @@
 
 <body class="hold-transition sidebar-mini layout-navbar-fixed layout-fixed">
     <!--sweet alert  -->
-    {{-- @include('sweetalert::alert') --}}
+    @include('sweetalert::alert')
     <div class="wrapper">
         {{-- spin reload --}}
         <div id="cover-spin"></div>

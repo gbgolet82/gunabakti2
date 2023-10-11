@@ -182,7 +182,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="{!! asset('gambar/gunabakti-logo.png') !!}"/>
+    <link rel="icon" href="{!! asset('gambar/gunabakti-logo.png') !!}" />
     <title>GUNA BAKTI | {{ $active_page }}</title>
 
     <link rel="stylesheet" type="text/css" href="/casgpo/asset/css/ppg.css">
@@ -206,6 +206,8 @@
 </head>
 
 <body>
+
+
     <div class="container h-100">
         <div class="row h-100 justify-content-center align-item-center ">
             <div
@@ -230,18 +232,18 @@
                             class="fas fa-info-circle"></i></span>
                 </p>
 
-                <form id="form1" name="form1" class="mb-3 mt-md-3" action="{{ url('login') }}" method="post">
+                <form id="form1" name="form1" class="mb-3 mt-md-3" action="{{ route('login') }}" method="post">
                     @csrf
                     <div class="form-group small">
                         <label class="font-weight-bold text-secondary">Nomor HP</label>
-                        <div class="input-group ">
+                        <div class="input-group">
                             <div class="input-group-append">
                                 <span class="input-group-text no-bg"> <i class="fas fa-phone"></i>
                                 </span>
                             </div>
                             <input autofocus type="text" class="form-control @error('nohp') is-invalid @enderror"
                                 id="nohp" aria-describeby="nohpHelp" name="nohp" placeholder="Masukan Nomor HP"
-                                pattern="[0-9]+" value="{{ old('nohp') }}">
+                                pattern="[0-9+]+" value="{{ old('nohp') }}">
                             @error('nohp')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -250,17 +252,12 @@
 
                     <div class="form-group small">
                         <label class="font-weight-bold text-secondary">Kata Sandi</label>
-                        <div class="input-group ">
+                        <div class="input-group">
                             <div class="input-group-append">
                                 <span class="input-group-text no-bg"> <i class="fas fa-lock"></i>
                                 </span>
                             </div>
-                            <input type="password"
-                                class="form-control 
-                                @error('password')
-                                is-invalid
-                                @enderror
-                                "
+                            <input type="password" class="form-control @error('password') is-invalid @enderror"
                                 id="password" name="password" placeholder="Masukan Kata Sandi">
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -270,6 +267,26 @@
                         </div>
                     </div>
 
+                    <div class="form-group small">
+                        <label class="font-weight-bold text-secondary">Role</label>
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <span class="input-group-text no-bg"> <i class="fa fa-user"></i>
+                            </div>
+                            <select class="form-control" name="role">
+                                <option value="" disabled selected hidden>Pilih role
+                                </option>
+                                <option value="owner">Owner</option>
+                                <option value="manajer">Manajer</option>
+                                <option value="kasir">Kasir</option>
+                            </select>
+                            @error('role')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                    </div>
+
                     <p href class="text-right mt-2 small">
                         <a href="#" class="warna-utama">Lupa kata sandi?</a>
                     </p>
@@ -277,18 +294,17 @@
                     <input type="hidden" name="lt" value="LT-21110667-L1HEcj1ZlM2QlJjSgJlFzG2hctwcTm">
                     <input type="hidden" name="execution" value="e2s1">
                     <input type="hidden" name="_eventId" value="submit">
+
                     <div class="form-group">
-                        {{-- <button type="submit" class="btn btn-success btn-block"><i class="fas fa-sign-in-alt"></i>
-                            Login</button> --}}
                         <button type="submit" class="btn btn-success btn-block" id="loginButton"><i
                                 class="fas fa-sign-in-alt"></i>
                             Login</button>
-
                     </div>
                     <hr style="margin: 2px;">
 
                     <div class="text-center mt-3">UD GUNA BAKTI © 2023</div>
                 </form>
+
 
                 <p class="text-center small">
                     Dikembangkan oleh <a class="warna-utama" href="http://www.golet.co.id/" target="_blank">PT Golet

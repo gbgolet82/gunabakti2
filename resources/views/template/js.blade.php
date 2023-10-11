@@ -29,8 +29,20 @@
 <!-- bs-custom-file-input -->
 <script src="{{ asset('assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bs-custom-file-input/bs-custom-file-input.js') }}"></script>
-{{-- js ckeditor --}}
-<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Sukses!',
+            text: '{{ session('success') }}',
+            timer: 2000 // Waktu tampilan alert (dalam milidetik)
+        });
+    </script>
+@endif
+
+
 <script>
     var options = {
         filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
@@ -38,17 +50,6 @@
         filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
         filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
     };
-</script>
-<script>
-    CKEDITOR.replace('my-editor', options);
-</script>
-
-{{-- js untuk setting select2 --}}
-<script>
-    $(function() {
-        // Summernote
-        $('#summernote').summernote()
-    })
 </script>
 
 <script>

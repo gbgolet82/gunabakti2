@@ -70,11 +70,6 @@
                         </div>
                     </div>
                     <div class="d-flex bd-highlight justify-content-end mt-3">
-                        {{-- <div class="mr-auto bd-highlight">
-                            <a type="button" class="btn btn-outline-success left-icon-holder" href="#"><i
-                                    class="fas fa-plus-circle"></i>&nbsp;
-                                &nbsp; &nbsp; &nbsp;Tambah Penyetor</a>
-                        </div> --}}
                         <div class="bd-highlight">
                             <button type="button" class="btn btn-success text-white" id="simpan"
                                 onclick="validasiForm()"><i class="fas fa-save"></i> Simpan</button>

@@ -48,8 +48,12 @@
             <h5 class="btn-hilang mt-3">
                 <p>UD GUNA BAKTI</p>
             </h5>
-            <span class="btn-hilang">Zaroh Khoerunisa</span><br>
-            <div class="badge badge-success"><strong>Manajer</strong></div><br>
+            <span class="btn-hilang">{{ Auth::user()->nama }}</span><br>
+            <div class="badge badge-success"><strong>
+                    @if (session()->has('selected_role'))
+                        {{ session('selected_role') }}
+                    @endif
+                </strong></div><br>
             <a class="btn btn-white btn-sm btn-hilang"><i class="fas fa-cog"></i>
                 <p> Pengaturan</p>
             </a>
@@ -100,7 +104,7 @@
                         </p>
                     </a>
                 </li>
-                
+
 
                 <li class="nav-header font-weight-bolder mt-1">Data Laporan</li>
                 <li class="nav-item @yield('labarugi')">

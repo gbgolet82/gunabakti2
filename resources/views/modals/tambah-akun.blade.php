@@ -11,14 +11,14 @@
                             <label for="cariKlasifikasi">KLASIFIKASI &nbsp;</label>
                             <sup class="badge rounded-pill badge-danger text-white mb-2"
                                 style="background-color:rgba(230,82,82)">WAJIB</sup>
-                            <select class="form-control @error('klasifikasi') is-invalid @enderror" id="inputGroupKalsifikasi"
-                            name="klasifikasi">
-                            <option selected>Semua</option>
-                                <option value="Pemasukan" @if ($admin->jenis_kelamin === 'Laki-Laki') selected @endif>
+                            <select class="form-control @error('klasifikasi') is-invalid @enderror"
+                                id="inputGroupKalsifikasi" name="klasifikasi">
+                                <option selected>Semua</option>
+                                <option value="Pemasukan">
                                     Pemasukan</option>
-                                <option value="Pengeluaran Operasional" @if ($admin->jenis_kelamin === 'Pengeluaran Operasional') selected @endif>
+                                <option value="Pengeluaran Operasional">
                                     Pengeluaran Operasional</option>
-                                <option value="Pengeluaran Non Operasional" @if ($admin->jenis_kelamin === 'Pengeluaran Non Operasional') selected @endif>
+                                <option value="Pengeluaran Non Operasional">
                                     Pengeluaran Non Operasional</option>
                             </select>
                             @error('klasifikasi')

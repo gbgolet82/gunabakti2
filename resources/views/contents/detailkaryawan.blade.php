@@ -96,46 +96,71 @@
                                             src="{{ asset('gambar/fotoo.jfif') }}" alt="User profile picture"
                                             style="width: 140px; height: 140px; object-fit: cover;">
                                     </div> --}}
-                                    <div class="text-center">
-                                        <div class="profile-image-container">
-                                            <img class="profile-user-img img-fluid rounded-circle"
-                                                src="{{ asset('gambar/fotoo.jfif') }}" alt="User profile picture"
-                                                style="width: 140px; height: 140px; object-fit: cover;">
-                                            <div class="overlay">
-                                                <div class="camera-icon" id="change-profile-pic">
-                                                    <i class="fa fa-camera"></i>
+                                    <form action="{{ route('upload.foto', $karyawan->id_karyawan) }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        <!-- Konten form yang lain -->
+                                        <div class="text-center">
+                                            <div class="profile-image-container">
+                                                @if ($karyawan->foto == null)
+                                                    <img class="profile-user-img img-fluid rounded-circle"
+                                                        src="{{ asset('gambar/profil.png') }}" alt="User profile picture"
+                                                        style="width: 140px; height: 140px; object-fit: cover;">
+                                                @else
+                                                    <img class="profile-user-img img-fluid rounded-circle"
+                                                        src="{{ asset('gambar/profil/' . $karyawan->foto) }}"
+                                                        alt="User profile picture"
+                                                        style="width: 140px; height: 140px; object-fit: cover;">
+                                                @endif
+                                                <div class="overlay">
+                                                    <input type="file" accept="image/*" name="foto"
+                                                        id="profile-pic-input" onchange="form.submit()" hidden>
+                                                    <label for="profile-pic-input" class="camera-icon"
+                                                        id="change-profile-pic">
+                                                        <i class="fa fa-camera"></i>
+                                                    </label>
+                                                    <div class="text">Ubah Foto</div>
                                                 </div>
-                                                <div class="text">Ubah Foto</div>
                                             </div>
                                         </div>
-                                        <input type="file" id="profile-pic-input" style="display: none;">
-                                    </div>
 
+                                    </form>
 
-
-
-
-                                    <h3 class="profile-username text-center">Muhammad Fikri</h3>
+                                    <h3 class="profile-username text-center">{{ $karyawan->nama }}</h3>
                                     <p class="text-muted text-center">
-                                        <span class="badge badge-primary mr-1"
-                                            style="font-size: 14px; border-radius: 10px;">Manajer</span>
-                                        <span class="badge badge-success"
-                                            style="font-size: 14px; border-radius: 10px;">Kasir</span>
+                                        @if ($karyawan->manajer == 1)
+                                            <span class="badge badge-primary mr-1"
+                                                style="font-size: 14px; border-radius: 10px;">Manajer</span>
+                                        @endif
+                                        @if ($karyawan->kasir == 1)
+                                            <span class="badge badge-success"
+                                                style="font-size: 14px; border-radius: 10px;">Kasir</span>
+                                        @endif
+                                        @if ($karyawan->owner == 1)
+                                            <span class="badge badge-secondary"
+                                                style="font-size: 14px; border-radius: 10px;">Owner</span>
+                                        @endif
                                     </p>
 
                                     <ul class="list-group list-group-unbordered">
                                         <li class="list-group-item">
-                                            <span class="font-weight-bold">Unit Usaha</span> <span class="float-right">Toko
-                                                Guna Bakti</span>
+                                            <span class="font-weight-bold">Unit Usaha</span> <span
+                                                class="float-right">{{ $karyawan->nama_usaha }}</span>
                                         </li>
                                         <li class="list-group-item">
                                             <span class="font-weight-bold">No HP</span> <span
-                                                class="float-right">089909900099</span>
+                                                class="float-right">{{ $karyawan->nohp }}</span>
                                         </li>
                                         <li class="list-group-item">
-                                            <span class="font-weight-bold">Status</span> <button
+                                            <span class="font-weight-bold">Status</span>
+                                            {{-- <button
                                                 class="btn btn-outline-success float-right"
-                                                style="font-size: 12px; border-radius: 10px;"><i class="fa fa-user" aria-hidden="true"></i> AKTIF</button>
+                                                style="font-size: 12px; border-radius: 10px;"><i class="fa fa-user" aria-hidden="true"></i> AKTIF</button> --}}
+                                            <button class="btn btn-outline-success float-right"
+                                                style="font-size: 12px; border-radius: 10px;">
+                                                <i class="fa fa-user" aria-hidden="true"></i> <span id="statusText"
+                                                    class="text-uppercase">{{ $karyawan->status }}</span>
+                                            </button>
                                             {{-- <span class="font-weight-bold">Status</span> <button
                                                 class="btn btn-outline-success float-right"
                                                 style="font-size: 12px; border-radius: 10px;"><i class="fa fa-user-times" aria-hidden="true"></i> AKTIF</button> --}}
@@ -144,113 +169,25 @@
                                     <button class="btn btn-block text-white mt-4"
                                         style="background-color: #28a745; border-radius: 10px;" type="button"
                                         data-toggle="modal" data-target="#perbaruiData" aria-expanded="false"><i
-                                            class="fa fa-save"></i> &nbsp;Perbarui Data
+                                            class="fa fa-save"></i> &nbsp;Edit Data
                                     </button>
 
-                                    <div class="modal fade" id="perbaruiData" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
-                                        <div class="modal-dialog" role="document">
+                                    <div class="modal fade" id="perbaruiData" data-backdrop="static" data-keyboard="false"
+                                        aria-labelledby="staticBackdropLabel" aria-hidden="true"
+                                        data-target="#staticBackdrop">
+                                        <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Ubah Data</h5>
+                                                    <h5 class="modal-title" id="staticBackdropLabel">
+                                                        Edit
+                                                        Karyawan
+                                                    </h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <div class="modal-body">
-                                                    <!-- Form untuk input informasi karyawan -->
-                                                    <form>
-                                                        @csrf
-                                                        <div class="form-row">
-                                                            <div class="form-group col-md-6">
-                                                                <label for="nama">NAMA </label>
-                                                                <sup class="badge rounded-pill badge-danger text-white"
-                                                                    style="background-color: rgba(230, 82, 82); font-size: 10px; padding: 4px 8px;">WAJIB</sup>
-                                                                <input type="text" class="form-control" name="nama"
-                                                                    id="nama" placeholder="Masukkan nama">
-                                                            </div>
-                                                            <div class="form-group col-md-6">
-                                                                <label for="nomor-hp">NOMOR HP </label>
-                                                                <sup class="badge rounded-pill badge-danger text-white"
-                                                                    style="background-color: rgba(230, 82, 82); font-size: 10px; padding: 4px 8px;">WAJIB</sup>
-                                                                <input type="text" class="form-control" name="nomorhp"
-                                                                    id="nomor-hp" placeholder="Masukkan nomor HP">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-row">
-                                                            <div class="form-group col-md-6">
-                                                                <label for="email">EMAIL </label>
-                                                                <sup class="badge rounded-pill badge-danger text-white"
-                                                                    style="background-color: rgba(230, 82, 82); font-size: 10px; padding: 4px 8px;">WAJIB</sup>
-                                                                <input type="email" class="form-control" name="email"
-                                                                    id="email" placeholder="Masukkan email">
-                                                            </div>
-                                                            <div class="form-group col-md-6">
-                                                                <label for="unit-usaha">UNIT USAHA</label>
-                                                                <sup class="badge rounded-pill badge-danger text-white"
-                                                                    style="background-color: rgba(230, 82, 82); font-size: 10px; padding: 4px 8px;">WAJIB</sup>
-                                                                <select class="form-control" id="unit-usaha"
-                                                                    name="unitusaha">
-                                                                    <option value="" disabled selected hidden>Pilih
-                                                                        unit usaha
-                                                                    </option>
-                                                                    <option value="Toko Guna Bakti">Toko
-                                                                        Guna
-                                                                        Bakti</option>
-                                                                    <option value="Penggilingan Wangon">
-                                                                        Penggilingan Wangon</option>
-                                                                    <option value="Produksi">Produksi
-                                                                    </option>
-                                                                    <option value="Sawah">Sawah</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-row">
-                                                            <div class="form-group col-md-12">
-                                                                <label for="alamat">ALAMAT </label>
-                                                                <sup class="badge rounded-pill badge-danger text-white"
-                                                                    style="background-color: rgba(230, 82, 82); font-size: 10px; padding: 4px 8px;">WAJIB</sup>
-                                                                <textarea class="form-control" id="alamat" name="alamat" rows="2" placeholder="Masukkan alamat"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-row">
-                                                            <div class="form-group col-md-12">
-                                                                <label for="alamat">ROLE</label>
-                                                                <sup class="badge rounded-pill badge-danger text-white"
-                                                                    style="background-color: rgba(230, 82, 82); font-size: 10px; padding: 4px 8px;">WAJIB</sup>
-                                                                <br>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        id="manajer">
-                                                                    <label class="form-check-label"
-                                                                        for="manajer">Manajer</label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        id="kasir">
-                                                                    <label class="form-check-label"
-                                                                        for="kasir">Kasir</label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        id="owner">
-                                                                    <label class="form-check-label"
-                                                                        for="owner">Owner</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal"><i class="fa fa-ban"></i>
-                                                        Tutup</button>
-                                                    <button type="button" class="btn btn-primary"><i
-                                                            class="fa fa-save"></i> Simpan</button>
-                                                </div>
+                                                @include('modals.edit-karyawan')
                                             </div>
                                         </div>
                                     </div>
@@ -264,7 +201,7 @@
                                 </div>
                                 </h4>
                                 <div class="card-body box-profile">
-                                    <form>
+                                    <form method="POST" action="{{ route('update.password', $karyawan->id_karyawan) }}">
                                         @csrf
                                         @if ($errors->any())
                                             <div class="alert alert-danger">
@@ -279,7 +216,8 @@
                                                     <input type="password"
                                                         class="form-control @error('password') is-invalid @enderror"
                                                         id="password" name="password"
-                                                        placeholder="Masukan password baru" value="{{ old('password') }}">
+                                                        placeholder="Masukan password baru"
+                                                        value="{{ old('password') }}">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text toggle-password">
                                                             <i class="fas fa-eye"></i>
@@ -318,9 +256,9 @@
                                         <div class="d-flex bd-highlight justify-content-end mt-0 mb-1">
                                             <div class="bd-highlight">
                                                 <button class="btn btn-block text-white"
-                                                    style="background-color: #28a745; border-radius: 10px;" type="button"
-                                                    data-toggle="modal" data-target="#perbaruiAkun"
-                                                    aria-expanded="false"><i class="fa fa-save"></i> &nbsp;Perbarui Akun
+                                                    style="background-color: #28a745; border-radius: 10px;" type="submit"
+                                                    value="submit" aria-expanded="false"><i class="fa fa-save"></i>
+                                                    &nbsp;Edit Akun
                                                 </button>
                                             </div>
                                         </div>
@@ -340,20 +278,15 @@
 
 @push('script')
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const cameraIcon = document.getElementById('change-profile-pic');
-            const profilePicInput = document.getElementById('profile-pic-input');
-
-            cameraIcon.addEventListener('click', function() {
-                profilePicInput.click();
-            });
-
-            profilePicInput.addEventListener('change', function(event) {
-                const selectedFile = event.target.files[0];
-                if (selectedFile) {
-                    // Di sini, Anda dapat menambahkan logika untuk mengunggah gambar ke server Anda.
-                    // Setelah mengunggah, Anda juga dapat memperbarui gambar profil yang ditampilkan.
-                    // Misalnya, Anda dapat menggunakan FormData untuk mengirim gambar ke server.
+        $(document).ready(function() {
+            // Toggle password visibility
+            $('.toggle-password').click(function() {
+                $(this).find('i').toggleClass('fa-eye fa-eye-slash');
+                var input = $(this).closest('.input-group').find('input');
+                if (input.attr('type') === 'password') {
+                    input.attr('type', 'text');
+                } else {
+                    input.attr('type', 'password');
                 }
             });
         });

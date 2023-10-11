@@ -112,6 +112,8 @@
                                 <strong class="col pr-0 pt-0 d-highlight pr-0 mr-0 mb-3">
                                     <h4 style="color:#28a745;">DATA MASTER</h4>
                                 </strong>
+                                
+
                             </div>
                         </div>
                         <!-- /.card-body -->

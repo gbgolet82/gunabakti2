@@ -188,116 +188,23 @@
                                                             class="fas fa-plus-circle left-icon-holder"></i> &nbsp;
                                                         Tambah
                                                     </button>
-
-                                                    <div class="modal fade" id="tambahData" tabindex="-1" role="dialog"
-                                                        aria-labelledby="exampleModalLabel" aria-hidden="true"
-                                                        data-backdrop="static">
-                                                        <div class="modal-dialog" role="document">
+                                                    
+                                                    <div class="modal fade" id="tambahData" data-backdrop="static"
+                                                        data-keyboard="false" aria-labelledby="staticBackdropLabel"
+                                                        aria-hidden="true" data-target="#staticBackdrop">
+                                                        <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">Tambah
-                                                                        Karyawan</h5>
+                                                                    <h5 class="modal-title" id="staticBackdropLabel">
+                                                                        Tambah
+                                                                        Karyawan
+                                                                    </h5>
                                                                     <button type="button" class="close"
                                                                         data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
-                                                                <div class="modal-body">
-                                                                    <!-- Form untuk input informasi karyawan -->
-                                                                    <form>
-                                                                        @csrf
-                                                                        <div class="form-row">
-                                                                            <div class="form-group col-md-6">
-                                                                                <label for="nama">NAMA </label>
-                                                                                <sup class="badge rounded-pill badge-danger text-white"
-                                                                                    style="background-color: rgba(230, 82, 82); font-size: 10px; padding: 4px 8px;">WAJIB</sup>
-                                                                                <input type="text" class="form-control"
-                                                                                    name="nama" id="nama"
-                                                                                    placeholder="Masukkan nama">
-                                                                            </div>
-                                                                            <div class="form-group col-md-6">
-                                                                                <label for="nomor-hp">NOMOR HP </label>
-                                                                                <sup class="badge rounded-pill badge-danger text-white"
-                                                                                    style="background-color: rgba(230, 82, 82); font-size: 10px; padding: 4px 8px;">WAJIB</sup>
-                                                                                <input type="text" class="form-control"
-                                                                                    name="nomorhp" id="nomor-hp"
-                                                                                    placeholder="Masukkan nomor HP">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-row">
-                                                                            <div class="form-group col-md-6">
-                                                                                <label for="email">EMAIL </label>
-                                                                                <sup class="badge rounded-pill badge-danger text-white"
-                                                                                    style="background-color: rgba(230, 82, 82); font-size: 10px; padding: 4px 8px;">WAJIB</sup>
-                                                                                <input type="email" class="form-control"
-                                                                                    name="email" id="email"
-                                                                                    placeholder="Masukkan email">
-                                                                            </div>
-                                                                            <div class="form-group col-md-6">
-                                                                                <label for="unit-usaha">UNIT USAHA</label>
-                                                                                <sup class="badge rounded-pill badge-danger text-white"
-                                                                                    style="background-color: rgba(230, 82, 82); font-size: 10px; padding: 4px 8px;">WAJIB</sup>
-                                                                                <select class="form-control"
-                                                                                    id="unit-usaha" name="unitusaha">
-                                                                                    <option value="" disabled
-                                                                                        selected hidden>Pilih unit usaha
-                                                                                    </option>
-                                                                                    <option value="Toko Guna Bakti">Toko
-                                                                                        Guna
-                                                                                        Bakti</option>
-                                                                                    <option value="Penggilingan Wangon">
-                                                                                        Penggilingan Wangon</option>
-                                                                                    <option value="Produksi">Produksi
-                                                                                    </option>
-                                                                                    <option value="Sawah">Sawah</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-row">
-                                                                            <div class="form-group col-md-12">
-                                                                                <label for="alamat">ALAMAT </label>
-                                                                                <sup class="badge rounded-pill badge-danger text-white"
-                                                                                    style="background-color: rgba(230, 82, 82); font-size: 10px; padding: 4px 8px;">WAJIB</sup>
-                                                                                <textarea class="form-control" id="alamat" name="alamat" rows="2" placeholder="Masukkan alamat"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-row">
-                                                                            <div class="form-group col-md-12">
-                                                                                <label for="alamat">ROLE</label>
-                                                                                <sup class="badge rounded-pill badge-danger text-white"
-                                                                                    style="background-color: rgba(230, 82, 82); font-size: 10px; padding: 4px 8px;">WAJIB</sup>
-                                                                                <br>
-                                                                                <div class="form-check form-check-inline">
-                                                                                    <input class="form-check-input"
-                                                                                        type="checkbox" id="manajer">
-                                                                                    <label class="form-check-label"
-                                                                                        for="manajer">Manajer</label>
-                                                                                </div>
-                                                                                <div class="form-check form-check-inline">
-                                                                                    <input class="form-check-input"
-                                                                                        type="checkbox" id="kasir">
-                                                                                    <label class="form-check-label"
-                                                                                        for="kasir">Kasir</label>
-                                                                                </div>
-                                                                                <div class="form-check form-check-inline">
-                                                                                    <input class="form-check-input"
-                                                                                        type="checkbox" id="owner">
-                                                                                    <label class="form-check-label"
-                                                                                        for="owner">Owner</label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-
-                                                                    </form>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal"><i class="fa fa-ban"></i>
-                                                                        Tutup</button>
-                                                                    <button type="button" class="btn btn-primary"><i
-                                                                            class="fa fa-save"></i> Simpan</button>
-                                                                </div>
+                                                                @include('modals.tambah-karyawan')
                                                             </div>
                                                         </div>
                                                     </div>
@@ -322,27 +229,40 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($karyawan as $k)
                                     <tr>
-                                        <td width=5%>1</td>
-                                        <td class="font-weight-bold">Muhammad Fikri
+                                        <td width=5%>{{ $loop->iteration }}.</td>
+                                        <td width=25% class="font-weight-bold">{{ $k->nama }} -- {{ $k->id_karyawan }}
                                         </td>
-                                        <td><span class="text-white badge badge-primary"
-                                                style="font-size: 14px; border-radius: 10px;">Manajer</span> <br>
-                                            <span class="text-white badge badge-success"
-                                                style="font-size: 14px; border-radius: 10px;">Kasir</span>
+                                        <td width=15%>
+                                            @if($k->manajer == 1)
+                                                <span class="text-white badge badge-primary"
+                                                      style="font-size: 14px; border-radius: 10px;">Manajer</span>
+                                            @endif
+                                        
+                                            @if($k->kasir == 1)
+                                                <span class="text-white badge badge-success"
+                                                      style="font-size: 14px; border-radius: 10px;">Kasir</span>
+                                            @endif
+
+                                            @if($k->owner == 1)
+                                                <span class="text-white badge badge-secondary"
+                                                      style="font-size: 14px; border-radius: 10px;">Owner</span>
+                                            @endif
                                         </td>
-                                        <td>Toko Guna Bakti</td>
-                                        <td>089689909911</td>
+                                        
+                                        <td width=20%>{{ $k->nama_usaha }}</td>
+                                        <td>{{ $k->nohp }}</td>
                                         <td>
-                                            <span class="text-white badge badge-success text-center"
-                                                style="font-size: 14px; border-radius: 10px;">AKTIF</span>
+                                            <span class="text-white badge badge-success text-center text-uppercase"
+                                                style="font-size: 14px; border-radius: 10px;">{{ $k->status }}</span>
                                         </td>
                                         <td width=8%>
                                             <div class="d-flex justify-content-center">
                                                 <div id="hoverText">
                                                     <a type="button"
                                                         style="color: #046ddd; font-size: 18px; margin-right: 2px;"
-                                                        href="{{ route('detail.karyawan') }}"><i class="fa fa-info-circle"
+                                                        href="{{ route('detail.karyawan', $k->id_karyawan) }}"><i class="fa fa-info-circle"
                                                             title="Detail"></i></a>
 
                                                     <a type="button" style="color: #dc3545; font-size: 18px;"><i
@@ -367,10 +287,12 @@
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal"><i class="fa fa-ban"></i> Batal</button>
+                                                                        data-dismiss="modal"><i class="fa fa-ban"></i>
+                                                                        Batal</button>
                                                                     <button type="button" class="btn btn-danger"
                                                                         onclick="hapusData()"><i
-                                                                            class="far fa-trash-alt"></i> Ya, Hapus</button>
+                                                                            class="far fa-trash-alt"></i> Ya,
+                                                                        Hapus</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -381,6 +303,7 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
