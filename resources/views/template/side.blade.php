@@ -43,21 +43,36 @@
         }
     </style>
 
+
+
+
     <div class="sidebar">
         <div class="text-center">
             <h5 class="btn-hilang mt-3">
                 <p>UD GUNA BAKTI</p>
             </h5>
-            <span class="btn-hilang">{{ Auth::user()->nama }}</span><br>
-            <div class="badge badge-success"><strong>
-                    @if (session()->has('selected_role'))
-                        {{ session('selected_role') }}
-                    @endif
-                </strong></div><br>
+            <span class="btn-hilang">{{ session('nama') }}</span>
+            <br>
+            @php
+                $selectedRole = session('selectedRole');
+                $karyawanRoles = session('karyawanRoles');
+            @endphp
+
+            @if ($selectedRole)
+                <div class="badge badge-success"><strong>{{ $selectedRole }}</strong></div>
+            @else
+                @if ($karyawanRoles->count() === 1)
+                    <div class="badge badge-success"><strong>{{ $karyawanRoles->first() }}</strong></div>
+                @else
+                    <div class="badge badge-success"><strong>Peran Default</strong></div>
+                @endif
+            @endif
+
+            <br>
             <a class="btn btn-white btn-sm btn-hilang"><i class="fas fa-cog"></i>
                 <p> Pengaturan</p>
             </a>
-            <a href="#" class="btn btn-white btn-sm btn-hilang"><i class="fa fa-sign-out-alt"></i>
+            <a href="{{ route('logout') }}" class="btn btn-white btn-sm btn-hilang"><i class="fa fa-sign-out-alt"></i>
                 <p> Keluar</p>
             </a>
         </div>

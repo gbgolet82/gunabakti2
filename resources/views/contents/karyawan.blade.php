@@ -232,7 +232,7 @@
                                     @foreach ($karyawan as $k)
                                     <tr>
                                         <td width=5%>{{ $loop->iteration }}.</td>
-                                        <td width=25% class="font-weight-bold">{{ $k->nama }} -- {{ $k->id_karyawan }}
+                                        <td width=25% class="font-weight-bold">{{ $k->nama }} 
                                         </td>
                                         <td width=15%>
                                             @if($k->manajer == 1)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Karyawan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -15,66 +16,55 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('nohp', 'password');
-        // dd($request->role);
-    
-        if (Auth::attempt($credentials)) {
-            // dd('baba');
-            $karyawan = Karyawan::where('nohp', $request->input('nohp'))->first();
-            if ($karyawan) {
-            $request->session()->put('selected_role', $request->role);
-            if ($request->role == 'owner') {
-                // Check the 'owner' column in the 'karyawan' table
-                
+        // Validate the login request, e.g., using the 'validate' method.
+        // dd('baba');
+        $phone = $request->input('nohp');
+        $password = $request->input('password');
 
-                if ($karyawan->owner == 1) {
-                    // Redirect to the owner dashboard
-                    return redirect()->route('dashboard')->with('success', 'Anda berhasil login');
-                } else {
-                    // User is not an owner (owner !== 1)
-                    return back()->with('error', 'Invalid role or access denied.');
-                }
-            } elseif ($request->role == 'manajer') {
-                // Check the 'manajer' column in the 'karyawan' table
-                $karyawan = Karyawan::where('nohp', $request->input('nohp'))->first();
+        // Check the database to authenticate the user based on phone and password.
+        $karyawan = Karyawan::where('nohp', $phone)->first();
+        // dd($karyawan);
 
-                if ($karyawan->manajer == 1) {
-                    // Redirect to the manager dashboard
-                    return redirect()->route('dashboard.manajer');
-                } else {
-                    // User is not a manager (manajer !== 1)
-                    return back()->with('error', 'Invalid role or access denied.');
-                }
-            } elseif ($request->role == 'kasir') {
-                // Check the 'kasir' column in the 'karyawan' table
-                $karyawan = Karyawan::where('nohp', $request->input('nohp'))->first();
-
-                if ($karyawan->kasir == 1) {
-                    // Redirect to the cashier dashboard
-                    return redirect()->route('dashboard.kasir');
-                } else {
-                    // User is not a cashier (kasir !== 1)
-                    return back()->with('error', 'Invalid role or access denied.');
-                }
-            } else {
-                // User has an invalid role or other conditions are not met
-                return back()->with('error', 'Invalid role or access denied.');
-            }
+        if (!$karyawan || !Hash::check($password, $karyawan->password)) {
+            // Authentication failed, return an error.
+            return redirect()->back()->withErrors(['error' => 'Invalid phone number or password']);
         }
+
+        // Check the user's roles.
+        $roles = ['kasir', 'manajer', 'owner'];
+        $karyawanRoles = collect($roles)->filter(function ($role) use ($karyawan) {
+            return $karyawan->$role == 1;
+        });
+        session(['karyawanRoles' => $karyawanRoles]);
+        session()->save(); // Simpan data sesi
+
+        // Set session berdasarkan data pengguna
+        session(['nama' => $karyawan->nama, 'nohp' => $karyawan->nohp]);
+        session()->save();
+
+
+        if ($karyawanRoles->count() == 1) {
+            // User has a single role, redirect to the dashboard corresponding to the role.
+            $role = $karyawanRoles->first();
+            // session(['selectedRole' => $role]);
+            // dd($role);
+            return redirect()->route('dashboard');
+            // return redirect()->route($role . '.dashboard');
         }
-    
-        return back()->withErrors(['nohp' => 'Invalid login credentials']);
+
+
+
+        // User has multiple roles, show the 'rangkap' view.
+        return view('auth.login2', ['karyawanRoles' => $karyawanRoles]);
     }
+
     
     public function logout(Request $request)
     {
-        // dd(Auth::user());
-        Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-        return redirect('/');
+        session()->forget('selectedRole'); // Menghapus session yang dipilih
+        session()->flush(); // Menghapus semua session
+        
+        return redirect()->route('login'); // Redirect pengguna ke halaman login atau halaman lain yang sesuai.
     }
 
 

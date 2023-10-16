@@ -163,6 +163,20 @@
             /* Menambahkan jarak antara garis dan tulisan */
         }
 
+        .capitalize-first {
+            text-transform: capitalize;
+            font-size: 15px;
+        }
+
+        .bold-white-hr {
+            border: 0;
+            height: 2px;
+            /* Atur tinggi garis sesuai kebutuhan Anda */
+            background-color: white;
+            font-weight: bold;
+            /* Membuat tebal (bold) */
+        }
+
         /* .centered-text {
             text-align: center;
             padding: 5px;
@@ -185,9 +199,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
     <link rel="icon" href="{!! asset('gambar/gunabakti-logo.png') !!}" />
-    <title>GUNA BAKTI | {{ $active_page }}</title>
+    <title>GUNA BAKTI | LOGIN</title>
 
     <link rel="stylesheet" type="text/css" href="/casgpo/asset/css/ppg.css">
 
@@ -210,19 +223,6 @@
 </head>
 
 <body>
-    {{-- @if (session('alert'))
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <script>
-            Swal.fire({
-                icon: 'error',
-                text: "{{ session('alert') }}",
-                customClass: {
-                    popup: 'small-alert' // Tambahkan kelas CSS "small-alert" di sini
-                }
-            });
-        </script>
-    @endif --}}
-
 
     <div class="container h-100">
         <div class="row h-100 justify-content-center align-item-center ">
@@ -232,94 +232,85 @@
                 <p class="text-white">Mekanisme pencatatan laporan pemasukan & pengeluaran serta analisa laba rugi
                     berbasis website</p>
             </div>
-            <style>
-                .bold-white-hr {
-                    border: 0;
-                    height: 2px;
-                    /* Atur tinggi garis sesuai kebutuhan Anda */
-                    background-color: white;
-                    font-weight: bold;
-                    /* Membuat tebal (bold) */
-                }
-            </style>
 
 
             <div class="col-lg-5 col-md-7 col-sm-12 card-none-color shadow-lg p-lg-4 p-md-4 p-sm-3 mx-3 mb-3 align-self-center"
-                id="tunggal">
-                <h3 class="mt-3">Login Akun</h3>
-                <p>Silahkan masukkan Nomor HP dan Kata Sandi Anda untuk melanjutkan
-                    ke Sistem.
+                id="rangkap">
+                <div class="col-lg-11 bg-utama1 card-none-color shadow-lg p-lg-2 p-md-4 p-sm-3 mx-1 mb-3 mt-3">
+                    <h6 class="text-white mt-2 mb-1 text-uppercase">&nbsp;<i class="fa fa-user-circle"></i>
+                        &nbsp;{{ session('nama') }}</h6>
+                    <!-- Adjust the margin-bottom (mb) value as needed -->
+                    <hr class="mb-1 bold-white-hr">
+                    <span class="text-white ">&nbsp; <i class="fa fa-phone"></i> &nbsp;{{ session('nohp') }}</span>
+                    <!-- Replace with the actual user's name -->
+                </div>
+                <h5 class="mt-4">Pilih Jabatan Akun</h5>
+                <span>Anda terdaftar dengan rangkap 2 jabatan, silahkan pilih salah satu untuk memulai
                     <span data-toggle="popover"
                         data-content="Login akun untuk mengakses fitur laporan pemasukan & pengeluaran"><i
                             class="fas fa-info-circle"></i></span>
-                </p>
-
-                <form id="form1" name="form1" class="mb-3 mt-md-3" action="{{ route('login') }}" method="post">
-                    @csrf
-                    <div class="form-group small">
-                        <label class="font-weight-bold text-secondary">Nomor HP</label>
-                        <div class="input-group ">
-                            <div class="input-group-append">
-                                <span class="input-group-text no-bg"> <i class="fas fa-phone"></i>
-                                </span>
+                </span>
+                <style>
+                    .custom-card {
+                        border-radius: 20px;
+                        /* Mengatur radius sudut (rounded corners) */
+                        padding: 5px;
+                        /* Mengatur jarak padding */
+                    }
+                </style>
+                @foreach ($karyawanRoles as $role)
+                    <div class="col-lg-11 bg-utama1 card-none-color shadow-lg p-lg-2 p-md-4 p-sm-3 mx-1 mb-3 mt-3">
+                        <div class="row">
+                            <div class="col-8">
+                                <h6 class="text-white mt-2 mb-1 capitalize-first"> &nbsp;<i class="fa fa-id-card"></i>
+                                    &nbsp;{{ $role }}
+                                </h6>
                             </div>
-                            <input autofocus type="text" class="form-control @error('nohp') is-invalid @enderror"
-                                id="nohp" aria-describeby="nohpHelp" name="nohp" placeholder="Masukan Nomor HP"
-                                pattern="[0-9]+" value="{{ old('nohp') }}">
-                            @error('nohp')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            <div class="col-4">
+                                <div class="card custom-card">
+                                    <a href="{{ route('selectRole', ['role' => $role]) }}"
+                                        class="btn btn-sm custom-button p-0">
+                                        <div class="card-body p-0 d-flex align-items-center justify-content-center">
+                                            <span class="align-middle">Pilih &nbsp;<i
+                                                    class="far fa-arrow-alt-circle-right ml-2 align-middle"
+                                                    style="font-size:19px"></i></span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                @endforeach
 
-                    <div class="form-group small">
-                        <label class="font-weight-bold text-secondary">Kata Sandi</label>
-                        <div class="input-group ">
-                            <div class="input-group-append">
-                                <span class="input-group-text no-bg"> <i class="fas fa-lock"></i>
-                                </span>
-                            </div>
-                            <input type="password"
-                                class="form-control 
-                                @error('password')
-                                is-invalid
-                                @enderror
-                                "
-                                id="password" name="password" placeholder="Masukan Kata Sandi">
-                            @error('password')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                            <i style="font-size: 17px;color: black;" class="password-icon mdi mdi-eye-off warna-utama"
-                                type="toggle" onclick="myFunction()"></i>
+
+                {{-- <div class="col-lg-11 bg-utama1 card-none-color shadow-lg p-lg-2 p-md-4 p-sm-3 mx-1 mb-4 mt-3">
+                    <div class="row">
+                        <div class="col-8">
+                            <h6 class="text-white mt-2 mb-1"> &nbsp;<i class="fa fa-id-card"></i> &nbsp;Owner</h6>
                         </div>
-                    </div>
+                        <div class="col-4">
+                            <div class="card custom-card">
+                                <button class="btn btn-sm custom-button p-0" type="button">
+                                    <div class="card-body p-0 d-flex align-items-center justify-content-center">
+                                        <span class="align-middle">Pilih &nbsp;<i
+                                                class="far fa-arrow-alt-circle-right ml-2 align-middle"
+                                                style="font-size:19px"></i></span>
+                                    </div>
+                                </button>
+                            </div>
 
-                    <p href class="text-right mt-2 small">
-                        <a href="#" class="warna-utama">Lupa kata sandi?</a>
-                    </p>
+                        </div>
 
-                    <input type="hidden" name="lt" value="LT-21110667-L1HEcj1ZlM2QlJjSgJlFzG2hctwcTm">
-                    <input type="hidden" name="execution" value="e2s1">
-                    <input type="hidden" name="_eventId" value="submit">
-                    <div class="form-group">
-                        {{-- <button type="submit" class="btn btn-success btn-block"><i class="fas fa-sign-in-alt"></i>
-                            Login</button> --}}
-                        <button type="submit" class="btn btn-success btn-block" id="loginButton"><i
-                                class="fas fa-sign-in-alt"></i>
-                            Login</button>
 
                     </div>
-                    <hr style="margin: 2px;">
-
-                    <div class="text-center mt-3">UD GUNA BAKTI © 2023</div>
-                </form>
-
-
-                <p class="text-center small">
+                </div> --}}
+                <p class="text-center small mt-4">
                     Dikembangkan oleh <a class="warna-utama" href="http://www.golet.co.id/" target="_blank">PT Golet
                         Digital Solusi </a>
                     &nbsp;
                 </p>
+
+
             </div>
 
 

@@ -10,6 +10,17 @@ use Illuminate\Support\Str;
 
 class DataKaryawanController extends Controller
 {
+    public function selectRole(Request $request, $role)
+{
+    // Simpan peran yang dipilih dalam sesi
+    session(['selectedRole' => $role]);
+    session()->save();
+    // dd($role);
+
+    return redirect()->route('dashboard'); // Arahkan ke halaman dashboard
+}
+
+
     public function index(){
 
         $unit_usaha = DB::table('usaha')->orderBy('created_at', 'desc')->get();

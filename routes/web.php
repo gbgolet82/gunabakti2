@@ -28,7 +28,13 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
-Route::post('/', [LoginController::class, 'login'])->name('auth');
+Route::post('/', [LoginController::class, 'login']);
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/select-role/{role}', [DataKaryawanController::class, 'selectRole'])->name('selectRole');
+
+Route::group(['middleware' => 'role:manajer|kasir|owner'], function () {
+    // Rute untuk manajer
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/klasifikasi-akun', [KlasifikasiLaporanController::class, 'index'])->name('akun');
 Route::get('/tambah-klasifikasi-akun', [KlasifikasiLaporanController::class, 'index'])->name('tambah.akun');
@@ -43,3 +49,9 @@ Route::post('/upload-karyawan/{id_karyawan}', [DataKaryawanController::class, 'u
 Route::post('/update-password/{id_karyawan}', [DataKaryawanController::class, 'proses_ubah_password'])->name('update.password');
 Route::get('/data-detail-karyawan/{id_karyawan}', [DataKaryawanController::class, 'detail'])->name('detail.karyawan');
 Route::get('/data-usaha', [DataUsahaController::class, 'index'])->name('usaha');
+});
+
+
+
+
+
