@@ -58,7 +58,7 @@
                         <li class="breadcrumb-item active">
                             <a href="{{ route('karyawan') }}" class="text-primary">Data Karyawan</a>
                         </li>
-                        <li class="breadcrumb-item active">Muhammad Fikri</li>
+                        <li class="breadcrumb-item active">{{ $karyawan->nama }}</li>
                     </ol>
                 </div><!-- /.col -->
                 <div class="col-sm-6">

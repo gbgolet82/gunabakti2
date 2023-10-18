@@ -210,18 +210,20 @@
 </head>
 
 <body>
-    {{-- @if (session('alert'))
+    @if (session('alert'))
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script>
-            Swal.fire({
-                icon: 'error',
-                text: "{{ session('alert') }}",
-                customClass: {
-                    popup: 'small-alert' // Tambahkan kelas CSS "small-alert" di sini
-                }
-            });
+            @if (isset(session('alert')[0]))
+                Swal.fire({
+                    icon: 'error',
+                    text: "Anda tidak bisa mengakses halaman ini!",
+                    customClass: {
+                        popup: 'small-alert' // Tambahkan kelas CSS "small-alert" di sini
+                    }
+                });
+            @endif
         </script>
-    @endif --}}
+    @endif
 
 
     <div class="container h-100">

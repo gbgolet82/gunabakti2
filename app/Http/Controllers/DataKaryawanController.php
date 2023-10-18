@@ -95,41 +95,52 @@ class DataKaryawanController extends Controller
     }
 
     public function update(Request $request, $id_karyawan)
-    {
-        // Validasi data
-        // dd('baba');
-        $request->validate([
-            'nama' => 'required',
-            'nohp' => 'required',
-            'email' => 'required',
-            'id_usaha' => 'required',
-            'alamat' => 'required',
-        ]);
+{
+    // Validasi data
+    // dd('baba');
+    $request->validate([
+        'nama' => 'required',
+        'nohp' => 'required',
+        'email' => 'required',
+        'id_usaha' => 'required',
+        'alamat' => 'required',
+    ]);
 
-        // Ambil data karyawan yang akan diupdate
-        $karyawan = Karyawan::select('karyawan.*', 'usaha.nama_usaha')
+    // Ambil data karyawan yang akan diupdate
+    $karyawan = Karyawan::select('karyawan.*', 'usaha.nama_usaha')
         ->join('usaha', 'karyawan.id_usaha', '=', 'usaha.id_usaha')
         ->where('karyawan.id_karyawan', $id_karyawan)
         ->first();
 
-        // Update data karyawan
-        $karyawan->nama = $request->input('nama');
-        $karyawan->nohp = $request->input('nohp');
-        $karyawan->email = $request->input('email');
-        $karyawan->id_usaha = $request->input('id_usaha');
-        $karyawan->alamat = $request->input('alamat');
+    // Update data karyawan
+    $karyawan->nama = $request->input('nama');
+    $karyawan->nohp = $request->input('nohp');
+    $karyawan->email = $request->input('email');
+    $karyawan->id_usaha = $request->input('id_usaha');
+    $karyawan->alamat = $request->input('alamat');
 
-        // Update role (manajer, kasir, owner)
-        $karyawan->manajer = $request->has('manajer') ? 1 : 0;
-        $karyawan->kasir = $request->has('kasir') ? 1 : 0;
-        $karyawan->owner = $request->has('owner') ? 1 : 0;
+    // Update role (manajer, kasir, owner)
+    $karyawan->manajer = $request->has('manajer') ? 1 : 0;
+    $karyawan->kasir = $request->has('kasir') ? 1 : 0;
+    $karyawan->owner = $request->has('owner') ? 1 : 0;
 
-        // Simpan perubahan
-        $karyawan->save();
+    // Simpan perubahan
+    $karyawan->save();
 
-        // Redirect ke halaman yang sesuai
-        return redirect()->to('/data-detail-karyawan/' . $karyawan->id_karyawan)->with('success', 'Data Karyawan berhasil diperbarui.');
-    }
+    // Perbarui sesi pengguna dengan data yang diperbarui
+    session([
+        'nama' => $karyawan->nama,
+        'nohp' => $karyawan->nohp,
+        'email' => $karyawan->email,
+        'alamat' => $karyawan->alamat,
+        'id_usaha' => $karyawan->id_usaha,
+        'id_karyawan' => $karyawan->id_karyawan,
+    ]);
+
+    // Redirect ke halaman yang sesuai
+    return redirect()->to('/data-detail-karyawan/' . $karyawan->id_karyawan)->with('success', 'Data Karyawan berhasil diperbarui.');
+}
+
 
     public function uploadFoto(Request $request, $id_karyawan)
     {
