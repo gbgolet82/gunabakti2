@@ -1,4 +1,4 @@
-<form action="{{ route('tambah.akun') }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('tambah.klasifikasi-akun') }}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="modal-body">
 
@@ -40,119 +40,11 @@
                                         <option value="{{ $usaha->nama_usaha }}">{{ $usaha->nama_usaha }}</option>
                                     @endforeach
                                 </select>
-                                <a href="{{ route('usaha') }}" class="btn btn-primary ml-2">Tambah</a>
-                                <!-- Tombol Tambah -->
+                                <a href="{{ route('usaha') }}" class="btn btn-success ml-2"><i
+                                        class="fas fa-plus"></i></a>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Modal -->
-                    {{-- <div class="modal fade" id="tambahUnitUsahaModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <!-- Isi modal disini -->
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Unit Usaha</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-
-                                <form action="{{ route('tambah.usaha') }}" method="post" enctype="multipart/form-data">
-                                    {{ csrf_field() }}
-                                    <div class="modal-body">
-                                        <div class="tab-content mt-1">
-                                            <div class="tab-pane fade show active" id="nav-satu-tab" role="tabpanel"
-                                                aria-labelledby="nav-satu-tab">
-
-                                                <div id="form-lama">
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-12">
-                                                            <label for="cariKlasifikasi">NAMA USAHA &nbsp;</label>
-                                                            <sup class="badge rounded-pill badge-danger text-white mb-2"
-                                                                style="background-color:rgba(230,82,82)">WAJIB</sup>
-                                                            <input type="text"
-                                                                class="form-control @error('nama_usaha') is-invalid @enderror"
-                                                                id="namaUsaha" placeholder="Masukan nama usaha"
-                                                                name="nama_usaha" value="">
-                                                            @error('nama_usaha')
-                                                                <div class="invalid-feedback" role="alert">
-                                                                    {{ $message }}
-                                                                </div>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-12">
-                                                            <label for="cariUnitUsaha">ALAMAT USAHA &nbsp;</label>
-                                                            <sup class="badge rounded-pill badge-danger text-white mb-2"
-                                                                style="background-color:rgba(230,82,82)">WAJIB</sup>
-                                                            <textarea class="form-control" id="AlamatUsaha" name="alamat_usaha" rows="3" placeholder="Masukan alamat usaha"></textarea>
-                                                            @error('alamat_usaha')
-                                                                <div class="invalid-feedback" role="alert">
-                                                                    {{ $message }}
-                                                                </div>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-row ">
-                                                        <div class="form-group col-md-12">
-                                                            <label for="cariAkun">JENIS USAHA &nbsp;</label>
-                                                            <sup class="badge rounded-pill badge-danger text-white mb-2"
-                                                                style="background-color:rgba(230,82,82)">WAJIB</sup>
-                                                            <input type="text"
-                                                                class="form-control @error('jenis_usaha') is-invalid @enderror"
-                                                                id="jenisUsaha" placeholder="Masukan jenis usaha"
-                                                                name="jenis_usaha" value="">
-                                                            @error('jenis_usaha')
-                                                                <div class="invalid-feedback" role="alert">
-                                                                    {{ $message }}
-                                                                </div>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-12">
-                                                            <label for="cariSubAkun1">PRODUK USAHA &nbsp;</label>
-                                                            <sup class="badge rounded-pill badge-danger text-white mb-2"
-                                                                style="background-color:rgba(230,82,82)">WAJIB</sup>
-                                                            <input type="text"
-                                                                class="form-control @error('produk_usaha') is-invalid @enderror"
-                                                                id="produkUsaha" placeholder="Masukan produk usaha"
-                                                                name="produk_usaha" value="">
-                                                            @error('produk_usaha')
-                                                                <div class="invalid-feedback" role="alert">
-                                                                    {{ $message }}
-                                                                </div>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="card card-body p-2 pl-3 pr-3"
-                                                        style="background-color:#cbf2d6;">
-                                                        <div class="row">
-                                                            <small>
-                                                                <b>INFORMASI!</b><br>
-                                                                Silakan masukan data diatas secara lengkap!<br>
-                                                            </small>
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex bd-highlight justify-content-end mt-3">
-                                                        <div class="bd-highlight">
-                                                            <button type="submit" class="btn btn-success text-white"
-                                                                id="simpan" onclick="validasiForm()"><i
-                                                                    class="fas fa-save"></i> Simpan</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div> --}}
 
                     <div class="form-row ">
                         <div class="form-group col-md-6">
@@ -160,60 +52,117 @@
                             <sup class="badge rounded-pill badge-danger text-white mb-2"
                                 style="background-color: rgba(230, 82, 82)">WAJIB</sup>
                             <select class="custom-select" name="akun" id="inputGroupAkun">
-                                <option selected>Semua</option>
-                                <option value="1">Wahana</option>
-                                <option value="2">Ketoko</option>
-                                <option value="3">Asvalue</option>
-                                <option value="4">Operasional</option>
-                                <option value="5">Non Operasional</option>
+                                <option selected>Pilih Akun</option>
+                                @php
+                                    $uniqueAkun = [];
+                                @endphp
+                                @foreach ($dataAkun as $akun)
+                                    @if (!empty($akun->akun) && !in_array($akun->akun, $uniqueAkun))
+                                        <option value="{{ $akun->akun }}">{{ $akun->akun }}</option>
+                                        @php
+                                            $uniqueAkun[] = $akun->akun;
+                                        @endphp
+                                    @endif
+                                @endforeach
                             </select>
                         </div>
-
-
                         <div class="form-group col-md-6">
                             <label for="cariSubAkun1">SUB AKUN 1 &nbsp;</label>
                             <sup class="badge rounded-pill badge-danger text-white mb-2"
-                                style="background-color:rgba(230,82,82)">WAJIB</sup>
-                            <select class="custom-select" name="sub_akun_1" id="inputGroupSubAKun1">
-                                <option selected>Semua</option>
-                                <option value="1">Gaji Karyawan</option>
-                                <option value="2">Kerugian Piutang Tak Tertagih</option>
-                                <option value="3">Kerugian Barang Rusak</option>
-                                <option value="4">Bahan Bakar</option>
-                                <option value="5">Alat Tulis</option>
-                                <option value="6">Penjualan</option>
-                                <option value="7">Alat Bungkus</option>
-                                <option value="8">Service Peralatan & Kendaraan</option>
-                                <option value="9">Pemeliharaan Gedung</option>
-                                <option value="10">Pembelian Tunai Barang</option>
-                                <option value="11">Ongkos Kirim</option>
-                                <option value="12">Ongkos Bongkar</option>
+                                style="background-color: rgba(230, 82, 82)">WAJIB</sup>
+                            <select class="custom-select" name="sub_akun_1" id="inputGroupSubAkun1">
+                                <option selected>Pilih Sub Akun 1</option>
+                                @php
+                                    $uniqueAkun = [];
+                                @endphp
+                                @foreach ($dataAkun as $subakun1)
+                                    @if (!empty($subakun1->sub_akun_1) && !in_array($subakun1->sub_akun_1, $uniqueAkun))
+                                        <option value="{{ $subakun1->sub_akun_1 }}">{{ $subakun1->sub_akun_1 }}
+                                        </option>
+                                        @php
+                                            $uniqueAkun[] = $subakun1->sub_akun_1;
+                                        @endphp
+                                    @endif
+                                @endforeach
+                                <option value="custom">Tambah Sub Akun 1</option>
                             </select>
+                            <div id="customSubAkunInput1" style="display: none;" class="mt-2">
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <div class="d-flex align-items-center">
+                                            <input type="text" class="form-control" name="custom_sub_akun1"
+                                                id="customSubAkun1">&nbsp;&nbsp;
+                                            <button class="btn btn-primary" id="addCustomSubAkun1" type="button"><i
+                                                    class="fas fa-check"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="cariSubAkun2">SUB AKUN 2 &nbsp;</label>
-                            {{-- <sup class="badge rounded-pill badge-danger text-white mb-2"
-                                style="background-color:rgba(230,82,82)">WAJIB</sup> --}}
                             <select class="custom-select" name="sub_akun_2" id="inputGroupSubAKun2">
-                                <option selected>Semua</option>
-                                <option value="1">Bolpoin</option>
-                                <option value="2">Buku</option>
-                                <option value="3">Bensin</option>
-                                <option value="4">Solar</option>
+                                <option selected>Pilih Sub Akun 2</option>
+                                @php
+                                    $uniqueAkun = [];
+                                @endphp
+                                @foreach ($dataAkun as $subakun2)
+                                    @if (!empty($subakun2->sub_akun_2) && !in_array($subakun2->sub_akun_2, $uniqueAkun))
+                                        <option value="{{ $subakun2->sub_akun_2 }}">{{ $subakun2->sub_akun_2 }}
+                                        </option>
+                                        @php
+                                            $uniqueAkun[] = $subakun2->sub_akun_2;
+                                        @endphp
+                                    @endif
+                                @endforeach
+                                <option value="custom">Tambah Sub Akun 2</option>
                             </select>
+                            <div id="customSubAkunInput2" style="display: none;" class="mt-2">
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <div class="d-flex align-items-center">
+                                            <input type="text" class="form-control" name="custom_sub_akun2"
+                                                id="customSubAkun2">&nbsp;&nbsp;
+                                            <button class="btn btn-primary" id="addCustomSubAkun2" type="button"><i
+                                                    class="fas fa-check"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="cariSubAkun3">SUB AKUN 3 &nbsp;</label>
-                            {{-- <sup class="badge rounded-pill badge-danger text-white mb-2"
-                                style="background-color:rgba(230,82,82)">WAJIB</sup> --}}
                             <select class="custom-select" name="sub_akun_3" id="inputGroupSubAKun3">
-                                <option selected>Semua</option>
-                                <option value="1">VR4331</option>
-                                <option value="2">Mobil Pick Up</option>
+                                <option selected>Pilih Sub Akun 3</option>
+                                @php
+                                    $uniqueAkun = [];
+                                @endphp
+                                @foreach ($dataAkun as $subakun3)
+                                    @if (!empty($subakun3->sub_akun_3) && !in_array($subakun3->sub_akun_3, $uniqueAkun))
+                                        <option value="{{ $subakun3->sub_akun_3 }}">{{ $subakun3->sub_akun_3 }}
+                                        </option>
+                                        @php
+                                            $uniqueAkun[] = $subakun3->sub_akun_3;
+                                        @endphp
+                                    @endif
+                                @endforeach
+                                <option value="custom">Tambah Sub Akun 3</option>
                             </select>
+                            <div id="customSubAkunInput3" style="display: none;" class="mt-2">
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <div class="d-flex align-items-center">
+                                            <input type="text" class="form-control" name="custom_sub_akun3"
+                                                id="customSubAkun3">&nbsp;&nbsp;
+                                            <button class="btn btn-primary" id="addCustomSubAkun3" type="button"><i
+                                                    class="fas fa-check"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-row">
@@ -230,29 +179,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="card card-body p-2 pl-3 pr-3" style="background-color:#cbf2d6;">
-                        <div class="row">
-                            <small>
-                                <b>INFORMASI!</b><br>
-                                1.&nbsp;Silakan pilih klasifikasi yang tersedia.<br>
-                                2.&nbsp;Pilihlah unit usaha yang sesuai dengan klasifikasi.<br>
-                                3.&nbsp;Tambahkan unit usaha jika tidak ada pada pilihan yang sesuai.<br>
-                                4.&nbsp;Selanjutnya, pilih akun yang sesuai dengan unit usaha dan klasifikasi yang telah
-                                dipilih.<br>
-                                5.&nbsp;Tambahkan akun jika tidak ada pada pilihan yang sesuai.<br>
-                                6.&nbsp;Terakhir, pilih sub akun dari yang pertama hingga yang terakhir sesuai dengan
-                                klasifikasi, unit usaha, dan akun.
-                                7.&nbsp;Tambahkan sub akun jika tidak ada pada pilihan yang sesuai.<br>
-                            </small>
-                        </div>
-                    </div>
                     <div class="d-flex bd-highlight justify-content-end mt-3">
-                        {{-- <div class="mr-auto bd-highlight">
-                            <a type="button" class="btn btn-outline-success left-icon-holder" href="#"><i
-                                    class="fas fa-plus-circle"></i>&nbsp;
-                                &nbsp; &nbsp; &nbsp;Tambah Penyetor</a>
-                        </div> --}}
                         <div class="bd-highlight">
                             <button type="button" class="btn btn-success text-white" id="simpan"
                                 onclick="validasiForm()"><i class="fas fa-save"></i> Simpan</button>
@@ -266,32 +193,142 @@
 
 @push('script')
     <script>
-        var klasifikasiDropdown = document.getElementById('inputGroupKlasifikasi');
-        var akunOptions = document.querySelectorAll('#inputGroupAkun option');
-
-        klasifikasiDropdown.addEventListener('change', function() {
-            var selectedKlasifikasi = klasifikasiDropdown.value;
-
-            // Sembunyikan semua opsi akun terlebih dahulu
-            akunOptions.forEach(function(option) {
-                option.style.display = 'none';
+        $(document).ready(function() {
+            $('#inputGroupAkun').select2();
+            $('#inputGroupSubAkun1').select2();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#inputGroupSubAkun2').select2();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#inputGroupSubAkun3').select2();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#inputGroupSubAkun1").change(function() {
+                var selectedOption = $(this).val();
+                if (selectedOption === "custom") {
+                    $("#customSubAkunInput1").show();
+                } else {
+                    $("#customSubAkunInput1").hide();
+                }
             });
 
-            // Tampilkan opsi akun sesuai dengan klasifikasi yang dipilih
-            akunOptions.forEach(function(option) {
-                if (selectedKlasifikasi === 'pemasukan' && option.classList.contains('pemasukan')) {
-                    option.style.display = 'block';
-                } else if (selectedKlasifikasi === 'pengeluaran' && option.classList.contains(
-                        'pengeluaran')) {
-                    option.style.display = 'block';
+            $("#addCustomSubAkun1").click(function() {
+                var customSubAkun1 = $("#customSubAkun1").val();
+                if (customSubAkun1 !== "") {
+                    // Tambahkan opsi baru dengan sub akun yang dimasukkan
+                    var newOption = $('<option>', {
+                        value: customSubAkun1,
+                        text: customSubAkun1
+                    });
+
+                    // Hapus opsi "Tambah Sub Akun" jika ada
+                    $("#inputGroupSubAkun1 option[value='custom']").remove();
+
+                    // Tambahkan opsi yang baru
+                    $("#inputGroupSubAkun1").append(newOption);
+
+                    // Setel opsi yang ditambahkan sebagai yang terpilih
+                    $("#inputGroupSubAkun1").val(customSubAkun1);
+
+                    // Kosongkan input setelah menambahkan opsi
+                    $("#customSubAkun1").val('');
+
+                    // Sembunyikan input tambah sub akun
+                    $("#customSubAkunInput1").hide();
+
+                    // Tampilkan kembali opsi "Tambah Sub Akun"
+                    $("#inputGroupSubAkun1").append('<option value="custom">Tambah Sub Akun 1</option>');
                 }
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $("#inputGroupSubAkun2").change(function() {
+                var selectedOption = $(this).val();
+                if (selectedOption === "custom") {
+                    $("#customSubAkunInput1").show();
+                } else {
+                    $("#customSubAkunInput1").hide();
+                }
+            });
 
-    {{-- <script>
-        document.getElementById('tambahUnitUsaha').addEventListener('click', function() {
-            window.location.href = "{{ route('usaha') }}";
+            $("#addCustomSubAkun1").click(function() {
+                var customSubAkun2 = $("#customSubAkun2").val();
+                if (customSubAkun2 !== "") {
+                    // Tambahkan opsi baru dengan sub akun yang dimasukkan
+                    var newOption = $('<option>', {
+                        value: customSubAkun2,
+                        text: customSubAkun2
+                    });
+
+                    // Hapus opsi "Tambah Sub Akun" jika ada
+                    $("#inputGroupSubAkun2 option[value='custom']").remove();
+
+                    // Tambahkan opsi yang baru
+                    $("#inputGroupSubAkun2").append(newOption);
+
+                    // Setel opsi yang ditambahkan sebagai yang terpilih
+                    $("#inputGroupSubAkun2").val(customSubAkun2);
+
+                    // Kosongkan input setelah menambahkan opsi
+                    $("#customSubAkun2").val('');
+
+                    // Sembunyikan input tambah sub akun
+                    $("#customSubAkunInput2").hide();
+
+                    // Tampilkan kembali opsi "Tambah Sub Akun"
+                    $("#inputGroupSubAkun2").append('<option value="custom">Tambah Sub Akun 2</option>');
+                }
+            });
         });
-    </script> --}}
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#inputGroupSubAkun3").change(function() {
+                var selectedOption = $(this).val();
+                if (selectedOption === "custom") {
+                    $("#customSubAkunInput1").show();
+                } else {
+                    $("#customSubAkunInput1").hide();
+                }
+            });
+
+            $("#addCustomSubAkun1").click(function() {
+                var customSubAkun3 = $("#customSubAkun3").val();
+                if (customSubAkun3 !== "") {
+                    // Tambahkan opsi baru dengan sub akun yang dimasukkan
+                    var newOption = $('<option>', {
+                        value: customSubAkun3,
+                        text: customSubAkun3
+                    });
+
+                    // Hapus opsi "Tambah Sub Akun" jika ada
+                    $("#inputGroupSubAkun3 option[value='custom']").remove();
+
+                    // Tambahkan opsi yang baru
+                    $("#inputGroupSubAkun3").append(newOption);
+
+                    // Setel opsi yang ditambahkan sebagai yang terpilih
+                    $("#inputGroupSubAkun3").val(customSubAkun3);
+
+                    // Kosongkan input setelah menambahkan opsi
+                    $("#customSubAkun3").val('');
+
+                    // Sembunyikan input tambah sub akun
+                    $("#customSubAkunInput3").hide();
+
+                    // Tampilkan kembali opsi "Tambah Sub Akun"
+                    $("#inputGroupSubAkun3").append('<option value="custom">Tambah Sub Akun 3</option>');
+                }
+            });
+        });
+    </script>
 @endpush
