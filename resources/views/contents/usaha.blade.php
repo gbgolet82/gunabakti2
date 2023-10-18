@@ -121,15 +121,15 @@
                                                 <div class="col-12 col-md-4 mb-2">
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
-                                                            <span class="input-group-text" for="klasifikasi">Nama
+                                                            <span class="input-group-text" for="namaUsaha">Nama
                                                                 Usaha</span>
                                                         </div>
-                                                        <select class="custom-select" id="klasifikasi">
+                                                        <select class="custom-select" id="namaUsaha">
                                                             <option selected>Semua</option>
-                                                            <option value="1">Guna Bakti 2</option>
-                                                            <option value="2">Wangon</option>
-                                                            <option value="3">Produksi</option>
-                                                            <option value="4">Sawah</option>
+                                                            @foreach ($dataUsaha as $usaha)
+                                                                <option value="{{ $usaha->nama_usaha }}">
+                                                                    {{ $usaha->nama_usaha }}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
@@ -200,7 +200,7 @@
                                     @endphp
                                     @foreach ($dataUsaha as $usaha)
                                         <tr>
-                                            <td style="width: 5%">{{ $noUrut++ }}</td>
+                                            <td style="width: 5%;">{{ $noUrut++ }}</td>
                                             <td>{{ $usaha->nama_usaha }}</td>
                                             <td>{{ $usaha->alamat_usaha }}</td>
                                             <td>{{ $usaha->jenis_usaha }}</td>
@@ -215,7 +215,8 @@
                                                                 class="far fa-edit" title="Edit"></i></a>
 
                                                         <a type="button" style="color: #dc3545; font-size: 18px;"
-                                                            data-toggle="modal" data-target="#hapusModal{{ $usaha->id_usaha }}"><i
+                                                            data-toggle="modal"
+                                                            data-target="#hapusModal{{ $usaha->id_usaha }}"><i
                                                                 class="far fa-trash-alt" title="Hapus"></i></a>
 
                                                     </div>
@@ -230,12 +231,14 @@
                             {{-- modal untuk edit usaha --}}
                             @foreach ($dataUsaha as $usaha)
                                 <!-- Tambahkan modal edit dengan ID unik sesuai data -->
-                                <div class="modal fade" id="editModal{{ $usaha->id_usaha }}" tabindex="-1" role="dialog"
-                                    aria-labelledby="editModalLabel{{ $usaha->id_usaha }}" aria-hidden="true">
+                                <div class="modal fade" id="editModal{{ $usaha->id_usaha }}" tabindex="-1"
+                                    role="dialog" aria-labelledby="editModalLabel{{ $usaha->id_usaha }}"
+                                    aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="editModalLabel{{ $usaha->id_usaha }}">Edit Data
+                                                <h5 class="modal-title" id="editModalLabel{{ $usaha->id_usaha }}">Edit
+                                                    Data
                                                     Usaha</h5>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
@@ -252,39 +255,37 @@
                             @endforeach
 
                             @foreach ($dataUsaha as $usaha)
-                            <!-- Modal konfirmasi hapus -->
-                            <div class="modal fade" id="hapusModal{{ $usaha->id_usaha }}"
-                                tabindex="-1" role="dialog" aria-labelledby="modalHapusLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="modalHapusLabel">Konfirmasi Hapus</h5>
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Anda yakin ingin menghapus data ini?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
-                                                    class="fas fa-ban"></i> Batal</button>
-                                            <form
-                                                action="{{ route('hapus.usaha', $usaha->id_usaha) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger" data-toggle="modal"
-                                                    data-target="#hapusModal{{ $usaha->id_usaha }}"><i
-                                                        class='fas fa-trash'></i> Hapus</button>
-                                            </form>
+                                <!-- Modal konfirmasi hapus -->
+                                <div class="modal fade" id="hapusModal{{ $usaha->id_usaha }}" tabindex="-1"
+                                    role="dialog" aria-labelledby="modalHapusLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalHapusLabel">Konfirmasi Hapus</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Anda yakin ingin menghapus data ini?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                                                        class="fas fa-ban"></i> Batal</button>
+                                                <form action="{{ route('hapus.usaha', $usaha->id_usaha) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger" data-toggle="modal"
+                                                        data-target="#hapusModal{{ $usaha->id_usaha }}"><i
+                                                            class='fas fa-trash'></i> Hapus</button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
                         </div>
                         <!-- /.card-body -->
                     </div>

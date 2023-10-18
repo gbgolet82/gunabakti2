@@ -21,7 +21,7 @@
 <!-- Summernote -->
 <script src="{{ asset('assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <!-- Select2 -->
-<script src="{{ asset('assets/plugins/select2/js/select2.full.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/plugins/select2/js/select2.full.min.js') }}"></script> --}}
 <script src="{{ asset('tagjs/tagsinput.js') }}"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
@@ -52,9 +52,60 @@
     };
 </script>
 
+<script src="{{ asset('assets/js/jquery.js') }}"></script>
+<script src="{{ asset('assets/js/popper.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+<script>
+    $(function() {
+        $('[data-toggle="popover"]').popover();
+
+        $(document).on('click', function(e) {
+            // Tutup semua popover ketika klik di luar popover
+            $('[data-toggle="popover"]').each(function() {
+                if (!$(this).is(e.target) && $(this).has(e.target).length === 0 &&
+                    $('.popover').has(e.target).length === 0) {
+                    $(this).popover('hide');
+                }
+            });
+        });
+    });
+    // $(function() {
+    //     $('[data-toggle="popover"]').popover()
+    // })
+    // $(function () {
+    // 		$('[data-toggle="tooltip"]').tooltip();
+    // 	});
+</script>
+
+<script>
+    $(function() {
+        $('[data-toggle="popover"]').popover();
+
+        $(document).on('click', function(e) {
+            // Tutup semua popover ketika klik di luar popover
+            $('[data-toggle="popover"]').each(function() {
+                if (!$(this).is(e.target) && $(this).has(e.target).length === 0 &&
+                    $('.popover').has(e.target).length === 0) {
+                    $(this).popover('hide');
+                }
+            });
+        });
+    });
+    // $(function() {
+    //     $('[data-toggle="popover"]').popover()
+    // })
+    // $(function () {
+    // 		$('[data-toggle="tooltip"]').tooltip();
+    // 	});
+</script>
+
+<!-- Select2 JS -->
+<script src="{{ asset('assets/plugins/select2/js/select2.full.min.js') }}"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+
 <script>
     $(document).ready(function() {
-        $('.select2').select2();
+        // $('.select2').select2();
         $('#example2').DataTable({
             "paging": true,
             "lengthChange": true,
@@ -68,5 +119,48 @@
             }
         });
 
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        // Get the table and all the select elements
+        var table = $('#example2').DataTable();
+        var klasifikasiSelect = $('#klasifikasi');
+        var usahaSelect = $('#inputGroupSelect01');
+        var akunSelect = $('#inputGroupSelect02');
+
+        // Handle filter change for Klasifikasi
+        klasifikasiSelect.on('change', function() {
+            var selectedKlasifikasi = $(this).val();
+            if (selectedKlasifikasi === 'Semua') {
+                // Clear the Akun filter
+                table.columns(1).search('').draw();
+            } else {
+                table.columns(1).search(selectedKlasifikasi).draw();
+            }
+        });
+
+        // Handle filter change for Usaha
+        usahaSelect.on('change', function() {
+            var selectedUsaha = $(this).val();
+            if (selectedUsaha === 'Semua') {
+                // Clear the Akun filter
+                table.columns(2).search('').draw();
+            } else {
+                table.columns(2).search(selectedUsaha).draw();
+            }
+        });
+
+        // Handle filter change for Akun
+        akunSelect.on('change', function() {
+            var selectedAkun = $(this).val();
+            if (selectedAkun === 'Semua') {
+                // Clear the Akun filter
+                table.columns(3).search('').draw();
+            } else {
+                table.columns(3).search(selectedAkun).draw();
+            }
+        });
     });
 </script>

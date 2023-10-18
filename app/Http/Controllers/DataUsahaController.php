@@ -92,4 +92,36 @@ class DataUsahaController extends Controller
             return redirect()->back()->with('error', 'Terjadi kesalahan saat menghapus data usaha');
         }
     }
+
+    public function simpanSubAkun1(Request $request)
+    {
+        // Validasi data
+        $request->validate(
+            [
+                'nama_usaha' => 'required',
+                'alamat_usaha' => 'required',
+                'jenis_usaha' => 'required',
+                'produk_usaha' => 'required',
+            ],
+            [
+                'nama_usaha.required' => 'Masukan nama usaha',
+                'alamat_usaha.required' => 'Masukan alamat usaha',
+                'jenis_usaha.required' => 'Masukan jenis usaha',
+                'produk_usaha.required' => 'Masukan produk usaha',
+            ]
+        );
+
+        // Membuat UUID baru
+        $idUsaha = Uuid::uuid4();
+
+        $result = Usaha::create([
+            'id_usaha' => $idUsaha,
+            'nama_usaha' => $request->input('nama_usaha'),
+            'alamat_usaha' => $request->input('alamat_usaha'),
+            'jenis_usaha' => $request->input('jenis_usaha'),
+            'produk_usaha' => $request->input('produk_usaha'),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+    }
 }

@@ -37,7 +37,9 @@ Route::group(['middleware' => 'role:manajer|kasir|owner'], function () {
     // Rute untuk manajer
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/klasifikasi-akun', [KlasifikasiLaporanController::class, 'index'])->name('akun');
-Route::get('/tambah-klasifikasi-akun', [KlasifikasiLaporanController::class, 'index'])->name('tambah.akun');
+Route::get('/tambah-klasifikasi-akun', [KlasifikasiLaporanController::class, 'index'])->name('tambah.klasifikasi-akun');
+Route::post('/tambah-akun', [DataUsahaController::class, 'simpanAkun'])->name('tambah.akun');
+// Route::post('/tambah-sub-akun1', [DataUsahaController::class, 'simpanSubAkun1'])->name('tambah.subakun1');
 Route::get('/data-usaha', [DataUsahaController::class, 'index'])->name('usaha');
 Route::post('/tambah-usaha', [DataUsahaController::class, 'simpanData'])->name('tambah.usaha');
 Route::post('/edit-usaha', [DataUsahaController::class, 'editData'])->name('edit.usaha');
