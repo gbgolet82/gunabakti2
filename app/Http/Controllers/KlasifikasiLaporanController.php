@@ -15,7 +15,7 @@ class KlasifikasiLaporanController extends Controller
         $dataKlasifikasi = KlasifikasiLaporan::select('id_klasifikasi', 'klasifikasi_laporan', 'created_at', 'updated_at')->orderBy('klasifikasi_laporan', 'asc')->get();
 
         //get data tabel usaha
-        $dataUsaha = Usaha::select('id_usaha', 'nama_usaha', 'alamat_usaha', 'jenis_usaha', 'produk_usaha')
+        $dataUsaha = Usaha::select('id_usaha', 'nama_usaha', 'alamat_usaha', 'jenis_usaha', 'produk_usaha')->orderBy('nama_usaha', 'asc')
             ->get();
 
         //get data tabel klasifikasi akun
@@ -33,6 +33,10 @@ class KlasifikasiLaporanController extends Controller
             ->leftJoin('sub_akun_1', 'akun.id_akun', '=', 'sub_akun_1.id_akun')
             ->leftJoin('sub_akun_2', 'sub_akun_1.id_sub_akun_1', '=', 'sub_akun_2.id_sub_akun_1')
             ->orderBy('klasifikasi_laporan', 'asc')
+            ->orderBy('nama_usaha', 'asc')
+            ->orderBy('akun', 'asc')
+            ->orderBy('sub_akun_1', 'asc')
+            ->orderBy('sub_akun_2', 'asc')
             ->get();
 
         $modelHead = "Tambah Data Klasifikasi & Akun";
@@ -40,7 +44,7 @@ class KlasifikasiLaporanController extends Controller
         return view('contents.klasifikasi', compact('active_page', 'modelHead', 'dataKlasifikasi', 'dataUsaha', 'dataAkun'));
     }
 
-    public function simpan(Request $request)
+    public function simpanAkun(Request $request)
     {
         $request->validate(
             [

@@ -136,16 +136,23 @@
                                                 <div class="col-12 col-md-4 mb-2">
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
-                                                            <span class="input-group-text" for="inputGroupSelect01">Jenis
+                                                            <span class="input-group-text" for="inputGroupSelect02">Jenis
                                                                 Usaha</span>
                                                         </div>
-                                                        <select class="custom-select" id="inputGroupSelect01">
-                                                            <option selected>Semua</option>
-                                                            <option value="1">A</option>
-                                                            <option value="2">B</option>
-                                                            <option value="3">C</option>
-                                                            <option value="4">D</option>
-                                                            <option value="5">E</option>
+                                                        <select class="custom-select" id="inputGroupSelect02">
+                                                            <option selected">Semua</option>
+                                                            @php
+                                                                $uniqueUsaha = [];
+                                                            @endphp
+                                                            @foreach ($dataUsaha as $usaha)
+                                                                @if (!empty($usaha->jenis_usaha) && !in_array($usaha->jenis_usaha, $uniqueUsaha))
+                                                                    <option value="{{ $usaha->jenis_usaha }}">{{ $usaha->jenis_usaha }}
+                                                                    </option>
+                                                                    @php
+                                                                        $uniqueUsaha[] = $usaha->jenis_usaha;
+                                                                    @endphp
+                                                                @endif
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
@@ -159,7 +166,6 @@
                                                     </button>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -174,7 +180,7 @@
                                                 {{ $modelHead }}
                                             </h5>
                                             <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
+                                                aria-label="Close" id="reset">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>

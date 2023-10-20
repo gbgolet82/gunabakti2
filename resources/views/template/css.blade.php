@@ -20,6 +20,7 @@
 <!-- Select2 -->
 <link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
 
+
 <style>
     .select2 {
         width: 100% !important;

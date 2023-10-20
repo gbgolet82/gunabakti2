@@ -71,8 +71,11 @@
                     </div>
                     <div class="d-flex bd-highlight justify-content-end mt-3">
                         <div class="bd-highlight">
-                            <button type="submit" class="btn btn-success text-white" id="simpan"
-                                onclick="validasiForm()"><i class="fas fa-save"></i> Simpan</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="resetData"><i
+                                    class="fa fa-ban"></i>
+                                Tutup</button>
+                            <button type="submit" class="btn btn-success text-white toastrDefaultSuccess"
+                                id="simpan"><i class="fas fa-save" onclick="validateForm()"></i> Simpan</button>
                         </div>
                     </div>
                 </div>
@@ -109,6 +112,26 @@
             $('#AlamatUsaha').on('change', validateForm);
             $('#jenisUsaha').on('change', validateForm);
             $('#produkUsaha').on('change', validateForm);
+        });
+    </script>
+
+    {{-- mereset data ketika klik close modal --}}
+    <script>
+        $(document).ready(function() {
+            $('#reset').on('click', function() {
+                $('#namaUsaha').val('');
+                $('#AlamatUsaha').val('');
+                $('#jenisUsaha').val('');
+                $('#produkUsaha').val('');
+            });
+        });
+        $(document).ready(function() {
+            $('#resetData').on('click', function() {
+                $('#namaUsaha').val('');
+                $('#AlamatUsaha').val('');
+                $('#jenisUsaha').val('');
+                $('#produkUsaha').val('');
+            });
         });
     </script>
 @endpush
