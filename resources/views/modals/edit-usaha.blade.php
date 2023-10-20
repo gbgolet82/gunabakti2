@@ -75,7 +75,7 @@
         <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal"><i class="fas fa-ban"></i>
             Tutup</button>
         <button type="submit" class="btn btn-success text-white" id="simpan" onclick="validasiForm()">
-            <i class="fas fa-save"></i> Simpan
+            <i class="fas fa-save"></i> Simpan Perubahan
         </button>
     </div>
     {{-- </div> --}}

@@ -99,6 +99,9 @@
 <script src="{{ asset('assets/plugins/select2/js/select2.full.min.js') }}"></script>
 {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
 
+{{-- export data akun ke excel --}}
+<script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+
 <script>
     $(document).ready(function() {
         // $('.select2').select2();
@@ -114,7 +117,6 @@
                 "emptyTable": "No data available in table"
             }
         });
-
     });
 </script>
 
