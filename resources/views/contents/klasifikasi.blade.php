@@ -52,7 +52,7 @@
                                                                 for="klasifikasi">Klasifikasi</span>
                                                         </div>
                                                         <select class="custom-select" id="klasifikasi"
-                                                            onchange="updateUsahaAndAkun()">
+                                                            >
                                                             <option value="" selected>Semua Data</option>
                                                             @foreach ($dataKlasifikasi as $klasifikasi)
                                                                 <option value="{{ $klasifikasi->klasifikasi_laporan }}"

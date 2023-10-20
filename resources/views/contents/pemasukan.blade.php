@@ -63,13 +63,16 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text" for="akun">Akun</span>
                                                         </div>
-                                                        <select class="custom-select" id="akun" name="akun">
-                                                            <option value="Semua" selected>Semua
-                                                            </option>
+                                                        <select class="custom-select" id="inputAkun" name="akun">
+                                                            <option value="Semua" selected>Semua Data</option>
+                                                            @foreach ($akunOptions as $dataAkun)
+                                                                <option value="{{ $dataAkun->akun}}"
+                                                                    @if ($dataAkun->akun === 'Semua') selected @endif>
+                                                                    {{ $dataAkun->akun }}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
-
 
                                                 <div class="col-12 col-md-3 mb-2">
                                                     <div class="input-group">
@@ -77,8 +80,8 @@
                                                             <span class="input-group-text" for="sub_akun_1">Sub Akun
                                                                 1</span>
                                                         </div>
-                                                        <select class="custom-select" id="sub_akun_1" name="sub_akun_1">
-                                                            <option value="Semua" selected>Semua</option>
+                                                        <select class="custom-select" id="inputSub" name="sub_akun_1">
+                                                            <option value="Semua" selected>Semua Data</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -227,4 +230,66 @@
 @endsection
 
 @push('script')
+<script>
+    $(document).ready(function () {
+        $('#inputAkun').change(function () {
+            var selectedAkunId = $(this).val();
+
+            // console.log(selectedAkunId);
+
+            // Lakukan permintaan AJAX ke endpoint yang mengembalikan opsi sub akun 1 berdasarkan id_akun yang dipilih.
+            $.ajax({
+                url: '/get-sub-akun-1-options/' + selectedAkunId,
+                type: 'GET',
+                success: function (data) {
+                    // Perbarui opsi sub akun 1 dengan data yang diterima dari server.
+                    $('#inputSub').empty();
+                    $('#inputSub').append($('<option>', {
+                        value: 'Semua',
+                        text: 'Semua'
+                    }));
+                    $.each(data, function (key, value) {
+                        console.log(key);
+                        $('#inputSub').append($('<option>', {
+                            value: key,
+                            text: value
+                        }));
+                    });
+                }
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        // Get the table and all the select elements
+        var table = $('#example2').DataTable();
+        var akunSelect = $('#inputAkun');
+        var subSelect = $('#inputSub');
+
+        // Handle filter change for Akun
+        akunSelect.on('change', function() {
+            var selectedAkun = $(this).val();
+            if (selectedAkun === 'Semua') {
+                // Clear the Akun filter
+                table.columns(6).search('').draw();
+            } else {
+                table.columns(6).search(selectedAkun).draw();
+            }
+        });
+
+        // Handle filter change for Usaha
+        subSelect.on('change', function() {
+            var selectedSub = $(this).val();
+            if (selectedSub === 'Semua') {
+                // Clear the Akun filter
+                table.columns(7).search('').draw();
+            } else {
+                table.columns(7).search(selectedSub).draw();
+            }
+        });
+
+        
+    });
+</script>
+
 @endpush

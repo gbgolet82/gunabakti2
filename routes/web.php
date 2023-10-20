@@ -59,7 +59,7 @@ Route::get('/data-detail-karyawan/{id_karyawan}', [DataKaryawanController::class
 Route::get('/data-usaha', [DataUsahaController::class, 'index'])->name('usaha');
 Route::get('/get-jumlah-belum-dicek', [LaporanController::class, 'getJumlahBelumDicek'])->name('get-jumlah-belum-dicek');
 // Route::get('/get-akun-options/{id_usaha}', [LaporanController::class, 'getAkunOptions']);
-// Route::get('/get-sub-akun-1-options/{id_akun}', [LaporanController::class, 'getSubAkun1Options']);
+Route::get('/get-sub-akun-1-options/{akun}', [LaporanController::class, 'getSubAkun1Options']);
 // Route to fetch Akun options based on selected Usaha
 Route::get('/fetch-akun/{id_usaha}', [LaporanController::class, 'fetchAkunOptions']);
 
@@ -68,6 +68,11 @@ Route::get('/fetch-sub-akun/{id_akun}', [LaporanController::class, 'fetchSubAkun
 // Route::get('/fetch-data-for-table', [LaporanController::class, 'fetchDataForTable']);
 // Route::get('/fetch-data', [LaporanController::class, 'fetchData'])->name('fetch-data');
 // Route::get('/filter-data', [LaporanController::class, 'filterData']);
+// Route::get('/filter', 'FilterController@index')->name('filter.index');
+Route::get('/filter-data', 'LaporanController@filterData');
+// Route::get('/filter-data', 'DataFilterController@filterData');
+
+
 
 
 

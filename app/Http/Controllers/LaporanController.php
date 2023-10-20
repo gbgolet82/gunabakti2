@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Akun;
+use App\Models\KlasifikasiLaporan;
 use App\Models\Laporan;
 use App\Models\Usaha;
 use Illuminate\Http\Request;
@@ -13,6 +14,27 @@ class LaporanController extends Controller
 {
     public function index(Request $request)
     {
+
+        $akunOptions = Akun::join('usaha', 'usaha.id_usaha', '=', 'akun.id_usaha')
+        ->join('klasifikasi_laporan', 'klasifikasi_laporan.id_klasifikasi', '=', 'akun.id_klasifikasi')
+        ->where('nama_usaha', 'GB2')
+        ->where('klasifikasi_laporan', 'Pemasukan')
+        ->select('id_akun', 'akun')
+        ->orderBy('akun', 'asc')
+        ->get();
+    //     // dd($akunOptions);
+
+    // $options = DB::table('usaha')
+    // ->select('usaha.id_usaha', 'usaha.nama_usaha', 'akun.id_akun', 'akun.akun', 'sub_akun_1.id_sub_akun_1', 'sub_akun_1.sub_akun_1')
+    // ->leftJoin('akun', 'usaha.id_usaha', '=', 'akun.id_usaha')
+    // ->leftJoin('sub_akun_1', 'akun.id_akun', '=', 'sub_akun_1.id_akun')
+    // ->distinct()
+    // ->get();
+
+
+    // $subAkun1Options = $options->pluck('sub_akun_1', 'id_sub_akun_1');
+
+    // $subAkunOptions = DB::table('sub_akun_1')->get();
 
         //get data tabel klasifikasi akun
         $data = Laporan::select(
@@ -45,7 +67,26 @@ class LaporanController extends Controller
         // dd($data);
         // $modelHead = "Tambah Data Klasifikasi & Akun";
         $active_page = "PEMASUKAN";
-        return view('contents.pemasukan', compact('active_page', 'data'));
+        return view('contents.pemasukan', compact('active_page', 'data', 'akunOptions'));
+    }
+
+//     public function getSubAkun($akunId)
+// {
+//     $subAkunOptions = DB::table('sub_akun_1')->where('id_akun', $akunId)->get();
+
+//     return response()->json($subAkunOptions);
+// }
+
+    public function getSubAkun1Options($akun)
+    {
+        // dd($akun);
+        // Cari ID akun berdasarkan nama akun
+        $id_akun = Akun::where('akun', $akun)->value('id_akun');
+
+        // Ambil data sub_akun_1 berdasarkan id_akun yang sesuai
+        $subAkun1Options = DB::table('sub_akun_1')->where('id_akun', $id_akun)->pluck('sub_akun_1', 'sub_akun_1');
+
+        return response()->json($subAkun1Options);
     }
 
     public function getJumlahBelumDicek()
