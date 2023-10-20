@@ -22,13 +22,13 @@
         {{-- <li class="nav-item align-self-center mr-0">
             <a class="nav-link" data-widget="kontak" href="#">PANDUAN</a>
         </li> --}}
-        <div class="col col-md-3 col-sm-12 mt-1">
+        {{-- <div class="col col-md-3 col-sm-12 mt-1">
             <button class="btn btn-sm btn-block text-white"
                 style="background-color: #aab4ad; border-radius: 10px; width: 100px;" type="button"
                 data-toggle="modal">
                 <i class="fas fa-sign-out-alt left-icon-holder"></i> Keluar
             </button>
-        </div>
+        </div> --}}
 
         <li>
             <a href="https://web.nucarecilacap.id/" class="mr-1">

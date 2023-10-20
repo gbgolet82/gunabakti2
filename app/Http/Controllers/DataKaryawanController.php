@@ -12,6 +12,7 @@ class DataKaryawanController extends Controller
 {
     public function selectRole(Request $request, $role)
 {
+    // dd('baba');
     // Simpan peran yang dipilih dalam sesi
     session(['selectedRole' => $role]);
     session()->save();
@@ -26,6 +27,7 @@ class DataKaryawanController extends Controller
         $unit_usaha = DB::table('usaha')->orderBy('created_at', 'desc')->get();
         $karyawan = Karyawan::select('karyawan.*', 'usaha.nama_usaha')
         ->join('usaha', 'karyawan.id_usaha', '=', 'usaha.id_usaha')
+        ->where('usaha.id_usaha', session('id_usaha')) // Filter berdasarkan id_usaha dari sesi
         ->orderBy('karyawan.created_at', 'desc')
         ->get();
 

@@ -155,7 +155,7 @@
                                                                 for="inputGroupSelect01">Akun</span>
                                                         </div>
                                                         <select class="custom-select" id="inputGroupSelect02">
-                                                            <option selected">Semua</option>
+                                                            <option selected>Semua</option>
                                                             @php
                                                                 $uniqueAkun = [];
                                                             @endphp

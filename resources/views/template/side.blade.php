@@ -10,7 +10,7 @@
     <!-- Brand Logo -->
     <a class="brand-link">
         <img src="{{ asset('gambar/logoo.png') }}" alt="GUNA BAKTI" class="brand-image" style="opacity: .8">
-        <span class="brand-text font-weight-bold">GUNA BAKTI PS</span>
+        <span class="brand-text font-weight-bold">GUNA BAKTI</span>
     </a>
 
     <style>
@@ -131,14 +131,20 @@
                     </a>
                 </li>
                 <li class="nav-item @yield('pemasukan_blm')">
-                    <a href="#" class="nav-link @yield('pemasukan_blm')">
+                    <a href="{{ route('pemasukan_blm') }}"
+                        class="nav-link @if (Request::url() == route('pemasukan_blm')) active @endif">
                         <i class="bi bi-cart-fill custom-icon"></i>
                         <p>
                             Pemasukan &nbsp;
                         </p>
-                        <span class="badge-br badge-info" id="permintaan-badge">Blm dicek (8)</span>
+                        <span class="badge-br badge-info" id="permintaan-badge"></span>
                     </a>
                 </li>
+
+                {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+
+                
+
 
                 <li class="nav-item @yield('pengeluaran_blm')">
                     <a href="#" class="nav-link @yield('pengeluaran_blm')">
@@ -149,6 +155,7 @@
                         <span class="badge-br badge-info" id="pengeluaran-badge">Blm dicek (8)</span>
                     </a>
                 </li>
+
                 <li class="nav-item @yield('pemasukan_sdh')">
                     <a href="#" class="nav-link @yield('pemasukan_sdh')">
                         <i class="bi bi-cart-fill custom-icon"></i>

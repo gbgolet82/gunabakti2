@@ -35,6 +35,8 @@ class KlasifikasiLaporanController extends Controller
             ->orderBy('klasifikasi_laporan', 'asc')
             ->get();
 
+            // dd($dataAkun)
+
         $modelHead = "Tambah Data Klasifikasi & Akun";
         $active_page = "AKUN";
         return view('contents.klasifikasi', compact('active_page', 'modelHead', 'dataKlasifikasi', 'dataUsaha', 'dataAkun'));

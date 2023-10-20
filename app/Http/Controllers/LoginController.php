@@ -16,6 +16,8 @@ class LoginController extends Controller
     }
 
     public function login2($userId) {
+        
+
         $user = Karyawan::find($userId);
         // dd($user);
     
@@ -28,6 +30,8 @@ class LoginController extends Controller
         $karyawanRoles = collect($roles)->filter(function ($role) use ($user) {
             return $user->$role == 1;
         });
+
+        
     
         return view('auth.login2', ['karyawanRoles' => $karyawanRoles]);
     }

@@ -38,7 +38,7 @@
             font-family: "Source Sans Pro", "Nunito", sans-serif;
             /* background-color: white; */
             /* background-image: url("Frame.png"); */
-            background-image: url("gambar/Frame.png");
+            background-image: url('{{ asset('Frame.png') }}');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: top;
@@ -125,23 +125,11 @@
         }
 
         /* .bg-utama {
-            background-color: #f1f1f1;
-        } */
+        background-color: #f1f1f1;
+    } */
         .bg-utama1 {
             background-color: #28a745;
         }
-
-        .bg-utama2 {
-            border: 2px solid #28a745;
-            /* Tambahkan border dengan warna yang sama dengan background */
-            background-color: #fff;
-            /* Set latar belakang menjadi transparan */
-            box-shadow: none;
-            /* Hapus bayangan (shadow) jika ada */
-            margin: 0;
-            /* Sesuaikan margin sesuai kebutuhan Anda */
-        }
-
 
         .no-bg {
             background-color: white;
@@ -190,9 +178,9 @@
         }
 
         /* .centered-text {
-            text-align: center;
-            padding: 5px;
-        } */
+        text-align: center;
+        padding: 5px;
+    } */
     </style>
     <!-- Required meta tags -->
     <!-- FONT AWESOME 5 -->
@@ -249,9 +237,8 @@
             <div class="col-lg-5 col-md-7 col-sm-12 card-none-color shadow-lg p-lg-4 p-md-4 p-sm-3 mx-3 mb-3 align-self-center"
                 id="rangkap">
                 <div class="d-flex justify-content-start">
-                    <a href="{{ route('login') }}"
-                        class="btn btn-sm custom-button p-0 ml-2 text-success" style="font-size: 17px;"
-                        title="Logout">
+                    <a href="{{ route('login') }}" class="btn btn-sm custom-button p-0 ml-2 text-success"
+                        style="font-size: 17px;" title="Logout">
                         <i class="fa fa-arrow-right fa-rotate-180 text-success" style="font-size: 22px;"></i>
                         <span>&nbsp;LOGOUT</span>
                     </a>
@@ -267,8 +254,7 @@
                     <span class="text-white"> <i class="fa fa-map-marker"></i> &nbsp; {{ session('nama_usaha') }}</span>
                     <!-- Replace with the actual user's name -->
                 </div>
-                <h5 class="mt-4">Pilih Jabatan Akun <i class="fas fa-info-circle"
-                            style="font-size: 16px;"></i></h5>
+                <h5 class="mt-4">Pilih Jabatan Akun <i class="fas fa-info-circle" style="font-size: 16px;"></i></h5>
 
                 <span>Anda terdaftar dengan rangkap 2 jabatan, silahkan pilih salah satu untuk memulai
                     <span data-toggle="popover"
@@ -303,8 +289,8 @@
                                     <a href="{{ route('selectRole', ['role' => $role]) }}"
                                         class="btn btn-sm custom-button p-0">
                                         <div class="card-body p-0 d-flex align-items-center justify-content-center">
-                                            <span class="align-middle text-success"  style="font-size:15px">Pilih &nbsp;<i
-                                                    class="fa fa-arrow-right ml-2 align-middle"
+                                            <span class="align-middle text-success" style="font-size:15px">Pilih
+                                                &nbsp;<i class="fa fa-arrow-right ml-2 align-middle"
                                                     style="font-size:15px"></i>
                                             </span>
                                         </div>

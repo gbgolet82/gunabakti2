@@ -55,26 +55,22 @@
 <script src="{{ asset('assets/js/jquery.js') }}"></script>
 <script src="{{ asset('assets/js/popper.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
-<script>
-    $(function() {
-        $('[data-toggle="popover"]').popover();
 
-        $(document).on('click', function(e) {
-            // Tutup semua popover ketika klik di luar popover
-            $('[data-toggle="popover"]').each(function() {
-                if (!$(this).is(e.target) && $(this).has(e.target).length === 0 &&
-                    $('.popover').has(e.target).length === 0) {
-                    $(this).popover('hide');
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: '/get-jumlah-belum-dicek',
+            method: 'GET',
+            success: function(response) {
+                if (response.jumlah > 0) {
+                    $('#permintaan-badge').text('Blm dicek (' + response.jumlah + ')');
                 }
-            });
+            },
+            error: function(error) {
+                console.log(error);
+            }
         });
     });
-    // $(function() {
-    //     $('[data-toggle="popover"]').popover()
-    // })
-    // $(function () {
-    // 		$('[data-toggle="tooltip"]').tooltip();
-    // 	});
 </script>
 
 <script>
