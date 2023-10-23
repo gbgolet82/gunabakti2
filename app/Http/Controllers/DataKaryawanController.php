@@ -12,11 +12,9 @@ class DataKaryawanController extends Controller
 {
     public function selectRole(Request $request, $role)
 {
-    // dd('baba');
     // Simpan peran yang dipilih dalam sesi
     session(['selectedRole' => $role]);
     session()->save();
-    // dd($role);
 
     return redirect()->route('dashboard'); // Arahkan ke halaman dashboard
 }

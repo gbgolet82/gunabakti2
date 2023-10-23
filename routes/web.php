@@ -31,15 +31,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login2/{userId}', [LoginController::class, 'login2'])->name('login2');
 // Route::get('/login2/{userId}/Frame.png', [LoginController::class, 'getFrameImage'])->name('login2.frame.image');
 Route::get('/', [LoginController::class, 'index'])->name('login');
-// Route::get('/login', [LoginController::class, 'login2'])->name('login2');
-
 Route::post('/', [LoginController::class, 'login']);
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-
 Route::get('/select-role/{role}', [DataKaryawanController::class, 'selectRole'])->name('selectRole');
-
-Route::group(['middleware' => 'role:manajer|kasir|owner'], function () {
-    // Rute untuk manajer
+// Route::middleware(['manajer'])->group(function () {
+    // Rute yang hanya dapat diakses oleh manajer
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/klasifikasi-akun', [KlasifikasiLaporanController::class, 'index'])->name('akun');
 Route::get('/pemasukan', [LaporanController::class, 'index'])->name('pemasukan_blm');
@@ -57,30 +52,16 @@ Route::post('/upload-karyawan/{id_karyawan}', [DataKaryawanController::class, 'u
 Route::post('/update-password/{id_karyawan}', [DataKaryawanController::class, 'proses_ubah_password'])->name('update.password');
 Route::get('/data-detail-karyawan/{id_karyawan}', [DataKaryawanController::class, 'detail'])->name('detail.karyawan');
 Route::get('/data-usaha', [DataUsahaController::class, 'index'])->name('usaha');
-Route::get('/get-jumlah-belum-dicek', [LaporanController::class, 'getJumlahBelumDicek'])->name('get-jumlah-belum-dicek');
-// Route::get('/get-akun-options/{id_usaha}', [LaporanController::class, 'getAkunOptions']);
-Route::get('/get-sub-akun-1-options/{akun}', [LaporanController::class, 'getSubAkun1Options']);
-// Route to fetch Akun options based on selected Usaha
-Route::get('/fetch-akun/{id_usaha}', [LaporanController::class, 'fetchAkunOptions']);
-
-// Route to fetch Sub Akun options based on selected Akun
-Route::get('/fetch-sub-akun/{id_akun}', [LaporanController::class, 'fetchSubAkunOptions']);
-// Route::get('/fetch-data-for-table', [LaporanController::class, 'fetchDataForTable']);
-// Route::get('/fetch-data', [LaporanController::class, 'fetchData'])->name('fetch-data');
-// Route::get('/filter-data', [LaporanController::class, 'filterData']);
-// Route::get('/filter', 'FilterController@index')->name('filter.index');
-Route::get('/filter-data', 'LaporanController@filterData');
-// Route::get('/filter-data', 'DataFilterController@filterData');
 
 
+// });
 
-
-
-
-
+Route::middleware(['kasir'])->group(function () {
+    // Rute yang hanya dapat diakses oleh kasir
 });
 
-
-
+Route::middleware(['owner'])->group(function () {
+    // Rute yang hanya dapat diakses oleh owner
+});
 
 

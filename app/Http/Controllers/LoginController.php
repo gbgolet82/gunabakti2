@@ -39,53 +39,45 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+        // Validate the login request, e.g., using the 'validate' method.
         // dd('baba');
         $phone = $request->input('nohp');
         $password = $request->input('password');
 
+        // Check the database to authenticate the user based on phone and password.
         $karyawan = Karyawan::where('nohp', $phone)->first();
         // dd($karyawan);
 
         if (!$karyawan || !Hash::check($password, $karyawan->password)) {
+            // Authentication failed, return an error.
             return redirect()->back()->withErrors(['error' => 'Invalid phone number or password']);
         }
 
         // Check the user's roles.
-        $roles = ['kasir', 'manajer', 'owner'];
+        $roles = ['manajer', 'kasir', 'owner'];
         $karyawanRoles = collect($roles)->filter(function ($role) use ($karyawan) {
             return $karyawan->$role == 1;
         });
         session(['karyawanRoles' => $karyawanRoles]);
         session()->save(); // Simpan data sesi
 
-        session(['nama' => $karyawan->nama, 'nohp' => $karyawan->nohp, 'id_usaha' => $karyawan->id_usaha, 'id_karyawan' => $karyawan->id_karyawan]);
+        // Set session berdasarkan data pengguna
+        session(['nama' => $karyawan->nama, 'nohp' => $karyawan->nohp]);
         session()->save();
 
-        // Ambil id_usaha dari sesi
-        $idUsaha = session('id_usaha');
-        session(['id_usaha' => $idUsaha]);
-        session()->save();
-        // dd($idUsaha);
-
-        $namaUsaha = Usaha::where('id_usaha', $idUsaha)->value('nama_usaha');
-
-        // Simpan nama usaha dalam session
-        session(['nama_usaha' => $namaUsaha]);
-
-       
 
         if ($karyawanRoles->count() == 1) {
+            // User has a single role, redirect to the dashboard corresponding to the role.
             $role = $karyawanRoles->first();
+            // dd($role);
             return redirect()->route('dashboard');
             // return redirect()->route($role . '.dashboard');
         }
 
-        $userId = $karyawan->id_karyawan;
-        // dd($userId);
-
-        return redirect()->route('login2', ['userId' => $userId]);
 
 
+        // User has multiple roles, show the 'rangkap' view.
+        return view('auth.login2', ['karyawanRoles' => $karyawanRoles]);
     }
 
     

@@ -38,7 +38,7 @@
             font-family: "Source Sans Pro", "Nunito", sans-serif;
             /* background-color: white; */
             /* background-image: url("Frame.png"); */
-            background-image: url('{{ asset('Frame.png') }}');
+            background-image: url("gambar/Frame.png");
             background-size: cover;
             background-repeat: no-repeat;
             background-position: top;
@@ -125,8 +125,8 @@
         }
 
         /* .bg-utama {
-        background-color: #f1f1f1;
-    } */
+            background-color: #f1f1f1;
+        } */
         .bg-utama1 {
             background-color: #28a745;
         }
@@ -178,9 +178,9 @@
         }
 
         /* .centered-text {
-        text-align: center;
-        padding: 5px;
-    } */
+            text-align: center;
+            padding: 5px;
+        } */
     </style>
     <!-- Required meta tags -->
     <!-- FONT AWESOME 5 -->
@@ -236,29 +236,19 @@
 
             <div class="col-lg-5 col-md-7 col-sm-12 card-none-color shadow-lg p-lg-4 p-md-4 p-sm-3 mx-3 mb-3 align-self-center"
                 id="rangkap">
-                <div class="d-flex justify-content-start">
-                    <a href="{{ route('login') }}" class="btn btn-sm custom-button p-0 ml-2 text-success"
-                        style="font-size: 17px;" title="Logout">
-                        <i class="fa fa-arrow-right fa-rotate-180 text-success" style="font-size: 22px;"></i>
-                        <span>&nbsp;LOGOUT</span>
-                    </a>
-                </div>
-
                 <div class="col-lg-11 bg-utama1 card-none-color shadow-lg p-lg-2 p-md-4 p-sm-3 mx-1 mb-3 mt-3">
-                    <span class="text-white text-uppercase font-weight-bold" style="font-size:17px;">
-                        {{-- <i class="fa fa-user-circle"></i> --}}
-                        &nbsp;{{ session('nama') }}</span>
+                    <h6 class="text-white mt-2 mb-1 text-uppercase">&nbsp;<i class="fa fa-user-circle"></i>
+                        &nbsp;{{ session('nama') }}</h6>
                     <!-- Adjust the margin-bottom (mb) value as needed -->
-                    <hr class="mb-1 mt-2 bold-white-hr">
-                    <span class="text-white"> <i class="fa fa-phone"></i> &nbsp;{{ session('nohp') }}</span> <br>
-                    <span class="text-white"> <i class="fa fa-map-marker"></i> &nbsp; {{ session('nama_usaha') }}</span>
+                    <hr class="mb-1 bold-white-hr">
+                    <span class="text-white ">&nbsp; <i class="fa fa-phone"></i> &nbsp;{{ session('nohp') }}</span>
                     <!-- Replace with the actual user's name -->
                 </div>
-                <h5 class="mt-4">Pilih Jabatan Akun <i class="fas fa-info-circle" style="font-size: 16px;"></i></h5>
-
+                <h5 class="mt-4">Pilih Jabatan Akun</h5>
                 <span>Anda terdaftar dengan rangkap 2 jabatan, silahkan pilih salah satu untuk memulai
                     <span data-toggle="popover"
-                        data-content="Login akun untuk mengakses fitur laporan pemasukan & pengeluaran"></span>
+                        data-content="Login akun untuk mengakses fitur laporan pemasukan & pengeluaran"><i
+                            class="fas fa-info-circle"></i></span>
                 </span>
                 <style>
                     .custom-card {
@@ -269,42 +259,27 @@
                     }
                 </style>
                 @foreach ($karyawanRoles as $role)
-                    <div class="col-lg-11 bg-utama2 card-none-color shadow-lg p-lg-2 p-md-4 p-sm-3 mx-1 mb-3 mt-3">
-                        <div class="row" style="cursor: pointer; font-size:15px;"
-                            onclick="redirectToDashboard('{{ route('selectRole', ['role' => $role]) }}')">
+                    <div class="col-lg-11 bg-utama1 card-none-color shadow-lg p-lg-2 p-md-4 p-sm-3 mx-1 mb-3 mt-3">
+                        <div class="row">
                             <div class="col-8">
-                                <h6 class="text-success mt-2 mb-1 capitalize-first"> &nbsp;<i class="fa fa-id-card"></i>
+                                <h6 class="text-white mt-2 mb-1 capitalize-first"> &nbsp;<i class="fa fa-id-card"></i>
                                     &nbsp;{{ $role }}
                                 </h6>
                             </div>
-                            <style>
-                                .custom-card {
-                                    border: none;
-                                    /* Menghilangkan border */
-                                    background-color: #ffffff;
-                                }
-                            </style>
                             <div class="col-4">
                                 <div class="card custom-card">
                                     <a href="{{ route('selectRole', ['role' => $role]) }}"
                                         class="btn btn-sm custom-button p-0">
                                         <div class="card-body p-0 d-flex align-items-center justify-content-center">
-                                            <span class="align-middle text-success" style="font-size:15px">Pilih
-                                                &nbsp;<i class="fa fa-arrow-right ml-2 align-middle"
-                                                    style="font-size:15px"></i>
-                                            </span>
+                                            <span class="align-middle">Pilih &nbsp;<i
+                                                    class="far fa-arrow-alt-circle-right ml-2 align-middle"
+                                                    style="font-size:19px"></i></span>
                                         </div>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <script>
-                        function redirectToDashboard(route) {
-                            window.location.href = route;
-                        }
-                    </script>
                 @endforeach
 
 

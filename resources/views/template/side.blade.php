@@ -51,8 +51,7 @@
             <h5 class="btn-hilang mt-3">
                 <p>UD GUNA BAKTI</p>
             </h5>
-            <span class="btn-hilang">{{ session('nama') }}</span>
-            <br>
+            <span class="btn-hilang">Zaroh Khoerunisa</span><br>
             @php
                 $selectedRole = session('selectedRole');
                 $karyawanRoles = session('karyawanRoles');
