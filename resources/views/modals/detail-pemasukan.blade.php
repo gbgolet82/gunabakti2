@@ -29,11 +29,11 @@
     <div class="modal-body">
         <div class="d-flex mb-3">
             <span class="text-bold d-flex align-items-center" style="font-size: 18px">Detail Pemasukan</span>
-            @if ($pemasukan->status_cek == 'Belum Dicek')
-                <span class="ml-auto mr-3 text-center badge-cr">Belum Dicek</span>
-            @else
-                <span class="ml-auto mr-3 text-center badge-ijo">Sudah Dicek</span>
-            @endif
+            {{-- @if ($pemasukan->status_cek === 'Belum Dicek') --}}
+            <span class="ml-auto mr-3 text-center badge-cr">Belum Dicek</span>
+            {{-- @else --}}
+            {{-- <span class="ml-auto mr-3 text-center badge-ijo">Sudah Dicek</span>
+            @endif --}}
 
             {{-- </div> --}}
         </div>
@@ -142,10 +142,24 @@
 
         <div class="d-flex bd-highlight justify-content-end mt-3">
             <div class="bd-highlight">
-                <button type="submit"
-                    class="btn btn-success text-white toastrDefaultSuccess @if ($pemasukan->status_cek == 'Sudah Dicek') disabled @endif"
-                    id="simpanAcc"><i class="fas fa-save"></i>
-                    Simpan</button>
+                <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal" id="resetData"><i
+                        class="fa fa-ban"></i> Batal</button>
+
+                @php
+                    $selectedRole = session('selectedRole');
+                    $karyawanRoles = session('karyawanRoles');
+                    // dd($karyawanRoles);
+                @endphp
+
+                @if ($karyawanRoles->first() == 'Manajer')
+                    <button type="submit"
+                        class="btn btn-success text-white toastrDefaultSuccess @if ($pemasukan->status_cek == 'Sudah Dicek') disabled @endif"
+                        id="simpanAcc"><i class="fas fa-check-circle"></i> ACC</button>
+                @else
+                    <button type="submit" class="btn btn-success text-white toastrDefaultSuccess" id="simpanAcc"><i
+                            class="fas fa-print"></i>
+                        Print</button>
+                @endif
             </div>
         </div>
     </div>

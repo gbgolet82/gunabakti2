@@ -164,9 +164,9 @@
                                         $noUrut = 1;
                                     @endphp
                                     @foreach ($data as $pemasukan)
-                                        <tr data-toggle="modal" data-target="#lihatPemasukan{{ $pemasukan->id_laporan }}">
+                                        <tr>
                                             <td>{{ $noUrut++ }}</td>
-                                            <td style="15%">{{ $pemasukan->kode_laporan }}</td>
+                                            <td style="15%" data-toggle="modal" data-target="#lihatPemasukan{{ $pemasukan->id_laporan }}">{{ $pemasukan->kode_laporan }}</td>
                                             <td style="12%">
                                                 {{ \Carbon\Carbon::parse($pemasukan->tanggal_laporan)->format('d/m/Y H:i:s') }}
                                             </td>
@@ -183,35 +183,36 @@
                                                     data-toggle="modal"
                                                     data-target="#gambarModal{{ $pemasukan->id_laporan }}">Lihat</a>
                                             </td>
-                                            <div class="modal fade" id="gambarModal{{ $pemasukan->id_laporan }}"
-                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                                aria-hidden="true">
-                                                <div class="modal-dialog modal-lg" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Gambar Bukti
-                                                            </h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body"
-                                                            style="display: flex; justify-content: center; align-items: center;">
-                                                            <img src="{{ asset('nota/' . $pemasukan->gambar_bukti) }}"
-                                                                alt="Gambar Bukti" style="width: 450px; height: 450px;">
-                                                        </div>
+                                           
+                                            <td style="15%">{{ $pemasukan->status_cek }}</td>
+                                        </tr>
+                                        <div class="modal fade" id="gambarModal{{ $pemasukan->id_laporan }}"
+                                            tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Gambar Bukti
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body"
+                                                        style="display: flex; justify-content: center; align-items: center;">
+                                                        <img src="{{ asset('nota/' . $pemasukan->gambar_bukti) }}"
+                                                            alt="Gambar Bukti" style="width: 450px; height: 450px;">
+                                                    </div>
 
 
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">Tutup</button>
-                                                        </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Tutup</button>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <td style="15%">{{ $pemasukan->status_cek }}</td>
-                                        </tr>
+                                        </div>
                                     @endforeach
                                 </tbody>
 

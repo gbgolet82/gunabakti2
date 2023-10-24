@@ -33,8 +33,10 @@ Route::get('/login2/{userId}', [LoginController::class, 'login2'])->name('login2
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/', [LoginController::class, 'login']);
 Route::get('/select-role/{role}', [DataKaryawanController::class, 'selectRole'])->name('selectRole');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 // Route::middleware(['manajer'])->group(function () {
     // Rute yang hanya dapat diakses oleh manajer
+Route::group(['middleware' => 'role:manajer|kasir|owner'], function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/klasifikasi-akun', [KlasifikasiLaporanController::class, 'index'])->name('akun');
 Route::get('/pemasukan', [LaporanPemasukanController::class, 'index'])->name('pemasukan_blm');
@@ -65,25 +67,20 @@ Route::get('/fetch-akun/{id_usaha}', [LaporanPemasukanController::class, 'fetchA
 
 // Route to fetch Sub Akun options based on selected Akun
 Route::get('/fetch-sub-akun/{id_akun}', [LaporanPemasukanController::class, 'fetchSubAkunOptions']);
-// Route::get('/fetch-data-for-table', [LaporanPemasukanController::class, 'fetchDataForTable']);
-// Route::get('/fetch-data', [LaporanPemasukanController::class, 'fetchData'])->name('fetch-data');
-// Route::get('/filter-data', [LaporanPemasukanController::class, 'filterData']);
-// Route::get('/filter', 'FilterController@index')->name('filter.index');
-Route::get('/filter-data', 'LaporanPemasukanController@filterData');
-// Route::get('/filter-data', 'DataFilterController@filterData');
+Route::get('/filter-data', [LaporanPemasukanController::class, 'filterData']);
 
 
 
 
 
+});
+
+// Route::middleware(['kasir'])->group(function () {
+//     // Rute yang hanya dapat diakses oleh kasir
 // });
 
-Route::middleware(['kasir'])->group(function () {
-    // Rute yang hanya dapat diakses oleh kasir
-});
-
-Route::middleware(['owner'])->group(function () {
-    // Rute yang hanya dapat diakses oleh owner
-});
+// Route::middleware(['owner'])->group(function () {
+//     // Rute yang hanya dapat diakses oleh owner
+// });
 
 

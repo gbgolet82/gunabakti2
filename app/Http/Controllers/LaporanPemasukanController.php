@@ -52,7 +52,7 @@ class LaporanPemasukanController extends Controller
         $nomorBaru = 1;
     }
 
-    $kodeLaporan = 'INV' . $date . str_pad($nomorBaru, 3, '0', STR_PAD_LEFT);
+    $kodeLaporan = 'P' . $date . str_pad($nomorBaru, 3, '0', STR_PAD_LEFT);
     // dd($kodeLaporan);
     $idKaryawan = session('id_karyawan'); // Mengambil nilai id karyawan dari sesi
 
@@ -71,6 +71,7 @@ class LaporanPemasukanController extends Controller
             'laporan.status_cek as status_cek',
             'laporan.id_laporan as id_laporan',
             'laporan.catatan as catatan',
+            'laporan.status_cek as status_cek',
             DB::raw('(SELECT karyawan.nama FROM karyawan WHERE karyawan.kasir = "1" AND karyawan.id_usaha = usaha.id_usaha AND karyawan.id_karyawan = "' . $idKaryawan . '" LIMIT 1) AS nama_kasir'),
             DB::raw('(SELECT karyawan.nama FROM karyawan WHERE karyawan.manajer = "1" AND karyawan.id_usaha = usaha.id_usaha LIMIT 1) AS nama_manajer')
         )
@@ -81,6 +82,7 @@ class LaporanPemasukanController extends Controller
         ->leftjoin('sub_akun_2', 'laporan.id_sub_akun_2', '=', 'sub_akun_2.id_sub_akun_2')
         ->leftjoin('sub_akun_3', 'laporan.id_sub_akun_3', '=', 'sub_akun_3.id_sub_akun_3')
         ->where('usaha.id_usaha', session('id_usaha')) // Filter berdasarkan id_usaha dari sesi
+        ->where('laporan.status_cek', 'Belum Dicek')
         ->orderBy('laporan.created_at', 'desc')
         ->get();
         
@@ -176,7 +178,7 @@ class LaporanPemasukanController extends Controller
             // kalo nambah satu semua sub akun 1, 2, 3 ikut semua jadi bukan 1 data aja
 
             // Redirect or return a response
-            return redirect()->route('pemasukan_blm')->with('success', 'Data Karyawan berhasil ditambah.'); // Replace with your success route
+            return redirect()->route('pemasukan_blm')->with('success', 'Data Pemasukan berhasil ditambah.'); // Replace with your success route
     }
 }
 
