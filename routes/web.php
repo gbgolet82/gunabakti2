@@ -31,15 +31,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login2/{userId}', [LoginController::class, 'login2'])->name('login2');
 // Route::get('/login2/{userId}/Frame.png', [LoginController::class, 'getFrameImage'])->name('login2.frame.image');
 Route::get('/', [LoginController::class, 'index'])->name('login');
-// Route::get('/login', [LoginController::class, 'login2'])->name('login2');
-
 Route::post('/', [LoginController::class, 'login']);
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-
 Route::get('/select-role/{role}', [DataKaryawanController::class, 'selectRole'])->name('selectRole');
-
-Route::group(['middleware' => 'role:manajer|kasir|owner'], function () {
-    // Rute untuk manajer
+// Route::middleware(['manajer'])->group(function () {
+    // Rute yang hanya dapat diakses oleh manajer
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/klasifikasi-akun', [KlasifikasiLaporanController::class, 'index'])->name('akun');
 Route::get('/pemasukan', [LaporanPemasukanController::class, 'index'])->name('pemasukan_blm');
@@ -81,11 +76,14 @@ Route::get('/filter-data', 'LaporanPemasukanController@filterData');
 
 
 
+// });
 
-
+Route::middleware(['kasir'])->group(function () {
+    // Rute yang hanya dapat diakses oleh kasir
 });
 
-
-
+Route::middleware(['owner'])->group(function () {
+    // Rute yang hanya dapat diakses oleh owner
+});
 
 
