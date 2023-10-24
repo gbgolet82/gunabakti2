@@ -66,7 +66,7 @@
                                                         <select class="custom-select" id="inputAkun" name="akun">
                                                             <option value="Semua" selected>Semua Data</option>
                                                             @foreach ($akunOptions as $dataAkun)
-                                                                <option value="{{ $dataAkun->akun}}"
+                                                                <option value="{{ $dataAkun->akun }}"
                                                                     @if ($dataAkun->akun === 'Semua') selected @endif>
                                                                     {{ $dataAkun->akun }}</option>
                                                             @endforeach
@@ -115,33 +115,30 @@
                                 </div>
                             </div>
 
-
                             <div class="modal fade" id="tambahData" data-backdrop="static" data-keyboard="false"
                                 aria-labelledby="staticBackdropLabel" aria-hidden="true" data-target="#staticBackdrop">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="staticBackdropLabel">
-                                                Tambah Pemasukan<i class="fas fa-info-circle" data-toggle="popover"
+                                                Tambah Data Pemasukan <i class="fas fa-info-circle" data-toggle="popover"
                                                     data-placement="right" data-html="true" title="Informasi!"
                                                     data-content="<ol>
-                                                        <li>Silakan pilih klasifikasi yang tersedia.</li>
-                                                        <li>Pilihlah unit usaha yang sesuai dengan klasifikasi.</li>
-                                                        <li>Tambahkan unit usaha jika tidak ada pada pilihan yang sesuai.</li>
-                                                        <li>Selanjutnya, pilih akun yang sesuai dengan unit usaha dan klasifikasi yang telah dipilih.</li>
-                                                        <li>Tambahkan akun jika tidak ada pada pilihan yang sesuai.</li>
-                                                        <li>Terakhir, pilih sub akun dari yang pertama hingga yang terakhir sesuai dengan klasifikasi, unit usaha, dan akun.</li>
-                                                        <li>Tambahkan sub akun jika tidak ada pada pilihan yang sesuai.</li></ol>"></i>
+                                                        <li>Silakan masukan tanggal input data pemasukan.</li>
+                                                        <li>Pilihlah akun yang sesuai dengan pemasukan.</li>
+                                                        <li>Selanjutnya, silahkan pilih mulai dari Sub Akun 1 hingga Sub Akun 3 sesuai dengan data pemasukan.</li>
+                                                        <li>Masukkan nominal data pemasukan.</li>
+                                                        <li>Terakhir, silahkan untuk upload gambar bukti data pemasukan.</li></ol>"></i>
                                             </h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                                id="reset">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        {{-- @include('modals.tambah-akun') --}}
+                                        @include('modals.tambah-pemasukan')
                                     </div>
                                 </div>
                             </div>
-
 
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
@@ -167,7 +164,7 @@
                                         $noUrut = 1;
                                     @endphp
                                     @foreach ($data as $pemasukan)
-                                        <tr>
+                                        <tr data-toggle="modal" data-target="#lihatPemasukan{{ $pemasukan->id_laporan }}">
                                             <td>{{ $noUrut++ }}</td>
                                             <td style="15%">{{ $pemasukan->kode_laporan }}</td>
                                             <td style="12%">
@@ -221,6 +218,29 @@
 
 
                             </table>
+
+                            @foreach ($data as $pemasukan)
+                                <div class="modal fade" id="lihatPemasukan{{ $pemasukan->id_laporan }}" tabindex="-1"
+                                    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+                                    data-backdrop="static">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel">
+                                                    Data Laporan Pemasukan
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close" id="reset">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            @include('modals.detail-pemasukan')
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+
+
                         </div>
                     </div>
                 </div>
@@ -230,66 +250,65 @@
 @endsection
 
 @push('script')
-<script>
-    $(document).ready(function () {
-        $('#inputAkun').change(function () {
-            var selectedAkunId = $(this).val();
+    <script>
+        $(document).ready(function() {
+            $('#inputAkun').change(function() {
+                var selectedAkunId = $(this).val();
 
-            // console.log(selectedAkunId);
+                // console.log(selectedAkunId);
 
-            // Lakukan permintaan AJAX ke endpoint yang mengembalikan opsi sub akun 1 berdasarkan id_akun yang dipilih.
-            $.ajax({
-                url: '/get-sub-akun-1-options/' + selectedAkunId,
-                type: 'GET',
-                success: function (data) {
-                    // Perbarui opsi sub akun 1 dengan data yang diterima dari server.
-                    $('#inputSub').empty();
-                    $('#inputSub').append($('<option>', {
-                        value: 'Semua',
-                        text: 'Semua'
-                    }));
-                    $.each(data, function (key, value) {
-                        console.log(key);
+                // Lakukan permintaan AJAX ke endpoint yang mengembalikan opsi sub akun 1 berdasarkan id_akun yang dipilih.
+                $.ajax({
+                    url: '/get-sub-akun-1-options/' + selectedAkunId,
+                    type: 'GET',
+                    success: function(data) {
+                        // Perbarui opsi sub akun 1 dengan data yang diterima dari server.
+                        $('#inputSub').empty();
                         $('#inputSub').append($('<option>', {
-                            value: key,
-                            text: value
+                            value: 'Semua',
+                            text: 'Semua Data'
                         }));
-                    });
-                }
+                        $.each(data, function(key, value) {
+                            // console.log(key);
+                            $('#inputSub').append($('<option>', {
+                                value: key,
+                                text: value
+                            }));
+                        });
+                    }
+                });
             });
         });
-    });
 
-    $(document).ready(function() {
-        // Get the table and all the select elements
-        var table = $('#example2').DataTable();
-        var akunSelect = $('#inputAkun');
-        var subSelect = $('#inputSub');
+        $(document).ready(function() {
+            // Get the table and all the select elements
+            var table = $('#example2').DataTable();
+            var akunSelect = $('#inputAkun');
+            var subSelect = $('#inputSub');
 
-        // Handle filter change for Akun
-        akunSelect.on('change', function() {
-            var selectedAkun = $(this).val();
-            if (selectedAkun === 'Semua') {
-                // Clear the Akun filter
-                table.columns(6).search('').draw();
-            } else {
-                table.columns(6).search(selectedAkun).draw();
-            }
+            // Handle filter change for Akun
+            akunSelect.on('change', function() {
+                var selectedAkun = $(this).val();
+                if (selectedAkun === 'Semua') {
+                    // Clear the Akun filter
+                    table.columns(6).search('').draw();
+                } else {
+                    table.columns(6).search(selectedAkun).draw();
+                }
+            });
+
+            // Handle filter change for Usaha
+            subSelect.on('change', function() {
+                var selectedSub = $(this).val();
+                if (selectedSub === 'Semua') {
+                    // Clear the Akun filter
+                    table.columns(7).search('').draw();
+                } else {
+                    table.columns(7).search(selectedSub).draw();
+                }
+            });
+
+
         });
-
-        // Handle filter change for Usaha
-        subSelect.on('change', function() {
-            var selectedSub = $(this).val();
-            if (selectedSub === 'Semua') {
-                // Clear the Akun filter
-                table.columns(7).search('').draw();
-            } else {
-                table.columns(7).search(selectedSub).draw();
-            }
-        });
-
-        
-    });
-</script>
-
+    </script>
 @endpush

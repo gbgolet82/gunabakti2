@@ -39,6 +39,7 @@ return new class extends Migration
             $table->string('gambar_bukti');
             $table->string('status_cek');
             $table->date('tanggal_cek')->nullable();
+            $table->text('catatan');
             $table->timestamps();
         });
     }
