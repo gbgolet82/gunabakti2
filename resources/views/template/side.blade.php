@@ -116,7 +116,7 @@
                     <a href="{{ route('akun') }}" class="nav-link @if (Request::url() == route('akun')) active @endif">
                         <i class="fas fa-server"></i>
                         <p>
-                            Klasifikasi & Akun
+                            Akun & Sub Akun
                         </p>
                     </a>
                 </li>

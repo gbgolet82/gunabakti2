@@ -18,45 +18,45 @@ class LaporanPemasukanController extends Controller
     public function index(Request $request)
     {
 
-       
+
         $isPemasukanActive = $request->url() == route('pemasukan_blm');
         // dd($isPemasukanActive);
         if ($isPemasukanActive) {
             $idKlasifikasiPemasukan = KlasifikasiLaporan::where('klasifikasi_laporan', 'Pemasukan')
                 ->value('id_klasifikasi');
-                session(['idKlasifikasiPemasukan' => $idKlasifikasiPemasukan]);
+            session(['idKlasifikasiPemasukan' => $idKlasifikasiPemasukan]);
         }
-        
+
 
         $usaha = Laporan::join('usaha', 'laporan.id_usaha', '=', 'usaha.id_usaha')
-                ->where('usaha.id_usaha', session('id_usaha'))
-                ->select('nama_usaha')
-                ->first();
-        
+            ->where('usaha.id_usaha', session('id_usaha'))
+            ->select('nama_usaha')
+            ->first();
+
 
         $akunOptions = Akun::join('usaha', 'usaha.id_usaha', '=', 'akun.id_usaha')
-        ->join('klasifikasi_laporan', 'klasifikasi_laporan.id_klasifikasi', '=', 'akun.id_klasifikasi')
-        ->where('nama_usaha', 'GB2')
-        ->where('klasifikasi_laporan', 'Pemasukan')
-        ->select('id_akun', 'akun')
-        ->orderBy('akun', 'asc')
-        ->get();
-    //     // dd($akunOptions);
+            ->join('klasifikasi_laporan', 'klasifikasi_laporan.id_klasifikasi', '=', 'akun.id_klasifikasi')
+            ->where('nama_usaha', 'GB2')
+            ->where('klasifikasi_laporan', 'Pemasukan')
+            ->select('id_akun', 'akun')
+            ->orderBy('akun', 'asc')
+            ->get();
+        //     // dd($akunOptions);
 
-    $date = date('Ymd');
-    $nomorTerakhir = Laporan::max('kode_laporan');
-    // dd($nomorTerakhir);
-    if ($nomorTerakhir) {
-        $nomorBaru = (int)substr($nomorTerakhir, -3) + 1;
-    } else {
-        $nomorBaru = 1;
-    }
+        $date = date('Ymd');
+        $nomorTerakhir = Laporan::max('kode_laporan');
+        // dd($nomorTerakhir);
+        if ($nomorTerakhir) {
+            $nomorBaru = (int)substr($nomorTerakhir, -3) + 1;
+        } else {
+            $nomorBaru = 1;
+        }
 
-    $kodeLaporan = 'P' . $date . str_pad($nomorBaru, 3, '0', STR_PAD_LEFT);
-    // dd($kodeLaporan);
-    $idKaryawan = session('id_karyawan'); // Mengambil nilai id karyawan dari sesi
+        $kodeLaporan = 'P' . $date . str_pad($nomorBaru, 3, '0', STR_PAD_LEFT);
+        // dd($kodeLaporan);
+        $idKaryawan = session('id_karyawan'); // Mengambil nilai id karyawan dari sesi
 
-            //get data tabel klasifikasi akun
+        //get data tabel klasifikasi akun
         $data = Laporan::select(
             'klasifikasi_laporan.klasifikasi_laporan as klasifikasi',
             'usaha.nama_usaha as usaha',
@@ -75,19 +75,19 @@ class LaporanPemasukanController extends Controller
             DB::raw('(SELECT karyawan.nama FROM karyawan WHERE karyawan.kasir = "1" AND karyawan.id_usaha = usaha.id_usaha AND karyawan.id_karyawan = "' . $idKaryawan . '" LIMIT 1) AS nama_kasir'),
             DB::raw('(SELECT karyawan.nama FROM karyawan WHERE karyawan.manajer = "1" AND karyawan.id_usaha = usaha.id_usaha LIMIT 1) AS nama_manajer')
         )
-        ->join('akun', 'akun.id_akun', '=', 'laporan.id_akun')
-        ->join('klasifikasi_laporan', 'akun.id_klasifikasi', '=', 'klasifikasi_laporan.id_klasifikasi')
-        ->join('usaha', 'laporan.id_usaha', '=', 'usaha.id_usaha')
-        ->join('sub_akun_1', 'laporan.id_sub_akun_1', '=', 'sub_akun_1.id_sub_akun_1')
-        ->leftjoin('sub_akun_2', 'laporan.id_sub_akun_2', '=', 'sub_akun_2.id_sub_akun_2')
-        ->leftjoin('sub_akun_3', 'laporan.id_sub_akun_3', '=', 'sub_akun_3.id_sub_akun_3')
-        ->where('usaha.id_usaha', session('id_usaha')) // Filter berdasarkan id_usaha dari sesi
-        ->where('laporan.status_cek', 'Belum Dicek')
-        ->orderBy('laporan.created_at', 'desc')
-        ->get();
-        
+            ->join('akun', 'akun.id_akun', '=', 'laporan.id_akun')
+            ->join('klasifikasi_laporan', 'akun.id_klasifikasi', '=', 'klasifikasi_laporan.id_klasifikasi')
+            ->join('usaha', 'laporan.id_usaha', '=', 'usaha.id_usaha')
+            ->join('sub_akun_1', 'laporan.id_sub_akun_1', '=', 'sub_akun_1.id_sub_akun_1')
+            ->leftjoin('sub_akun_2', 'laporan.id_sub_akun_2', '=', 'sub_akun_2.id_sub_akun_2')
+            ->leftjoin('sub_akun_3', 'laporan.id_sub_akun_3', '=', 'sub_akun_3.id_sub_akun_3')
+            ->where('usaha.id_usaha', session('id_usaha')) // Filter berdasarkan id_usaha dari sesi
+            ->where('laporan.status_cek', 'Belum Dicek')
+            ->orderBy('laporan.created_at', 'desc')
+            ->get();
+
         // dd($data);
-        
+
 
         // dd($data);
         // $modelHead = "Tambah Data Klasifikasi & Akun";
@@ -96,7 +96,8 @@ class LaporanPemasukanController extends Controller
     }
 
 
-    public function simpanPemasukan(Request $request) {
+    public function simpanPemasukan(Request $request)
+    {
         // Validation rules
         $rules = [
             'kode_laporan' => 'required',
@@ -143,7 +144,7 @@ class LaporanPemasukanController extends Controller
             $pemasukan->id_laporan = $uuid;
             $pemasukan->kode_laporan = $validatedData['kode_laporan'];
             $tanggalLaporan = Carbon::parse($request->input('tanggal_laporan'));
-            $pemasukan->tanggal_laporan = $tanggalLaporan; 
+            $pemasukan->tanggal_laporan = $tanggalLaporan;
             // sementara  (mengambil id karyawan yg login)
             $pemasukan->id_kasir = session('id_karyawan');
             // sementara (belum tau cara ambil id klasifikasi)
@@ -151,18 +152,18 @@ class LaporanPemasukanController extends Controller
             $pemasukan->id_usaha = session('id_usaha');
             $pemasukan->id_akun = $validatedData['id_akun'];
             $idSubAkun1 = $request->input('id_sub_akun_1'); // nilainya bisa berupa null jika dropdown tidak dipilih
-                if ($idSubAkun1 === 'Pilih Sub Akun 1' || $idSubAkun1 === '?') {
-                    $idSubAkun1 = null;
-                }
+            if ($idSubAkun1 === 'Pilih Sub Akun 1' || $idSubAkun1 === '?') {
+                $idSubAkun1 = null;
+            }
             $idSubAkun2 = $request->input('id_sub_akun_2');
-                if ($idSubAkun2 === 'Pilih Sub Akun 2' || $idSubAkun2 === '?') {
-                    $idSubAkun2 = null;
-                }
+            if ($idSubAkun2 === 'Pilih Sub Akun 2' || $idSubAkun2 === '?') {
+                $idSubAkun2 = null;
+            }
 
             $idSubAkun3 = $request->input('id_sub_akun_3');
-                if ($idSubAkun3 === 'Pilih Sub Akun 3' || $idSubAkun3 === '?') {
-                    $idSubAkun3 = null;
-                }
+            if ($idSubAkun3 === 'Pilih Sub Akun 3' || $idSubAkun3 === '?') {
+                $idSubAkun3 = null;
+            }
 
             $pemasukan->id_sub_akun_1 = $idSubAkun1;
             $pemasukan->id_sub_akun_2 = $idSubAkun2;
@@ -179,15 +180,15 @@ class LaporanPemasukanController extends Controller
 
             // Redirect or return a response
             return redirect()->route('pemasukan_blm')->with('success', 'Data Pemasukan berhasil ditambah.'); // Replace with your success route
+        }
     }
-}
 
-//     public function getSubAkun($akunId)
-// {
-//     $subAkunOptions = DB::table('sub_akun_1')->where('id_akun', $akunId)->get();
+    //     public function getSubAkun($akunId)
+    // {
+    //     $subAkunOptions = DB::table('sub_akun_1')->where('id_akun', $akunId)->get();
 
-//     return response()->json($subAkunOptions);
-// }
+    //     return response()->json($subAkunOptions);
+    // }
 
     public function getSubAkun1Options($akun)
     {
@@ -216,19 +217,19 @@ class LaporanPemasukanController extends Controller
     public function ambilSubAkun2($id_sub_akun_1)
     {
         $subAkun2Options = DB::table('sub_akun_2')
-        ->where('id_sub_akun_1', $id_sub_akun_1)
-        ->pluck('sub_akun_2', 'id_sub_akun_2')
-        ->toArray();
-    
+            ->where('id_sub_akun_1', $id_sub_akun_1)
+            ->pluck('sub_akun_2', 'id_sub_akun_2')
+            ->toArray();
+
         return response()->json($subAkun2Options);
     }
-    
+
     public function ambilSubAkun3($id_sub_akun_2)
     {
         $subAkun3Options = DB::table('sub_akun_3')
-        ->where('id_sub_akun_2', $id_sub_akun_2)
-        ->pluck('sub_akun_3', 'id_sub_akun_3')
-        ->toArray();
+            ->where('id_sub_akun_2', $id_sub_akun_2)
+            ->pluck('sub_akun_3', 'id_sub_akun_3')
+            ->toArray();
 
         return response()->json($subAkun3Options);
     }
@@ -236,33 +237,30 @@ class LaporanPemasukanController extends Controller
     public function getJumlahBelumDicek()
     {
         $jumlahBelumDicek = Laporan::where('status_cek', 'Belum dicek')
-        ->where('laporan.id_usaha', session('id_usaha'))
-        ->count();
+            ->where('laporan.id_usaha', session('id_usaha'))
+            ->count();
         // dd($jumlahBelumDicek);
 
         return response()->json(['jumlah' => $jumlahBelumDicek]);
     }
 
     public function accPemasukan(Request $request, $id_laporan)
-{
-    // Ambil data catatan dan ID karyawan dari request
-    $catatan = $request->input('catatan');
-    $id_karyawan = session('id_karyawan'); // Menggunakan id karyawan dari sesi, sesuaikan dengan aturan autentikasi Anda
+    {
+        // Ambil data catatan dan ID karyawan dari request
+        $catatan = $request->input('catatan');
+        $id_karyawan = session('id_karyawan'); // Menggunakan id karyawan dari sesi, sesuaikan dengan aturan autentikasi Anda
 
-    // Update tabel laporan
-    $laporan = Laporan::find($id_laporan);
-    if ($laporan) {
-        $laporan->catatan = $catatan;
-        $laporan->status_cek = 'Sudah Dicek';
-        $laporan->id_manager = $id_karyawan;
-        $laporan->save();
-        
-        return redirect()->route('pemasukan_blm')->with('success', 'Data Laporan Berhasil Dicek'); // Gantilah dengan route yang sesuai
-    } else {
-        return redirect()->back()->with('error', 'Laporan tidak ditemukan');
+        // Update tabel laporan
+        $laporan = Laporan::find($id_laporan);
+        if ($laporan) {
+            $laporan->catatan = $catatan;
+            $laporan->status_cek = 'Sudah Dicek';
+            $laporan->id_manager = $id_karyawan;
+            $laporan->save();
+
+            return redirect()->route('pemasukan_blm')->with('success', 'Data Laporan Berhasil Dicek'); // Gantilah dengan route yang sesuai
+        } else {
+            return redirect()->back()->with('error', 'Laporan tidak ditemukan');
+        }
     }
-}
-
-
-    
 }

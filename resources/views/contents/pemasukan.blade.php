@@ -166,7 +166,9 @@
                                     @foreach ($data as $pemasukan)
                                         <tr>
                                             <td>{{ $noUrut++ }}</td>
-                                            <td style="15%" data-toggle="modal" data-target="#lihatPemasukan{{ $pemasukan->id_laporan }}">{{ $pemasukan->kode_laporan }}</td>
+                                            <td style="15%" data-toggle="modal"
+                                                data-target="#lihatPemasukan{{ $pemasukan->id_laporan }}">
+                                                {{ $pemasukan->kode_laporan }}</td>
                                             <td style="12%">
                                                 {{ \Carbon\Carbon::parse($pemasukan->tanggal_laporan)->format('d/m/Y H:i:s') }}
                                             </td>
@@ -183,7 +185,7 @@
                                                     data-toggle="modal"
                                                     data-target="#gambarModal{{ $pemasukan->id_laporan }}">Lihat</a>
                                             </td>
-                                           
+
                                             <td style="15%">{{ $pemasukan->status_cek }}</td>
                                         </tr>
                                         <div class="modal fade" id="gambarModal{{ $pemasukan->id_laporan }}"
@@ -240,8 +242,6 @@
                                     </div>
                                 </div>
                             @endforeach
-
-
                         </div>
                     </div>
                 </div>
