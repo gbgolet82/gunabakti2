@@ -83,6 +83,9 @@ Route::group(['middleware' => 'role:owner'], function () {
     Route::post('/update-password/{id_karyawan}', [DataKaryawanController::class, 'proses_ubah_password'])->name('update.password');
     Route::get('/data-detail-karyawan/{id_karyawan}', [DataKaryawanController::class, 'detail'])->name('detail.karyawan');
 
+    // Route to fetch Sub Akun options based on selected Akun
+    Route::get('/fetch-sub-akun/{id_akun}', [LaporanPemasukanController::class, 'fetchSubAkunOptions']);
+    Route::get('/filter-data', [LaporanPemasukanController::class, 'filterData']);
 });
 
 

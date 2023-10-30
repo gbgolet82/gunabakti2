@@ -28,79 +28,6 @@
     </div>
     <!-- /.content-header -->
 
-    <!-- card -->
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xl-3 col-md-6 mb-2">
-                    <div class="card ijo-kiri">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div style="color:#28A745" class="h5 font-weight-bold mb-3">Jumlah <br>Usaha
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold mb-1">11 Usaha</div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-users fa-2x text-gray"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6 mb-2">
-                    <div class="card ijo-kiri">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div style="color:#28A745" class="h5 font-weight-bold mb-3">Jumlah Produk Usaha
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold mb-1">11 Produk</div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-users fa-2x text-gray"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6 mb-2">
-                    <div class="card ijo-kiri">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div style="color:#28A745" class="h5 font-weight-bold mb-3">Jumlah
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold mb-1">11 Data</div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-users fa-2x text-gray"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6 mb-2">
-                    <div class="card ijo-kiri">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div style="color:#28A745" class="h5 font-weight-bold mb-3">
-                                        Jumlah
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold mb-1">11 Data</div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-users fa-2x text-gray"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -109,63 +36,59 @@
                     <div class="card card-outline card-success mb-3">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-3 mt-4">
+                                <div class="col-6">
                                     <strong class="font-weight-bold">
-                                        <h4 style="color:#28a745;">DATA USAHA</h4>
+                                        <h4 style="color:#28a745;">UNIT USAHA</h4>
                                     </strong>
                                 </div>
-                                <div class="col-9">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-12 col-md-4 mb-2">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text" for="namaUsaha">Nama
-                                                                Usaha</span>
-                                                        </div>
-                                                        <select class="custom-select" id="namaUsaha">
-                                                            <option selected>Semua</option>
-                                                            @foreach ($dataUsaha as $usaha)
-                                                                <option value="{{ $usaha->nama_usaha }}">
-                                                                    {{ $usaha->nama_usaha }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
+                                <div class="col-6">
+                                    <div class="row mb-2">
+                                        {{-- <div class="col-12 col-md-4 mb-2">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" for="namaUsaha">Nama
+                                                        Usaha</span>
                                                 </div>
-                                                <div class="col-12 col-md-4 mb-2">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text" for="inputGroupSelect02">Jenis
-                                                                Usaha</span>
-                                                        </div>
-                                                        <select class="custom-select" id="inputGroupSelect02">
-                                                            <option selected">Semua</option>
-                                                            @php
-                                                                $uniqueUsaha = [];
-                                                            @endphp
-                                                            @foreach ($dataUsaha as $usaha)
-                                                                @if (!empty($usaha->jenis_usaha) && !in_array($usaha->jenis_usaha, $uniqueUsaha))
-                                                                    <option value="{{ $usaha->jenis_usaha }}">{{ $usaha->jenis_usaha }}
-                                                                    </option>
-                                                                    @php
-                                                                        $uniqueUsaha[] = $usaha->jenis_usaha;
-                                                                    @endphp
-                                                                @endif
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 col-md-4 mb-2">
-                                                    <button class="btn btn-block text-white"
-                                                        style="background-color: #28a745; border-radius: 10px;"
-                                                        type="button" data-toggle="modal" data-target="#tambahData"
-                                                        aria-expanded="false"><i
-                                                            class="fas fa-plus-circle left-icon-holder"></i> &nbsp;
-                                                        Tambah
-                                                    </button>
-                                                </div>
+                                                <select class="custom-select" name="nama_usaha" id="namaUsaha">
+                                                    <option selected>Semua Data</option>
+                                                    @foreach ($dataUsaha as $usaha)
+                                                        <option value="{{ $usaha->nama_usaha }}">
+                                                            {{ $usaha->nama_usaha }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
+                                        </div> --}}
+                                        <div class="col-6 mb-2">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" for="jenisUsaha">Jenis
+                                                        Usaha</span>
+                                                </div>
+                                                <select class="custom-select" name="jenis_usaha" id="jenisUsaha">
+                                                    <option selected">Semua Data</option>
+                                                    @php
+                                                        $uniqueUsaha = [];
+                                                    @endphp
+                                                    @foreach ($dataUsaha as $usaha)
+                                                        @if (!empty($usaha->jenis_usaha) && !in_array($usaha->jenis_usaha, $uniqueUsaha))
+                                                            <option value="{{ $usaha->jenis_usaha }}">
+                                                                {{ $usaha->jenis_usaha }}
+                                                            </option>
+                                                            @php
+                                                                $uniqueUsaha[] = $usaha->jenis_usaha;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-2">
+                                            <button class="btn btn-block text-white"
+                                                style="background-color: #28a745; border-radius: 10px;" type="button"
+                                                data-toggle="modal" data-target="#tambahData" aria-expanded="false"><i
+                                                    class="fas fa-plus-circle left-icon-holder"></i> &nbsp;
+                                                Tambah
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -189,7 +112,7 @@
                                 </div>
                             </div>
 
-                            <table id="example2" class="table table-bordered table-hover mt-0 pt-0">
+                            <table id="Usaha" class="table table-bordered table-hover mt-0 pt-0">
                                 <thead>
                                     <tr>
                                         <th>No</th>

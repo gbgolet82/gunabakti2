@@ -1,8 +1,8 @@
-<link href="{{ asset('tagjs/tagsinput.css') }}" rel="stylesheet" type="text/css">
+{{-- <link href="{{ asset('tagjs/tagsinput.css') }}" rel="stylesheet" type="text/css"> --}}
 <!-- Google Font: Source Sans Pro -->
-<link
+{{-- <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:300,400,400i,700&display=swap"
-    rel="stylesheet">
+    rel="stylesheet"> --}}
 <!-- IonIcons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 {{-- datatable cdn --}}

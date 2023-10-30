@@ -14,7 +14,10 @@ class DataUsahaController extends Controller
     {
         //get data tabel usaha
         $dataUsaha = Usaha::select('id_usaha', 'nama_usaha', 'alamat_usaha', 'jenis_usaha', 'produk_usaha')
+            ->where('nama_usaha', '!=', 'SEMUA')
             ->get();
+
+        // dd($dataUsaha);
 
         $modelHead = "Tambah Data Usaha";
         $active_page = "DATA USAHA";

@@ -395,6 +395,8 @@
                                                     href="{{ asset('nota/' . $pemasukan->gambar_bukti) }}"
                                                     target="_blank">Lihat</a>
                                             </td>
+                                           
+                                            <td style="15%">{{ $pemasukan->status_cek }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -420,6 +422,8 @@
                                     </div>
                                 </div>
                             @endforeach
+
+
                         </div>
                     </div>
                 </div>
